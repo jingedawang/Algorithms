@@ -1,7 +1,5 @@
 package com.ucas.algorithms.sort;
 
-import java.lang.reflect.Array;
-
 import com.ucas.algorithms.sort.utils.ArrayPrint;
 import com.ucas.algorithms.sort.utils.IntegerArrayGenerator;
 
