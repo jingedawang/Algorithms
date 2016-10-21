@@ -23,8 +23,12 @@ public class IntegerArrayGenerator {
 	}
 	
 	public static int[] randomArray(int upperLimit) {
+		return randomArray(upperLimit, 10);
+	}
+	
+	public static int[] randomArray(int upperLimit, int size) {
 		Random random = new Random(System.currentTimeMillis());
-		int[] randomArray = new int[10];
+		int[] randomArray = new int[size];
 		for (int i=0; i<randomArray.length; i++) {
 			randomArray[i] = random.nextInt(upperLimit);
 		}
