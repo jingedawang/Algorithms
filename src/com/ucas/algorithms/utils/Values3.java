@@ -6,8 +6,8 @@ package com.ucas.algorithms.utils;
 import java.util.Map;
 
 /**
+ * 封装3返回值的包装类，使用时需指明三个返回值类型，三个返回值类型可不同。
  * @author jinge
- *
  */
 public class Values3<T, U, V> {
 

@@ -3,6 +3,8 @@
  */
 package com.ucas.algorithms.divideandconquer;
 
+import com.ucas.algorithms.utils.ArrayPrint;
+import com.ucas.algorithms.utils.IntegerArrayGenerator;
 import com.ucas.algorithms.utils.Values3;
 
 /**
@@ -15,10 +17,22 @@ public class FindMaximumSubarray {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		int[] arr = IntegerArrayGenerator.randomArray(-10, 10, 20);
+		ArrayPrint.print(arr);
+		FindMaximumSubarray findMaximumSubarray = new FindMaximumSubarray();
+		Values3<Integer, Integer, Integer> values = findMaximumSubarray.findMaximumSubarray(arr, 0, arr.length - 1);
+		ArrayPrint.print(arr, values.value1, values.value2 - values.value1 + 1);
+		System.out.println(values.value3);
 	}
 
+	/**
+	 * 使用分治法求解给定数组中给定范围的最大子数组问题。
+	 * @param arr 待求解的数组
+	 * @param low 起始下标
+	 * @param high 结束下标
+	 * @return 三个返回值，依次是最大子数组的起始下标、最大子数组的结束下标、最大子数组的和
+	 */
 	public Values3<Integer, Integer, Integer> findMaximumSubarray(int[] arr, int low, int high) {
 		if (high == low) {
 			return new Values3<Integer, Integer, Integer>(low, high, arr[low]);

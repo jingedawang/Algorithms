@@ -1,4 +1,4 @@
-package com.ucas.algorithms.sort.utils;
+package com.ucas.algorithms.utils;
 
 public class TimeElapse {
 	

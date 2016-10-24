@@ -1,8 +1,8 @@
 package com.ucas.algorithms.sort;
 
-import com.ucas.algorithms.sort.utils.ArrayPrint;
-import com.ucas.algorithms.sort.utils.IntegerArrayGenerator;
-import com.ucas.algorithms.sort.utils.TimeElapse;
+import com.ucas.algorithms.utils.ArrayPrint;
+import com.ucas.algorithms.utils.IntegerArrayGenerator;
+import com.ucas.algorithms.utils.TimeElapse;
 
 /**
  * @author wjg
