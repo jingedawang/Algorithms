@@ -29,8 +29,8 @@ public class InsertionSort {
 	}
 	
 	/**
-	 * ²åÈëÅÅĞò£¬ÅÅĞò½á¹ûÈÔ±£´æÓÚarrÊı×éÖĞ¡£
-	 * @param arr ĞèÒªÅÅĞòµÄÊı×é
+	 * æ’å…¥æ’åºï¼Œæ’åºç»“æœä»ä¿å­˜äºarræ•°ç»„ä¸­ã€‚
+	 * @param arr éœ€è¦æ’åºçš„æ•°ç»„
 	 */
 	public void insertionSort(int[] arr) {
 		for (int j = 1; j < arr.length; j++) {

@@ -3,11 +3,6 @@
  */
 package com.ucas.algorithms.sort;
 
-import java.util.Collections;
-
-import javax.xml.ws.Action;
-import javax.xml.ws.soap.Addressing;
-
 import com.ucas.algorithms.sort.utils.ArrayPrint;
 import com.ucas.algorithms.sort.utils.IntegerArrayGenerator;
 import com.ucas.algorithms.sort.utils.TimeElapse;
@@ -38,18 +33,18 @@ public class MergeSort {
 	}
 	
 	/**
-	 * ¹é²¢ÅÅĞò£¬ÅÅĞò½á¹ûÈÔ±£´æÓÚarrÊı×éÖĞ¡£
-	 * @param arr ĞèÒªÅÅĞòµÄÊı×é
+	 * å½’å¹¶æ’åºï¼Œæ’åºç»“æœä»ä¿å­˜äºarræ•°ç»„ä¸­ã€‚
+	 * @param arr éœ€è¦æ’åºçš„æ•°ç»„
 	 */
 	public void mergeSort(int[] arr) {
 		mergeSort(arr, 0, arr.length - 1);
 	}
 	
 	/**
-	 * ¹é²¢ÅÅĞò£¬ÅÅĞòarrÊı×éÖĞ[p..r]µÄ×ÓÊı×é£¬ÅÅĞò½á¹ûÈÔ±£´æÓÚarrÊı×éÖĞ¡£
-	 * @param arr ĞèÒªÅÅĞòµÄÊı×é
-	 * @param p ´ıÅÅĞòÊı×éµÄÆğÊ¼ÏÂ±ê
-	 * @param r ´ıÅÅĞòÊı×éµÄÖÕÖ¹ÏÂ±ê
+	 * å½’å¹¶æ’åºï¼Œæ’åºarræ•°ç»„ä¸­[p..r]çš„å­æ•°ç»„ï¼Œæ’åºç»“æœä»ä¿å­˜äºarræ•°ç»„ä¸­ã€‚
+	 * @param arr éœ€è¦æ’åºçš„æ•°ç»„
+	 * @param p å¾…æ’åºæ•°ç»„çš„èµ·å§‹ä¸‹æ ‡
+	 * @param r å¾…æ’åºæ•°ç»„çš„ç»ˆæ­¢ä¸‹æ ‡
 	 */
 	public void mergeSort(int[] arr, int p, int r) {
 		if (p < r) {
@@ -61,11 +56,11 @@ public class MergeSort {
 	}
 
 	/**
-	 * ¹é²¢ÒÑÅÅĞòµÄÁ½¸ö×ÓĞòÁĞ¡£
-	 * @param arr ´ı¹é²¢µÄĞòÁĞ
-	 * @param p µÚÒ»¸ö×ÓĞòÁĞµÄÆğÊ¼ÏÂ±ê
-	 * @param q µÚÒ»¸ö×ÓĞòÁĞµÄ½áÊøÏÂ±ê
-	 * @param r µÚ¶ş¸ö×ÓĞòÁĞµÄ½áÊøÏÂ±ê
+	 * å½’å¹¶å·²æ’åºçš„ä¸¤ä¸ªå­åºåˆ—ã€‚
+	 * @param arr å¾…å½’å¹¶çš„åºåˆ—
+	 * @param p ç¬¬ä¸€ä¸ªå­åºåˆ—çš„èµ·å§‹ä¸‹æ ‡
+	 * @param q ç¬¬ä¸€ä¸ªå­åºåˆ—çš„ç»“æŸä¸‹æ ‡
+	 * @param r ç¬¬äºŒä¸ªå­åºåˆ—çš„ç»“æŸä¸‹æ ‡
 	 */
 	public void merge(int[] arr, int p, int q, int r) {
 		int n1 = q - p + 1;
