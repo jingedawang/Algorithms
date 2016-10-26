@@ -1,23 +1,24 @@
 package com.ucas.algorithms.math;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ucas.algorithms.utils.ArrayPrint;
 
 public class Fibonacci {
 	
 	private static Fibonacci instance;
 	
-	private List<Integer> fibonacciSequence = new ArrayList<Integer>();
+	private List<BigDecimal> fibonacciSequence = new ArrayList<BigDecimal>();
 	
 	private Fibonacci() {
 		
 	}
 
 	public static void main(String[] args) {
-		
-		int f10 = Fibonacci.getInstance().getFibonacci(10);
-		System.out.println(f10);
-		
+		List<BigDecimal> f10 = Fibonacci.getInstance().getNFibonacci(500);
+		ArrayPrint.print(f10.toArray(new BigDecimal[1]));
 	}
 	
 	public static Fibonacci getInstance() {
@@ -27,10 +28,12 @@ public class Fibonacci {
 		return instance;
 	}
 	
-	public int[] getNFibonacci(int n) {
+	public List<BigDecimal> getNFibonacci(int n) {
 		if (n <= fibonacciSequence.size()) {
-			return fibonacciSequence.subList(0, n).stream().mapToInt(Integer).toArray();
+			return fibonacciSequence.subList(0, n);
 		}
+		generateFibonacciToN(n);
+		return fibonacciSequence;
 	}
 	
 	/**
@@ -38,7 +41,7 @@ public class Fibonacci {
 	 * @param i 获取的项数
 	 * @return 第i项对应的值
 	 */
-	public int getFibonacci(int i) {
+	public BigDecimal getFibonacci(int i) {
 		if (i < fibonacciSequence.size()) {
 			return fibonacciSequence.get(i);
 		}
@@ -48,13 +51,13 @@ public class Fibonacci {
 	
 	private void generateFibonacciToN(int n) {
 		if (n > fibonacciSequence.size() && fibonacciSequence.size() == 0) {
-			fibonacciSequence.add(0);
+			fibonacciSequence.add(new BigDecimal(0));
 		}
 		if (n >= fibonacciSequence.size() && fibonacciSequence.size() == 1) {
-			fibonacciSequence.add(1);
+			fibonacciSequence.add(new BigDecimal(1));
 		}
 		while (fibonacciSequence.size() < n) {
-			fibonacciSequence.add(fibonacciSequence.get(fibonacciSequence.size() - 1) + fibonacciSequence.get(fibonacciSequence.size() - 2));
+			fibonacciSequence.add(fibonacciSequence.get(fibonacciSequence.size() - 1).add(fibonacciSequence.get(fibonacciSequence.size() - 2)));
 		}
 	}
 
