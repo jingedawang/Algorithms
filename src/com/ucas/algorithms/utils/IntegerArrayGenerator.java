@@ -46,7 +46,7 @@ public class IntegerArrayGenerator {
 	 * @return 数组
 	 */
 	public static int[] randomArray(int upperLimit, int size) {
-		Random random = new Random(System.currentTimeMillis());
+		Random random = new Random(Seed.next());
 		int[] randomArray = new int[size];
 		for (int i=0; i<randomArray.length; i++) {
 			randomArray[i] = random.nextInt(upperLimit);

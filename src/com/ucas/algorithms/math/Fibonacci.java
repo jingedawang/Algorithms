@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ucas.algorithms.utils.ArrayPrint;
+import com.ucas.algorithms.utils.ArrayPrinter;
 
 public class Fibonacci {
 	
@@ -18,7 +18,7 @@ public class Fibonacci {
 
 	public static void main(String[] args) {
 		List<BigDecimal> f10 = Fibonacci.getInstance().getNFibonacci(500);
-		ArrayPrint.print(f10.toArray(new BigDecimal[1]));
+		ArrayPrinter.print(f10.toArray(new BigDecimal[1]));
 	}
 	
 	public static Fibonacci getInstance() {

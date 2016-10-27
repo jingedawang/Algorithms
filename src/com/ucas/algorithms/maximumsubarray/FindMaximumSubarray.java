@@ -1,13 +1,14 @@
 /**
  * 
  */
-package com.ucas.algorithms.divideandconquer;
+package com.ucas.algorithms.maximumsubarray;
 
-import com.ucas.algorithms.utils.ArrayPrint;
+import com.ucas.algorithms.utils.ArrayPrinter;
 import com.ucas.algorithms.utils.IntegerArrayGenerator;
 import com.ucas.algorithms.utils.Values3;
 
 /**
+ * 最大子数组问题。
  * @author jinge
  *
  */
@@ -19,10 +20,10 @@ public class FindMaximumSubarray {
 	public static void main(String[] args) {
 		
 		int[] arr = IntegerArrayGenerator.randomArray(-10, 10, 20);
-		ArrayPrint.print(arr);
+		ArrayPrinter.print(arr);
 		FindMaximumSubarray findMaximumSubarray = new FindMaximumSubarray();
 		Values3<Integer, Integer, Integer> values = findMaximumSubarray.findMaximumSubarray(arr, 0, arr.length - 1);
-		ArrayPrint.print(arr, values.value1, values.value2 - values.value1 + 1);
+		ArrayPrinter.print(arr, values.value1, values.value2 - values.value1 + 1);
 		System.out.println(values.value3);
 	}
 

@@ -5,7 +5,7 @@ package com.ucas.algorithms.utils;
  * @version 0.0.1
  *
  */
-public class ArrayPrint {
+public class ArrayPrinter {
 
 	/**
 	 * 打印数组中的全部元素。

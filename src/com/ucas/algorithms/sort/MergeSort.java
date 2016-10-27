@@ -3,7 +3,7 @@
  */
 package com.ucas.algorithms.sort;
 
-import com.ucas.algorithms.utils.ArrayPrint;
+import com.ucas.algorithms.utils.ArrayPrinter;
 import com.ucas.algorithms.utils.IntegerArrayGenerator;
 import com.ucas.algorithms.utils.TimeElapse;
 
@@ -19,7 +19,7 @@ public class MergeSort {
 	public static void main(String[] args) {
 //		int[] arr = IntegerArrayGenerator.fixedArray();
 		int[] arr = IntegerArrayGenerator.randomArray(10000, 10000);
-		ArrayPrint.print(arr);
+		ArrayPrinter.print(arr);
 		
 		MergeSort sort = new MergeSort();
 		TimeElapse timeElapse = new TimeElapse();
@@ -29,7 +29,7 @@ public class MergeSort {
 		timeElapse.stop();
 		timeElapse.showElapsedTime();
 		
-		ArrayPrint.print(arr);
+		ArrayPrinter.print(arr);
 	}
 	
 	/**

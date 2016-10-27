@@ -1,6 +1,6 @@
 package com.ucas.algorithms.sort;
 
-import com.ucas.algorithms.utils.ArrayPrint;
+import com.ucas.algorithms.utils.ArrayPrinter;
 import com.ucas.algorithms.utils.IntegerArrayGenerator;
 import com.ucas.algorithms.utils.TimeElapse;
 
@@ -15,7 +15,7 @@ public class InsertionSort {
 		
 //		int[] arr = IntegerArrayGenerator.fixedArray();
 		int[] arr = IntegerArrayGenerator.randomArray(10000, 10000);
-		ArrayPrint.print(arr);
+		ArrayPrinter.print(arr);
 		
 		InsertionSort sort = new InsertionSort();
 		TimeElapse timeElapse = new TimeElapse();
@@ -24,7 +24,7 @@ public class InsertionSort {
 		timeElapse.stop();
 		timeElapse.showElapsedTime();
 		
-		ArrayPrint.print(arr);
+		ArrayPrinter.print(arr);
 
 	}
 	
