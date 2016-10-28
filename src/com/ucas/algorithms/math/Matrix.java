@@ -1,5 +1,6 @@
 package com.ucas.algorithms.math;
 
+import com.ucas.algorithms.enums.MultiplierType;
 import com.ucas.algorithms.enums.Operation;
 import com.ucas.algorithms.matrix.MatrixFactory;
 import com.ucas.algorithms.matrix.MatrixMultiplier;
@@ -53,6 +54,17 @@ public class Matrix {
 	 */
 	public Matrix multiply(Matrix m) {
 		MatrixMultiplier multiplier = MatrixFactory.getMutiplier();
+		return multiplier.multiply(this, m);
+	}
+	
+	/**
+	 * 返回乘以矩阵<code>m</code>后的结果，结果以新矩阵返回。使用type指定的乘法器。
+	 * @param m 待相乘的矩阵
+	 * @param type 指定的乘法器枚举类型
+	 * @return 相乘后的新矩阵
+	 */
+	public Matrix multiply(Matrix m, MultiplierType type) {
+		MatrixMultiplier multiplier = MatrixFactory.getMutiplier(type);
 		return multiplier.multiply(this, m);
 	}
 	

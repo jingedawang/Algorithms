@@ -1,11 +1,23 @@
 package com.ucas.algorithms.matrix;
 
+import com.ucas.algorithms.enums.MultiplierType;
 import com.ucas.algorithms.math.Matrix;
 
 public class MatrixFactory {
 
 	public static MatrixMultiplier getMutiplier() {
-		return new StrassenMultiplier();
+		return new PlainMultiplier();
+	}
+	
+	public static MatrixMultiplier getMutiplier(MultiplierType type) {
+		switch (type) {
+		case PLAIN:
+			return new PlainMultiplier();
+		case STRASSEN:
+			return new StrassenMultiplier();
+		default :
+			return getMutiplier();
+		}
 	}
 	
 	public static Matrix merge(Matrix A11, Matrix A12, Matrix A21, Matrix A22) {
