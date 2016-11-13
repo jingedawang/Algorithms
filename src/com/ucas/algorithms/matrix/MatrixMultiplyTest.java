@@ -3,7 +3,6 @@ package com.ucas.algorithms.matrix;
 import com.ucas.algorithms.enums.MultiplierType;
 import com.ucas.algorithms.math.Matrix;
 import com.ucas.algorithms.utils.MatrixGenerator;
-import com.ucas.algorithms.utils.MatrixPrinter;
 import com.ucas.algorithms.utils.TimeElapse;
 
 public class MatrixMultiplyTest {
@@ -11,7 +10,6 @@ public class MatrixMultiplyTest {
 	public static void main(String[] args) {
 		
 		for (int n=0; n<12; n++) {
-		
 			Matrix A = MatrixGenerator.generateRandomMatrix(1 << n);
 			Matrix B = MatrixGenerator.generateRandomMatrix(1 << n);
 			TimeElapse time1 = new TimeElapse();

@@ -14,7 +14,7 @@ public class InsertionSort {
 	public static void main(String[] args) {
 		
 //		int[] arr = IntegerArrayGenerator.fixedArray();
-		int[] arr = IntegerArrayGenerator.randomArray(10000, 10000);
+		int[] arr = IntegerArrayGenerator.randomArray(100, 100);
 		ArrayPrinter.print(arr);
 		
 		InsertionSort sort = new InsertionSort();
