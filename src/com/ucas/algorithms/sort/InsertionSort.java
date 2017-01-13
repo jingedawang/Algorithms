@@ -13,8 +13,8 @@ public class InsertionSort {
 
 	public static void main(String[] args) {
 		
-//		int[] arr = IntegerArrayGenerator.fixedArray();
-		int[] arr = IntegerArrayGenerator.randomArray(100, 100);
+		int[] arr = IntegerArrayGenerator.fixedArray();
+//		int[] arr = IntegerArrayGenerator.randomArray(100, 100);
 		ArrayPrinter.print(arr);
 		
 		InsertionSort sort = new InsertionSort();
