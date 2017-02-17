@@ -29,11 +29,20 @@ public class BucketSort {
 		ArrayPrinter.print(arr);
 	}
 	
+	/**
+	 * 桶排序中使用的链表数据结构
+	 * @author wjg
+	 *
+	 */
 	class Node {
 		double value;
 		Node next;
 	}
 	
+	/**
+	 * 使用桶排序算法对给定的数组排序
+	 * @param arr 需要排序的数组
+	 */
 	public void bucketSort(double[] arr) {
 		int n = arr.length;
 		Node[] B = new Node[n];
