@@ -44,5 +44,22 @@ public class InsertionSort {
 			arr[i + 1] = key;
 		}
 	}
+	
+	/**
+	 * 插入排序，排序结果仍保存于arr数组中。
+	 * @param arr 需要排序的数组
+	 */
+	public void insertionSort(double[] arr) {
+		for (int j = 1; j < arr.length; j++) {
+			double key = arr[j];
+			//Insert arr[j] into the sorted sequence arr[1..j-1].
+			int i = j - 1;
+			while (i >= 0 && arr[i] > key) {
+				arr[i + 1] = arr[i];
+				i--;
+			}
+			arr[i + 1] = key;
+		}
+	}
 
 }

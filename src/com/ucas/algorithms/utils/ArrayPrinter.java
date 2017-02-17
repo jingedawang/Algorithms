@@ -37,6 +37,19 @@ public class ArrayPrinter {
 	 * 打印数组中的全部元素。
 	 * @param arr 待打印的数组
 	 */
+	public static void print(double[] arr) {
+		System.out.print("[");
+		int i=0;
+		for (; i<arr.length-1; i++) {
+			System.out.print(arr[i] + ", ");
+		}
+		System.out.println(arr[i] + "]");
+	}
+	
+	/**
+	 * 打印数组中的全部元素。
+	 * @param arr 待打印的数组
+	 */
 	public static <T> void print(T[] arr) {
 		System.out.print("[");
 		int i=0;

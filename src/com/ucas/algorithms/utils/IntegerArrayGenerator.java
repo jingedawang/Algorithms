@@ -3,6 +3,7 @@
  */
 package com.ucas.algorithms.utils;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -67,6 +68,19 @@ public class IntegerArrayGenerator {
 			arr[i] += lowerLimit;
 		}
 		return arr;
+	}
+	
+	/**
+	 * 返回随机生成的长度为10的分布在[0,1)区间上的数组。
+	 * @return 数组
+	 */
+	public static double[] randomArrayDouble() {
+		int[] arr = randomArray();
+		double[] arrDouble = new double[arr.length];
+		for (int i=0; i<arr.length; i++) {
+			arrDouble[i] = arr[i] / 10.0;
+		}
+		return arrDouble;
 	}
 	
 }
