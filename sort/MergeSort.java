@@ -1,31 +1,29 @@
 /**
- * 
+ * Copyright 2020 jingedawang
  */
 package sort;
 
-import utils.ArrayPrinter;
 import utils.ArrayGenerator;
+import utils.ArrayPrinter;
 import utils.TimeRecorder;
 
 /**
- * @author wjg
- * @version 0.0.1
+ * <h3>Merge sort algorithm</h3>
  */
-public class MergeSort {
+public class MergeSort implements Sort{
 
 	/**
-	 * @param args
+	 * Test code.
 	 */
 	public static void main(String[] args) {
-//		int[] arr = IntegerArrayGenerator.fixedArray();
-		int[] arr = ArrayGenerator.randomArray(10000, 10000);
+		int[] arr = ArrayGenerator.fixedArray();
+//		int[] arr = ArrayGenerator.randomArray(10, 10);
 		ArrayPrinter.print(arr);
 		
-		MergeSort sort = new MergeSort();
+		Sort sort = new MergeSort();
 		TimeRecorder timeRecorder = new TimeRecorder();
 		timeRecorder.start();
-		
-		sort.mergeSort(arr);
+		sort.sort(arr);
 		timeRecorder.stop();
 		timeRecorder.showElapsedTime();
 		
@@ -33,18 +31,19 @@ public class MergeSort {
 	}
 	
 	/**
-	 * 归并排序，排序结果仍保存于arr数组中。
-	 * @param arr 需要排序的数组
+	 * Merge sort.
+	 * @param arr Integer array to be sorted.
 	 */
-	public void mergeSort(int[] arr) {
+	@Override
+	public void sort(int[] arr) {
 		mergeSort(arr, 0, arr.length - 1);
 	}
 	
 	/**
-	 * 归并排序，排序arr数组中[p..r]的子数组，排序结果仍保存于arr数组中。
-	 * @param arr 需要排序的数组
-	 * @param p 待排序数组的起始下标
-	 * @param r 待排序数组的终止下标
+	 * Merge sort a subarray recursively.
+	 * @param arr The integer array where the subarray resides.
+	 * @param p The start index of the subarray to be sorted.
+	 * @param r Thn end index(included) of the subarray to be sorted.
 	 */
 	public void mergeSort(int[] arr, int p, int r) {
 		if (p < r) {
@@ -56,21 +55,22 @@ public class MergeSort {
 	}
 
 	/**
-	 * 归并已排序的两个子序列。
-	 * @param arr 待归并的序列
-	 * @param p 第一个子序列的起始下标
-	 * @param q 第一个子序列的结束下标
-	 * @param r 第二个子序列的结束下标
+	 * Merge the two sorted subarray.
+	 * @param arr The integer array where the two sorted subarrays reside.
+	 * @param p The start index of the first subarray.
+	 * @param q The end index(included) of the first subarray.
+	 * @param r The end index(included) of the second subarray. Note that the start index of the second subarray is
+	 *          always the next position of the end of the first subarray.
 	 */
 	public void merge(int[] arr, int p, int q, int r) {
 		int n1 = q - p + 1;
 		int n2 = r - q;
 		int[] arrL = new int[n1 + 1];
 		int[] arrR = new int[n2 + 1];
-		for (int i=0; i<n1; i++) {
+		for (int i = 0; i < n1; i++) {
 			arrL[i] = arr[p + i];
 		}
-		for (int i=0; i<n2; i++) {
+		for (int i = 0; i < n2; i++) {
 			arrR[i] = arr[q + 1 + i];
 		}
 		arrL[n1] = Integer.MAX_VALUE;
