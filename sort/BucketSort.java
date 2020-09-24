@@ -68,7 +68,7 @@ public class BucketSort {
 				head = head.next;
 				bucketArr[j] = head.value;
 			}
-			insertionSort.insertionSort(bucketArr);
+			insertionSort.sort(bucketArr);
 			for (int j=0; j<bucketArr.length; j++) {
 				arr[arrIndex++] = bucketArr[j];
 			}

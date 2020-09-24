@@ -10,7 +10,7 @@ import utils.TimeRecorder;
 /**
  * <h3>Insertion sort algorithm</h3>
  */
-public class InsertionSort {
+public class InsertionSort implements Sort {
 
 	/**
 	 * Test code.
@@ -20,21 +20,21 @@ public class InsertionSort {
 //		int[] arr = IntegerArrayGenerator.randomArray(100, 100);
 		ArrayPrinter.print(arr);
 		
-		InsertionSort sort = new InsertionSort();
+		Sort sort = new InsertionSort();
 		TimeRecorder timeRecorder = new TimeRecorder();
 		timeRecorder.start();
-		sort.insertionSort(arr);
+		sort.sort(arr);
 		timeRecorder.stop();
 		timeRecorder.showElapsedTime();
 		
 		ArrayPrinter.print(arr);
 	}
-	
+
 	/**
-	 * Insertion sort in place.
+	 * Insertion sort.
 	 * @param arr Integer array to be sorted.
 	 */
-	public void insertionSort(int[] arr) {
+	public void sort(int[] arr) {
 		for (int j = 1; j < arr.length; j++) {
 			int key = arr[j];
 			// Insert arr[j] into the sorted sequence arr[0..j-1].
@@ -48,10 +48,10 @@ public class InsertionSort {
 	}
 
 	/**
-	 * Insertion sort in place.
+	 * Insertion sort for double array.
 	 * @param arr Double array to be sorted.
 	 */
-	public void insertionSort(double[] arr) {
+	public void sort(double[] arr) {
 		for (int j = 1; j < arr.length; j++) {
 			double key = arr[j];
 			// Insert arr[j] into the sorted sequence arr[0..j-1].
