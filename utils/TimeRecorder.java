@@ -7,21 +7,21 @@ package utils;
  * <h3>A simple time elapse</h3>
  */
 public class TimeRecorder {
-	
+
 	/**
 	 * Start timing.
 	 */
 	public void start() {
 		startTime = System.nanoTime();
 	}
-	
+
 	/**
 	 * Stop timing.
 	 */
 	public void stop() {
 		endTime = System.nanoTime();
 	}
-	
+
 	/**
 	 * Show time elapsed.
 	 */

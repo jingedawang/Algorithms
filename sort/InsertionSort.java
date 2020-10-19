@@ -19,19 +19,20 @@ public class InsertionSort implements Sort {
 		int[] arr = ArrayGenerator.fixedArray();
 //		int[] arr = IntegerArrayGenerator.randomArray(100, 100);
 		ArrayPrinter.print(arr);
-		
+
 		Sort sort = new InsertionSort();
 		TimeRecorder timeRecorder = new TimeRecorder();
 		timeRecorder.start();
 		sort.sort(arr);
 		timeRecorder.stop();
 		timeRecorder.showElapsedTime();
-		
+
 		ArrayPrinter.print(arr);
 	}
 
 	/**
 	 * Insertion sort.
+	 *
 	 * @param arr Integer array to be sorted.
 	 */
 	public void sort(int[] arr) {
@@ -49,6 +50,7 @@ public class InsertionSort implements Sort {
 
 	/**
 	 * Insertion sort for double array.
+	 *
 	 * @param arr Double array to be sorted.
 	 */
 	public void sort(double[] arr) {

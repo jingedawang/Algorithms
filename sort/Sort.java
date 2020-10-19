@@ -8,9 +8,11 @@ package sort;
  */
 public interface Sort {
 
-    /**
-     * Sort interface for integer array.
-     * @param arr Integer array to be sorted.
-     */
-    public void sort(int[] arr);
+	/**
+	 * Sort interface for integer array.
+	 *
+	 * @param arr Integer array to be sorted.
+	 */
+	public void sort(int[] arr);
+
 }
