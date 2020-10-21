@@ -1,46 +1,57 @@
+/**
+ * Copyright 2020 jingedawang
+ */
 package utils;
 
 import java.util.Random;
 
-import math.Matrix;
+import matrix.Matrix;
 
+/**
+ * <h3>Matrix generator</h3>
+ * <p>
+ * This class provides different matrix generators.
+ */
 public class MatrixGenerator {
-	
+
 	/**
-	 * 返回随机生成的指定行列数的方阵。
-	 * @param row 指定的行数和列数
-	 * @return 生成的矩阵
+	 * Generate a random square matrix with side length specified.
+	 *
+	 * @param sideLength The side length of the square matrix.
+	 * @return The generated random matrix.
 	 */
-	public static Matrix generateRandomMatrix(int row) {
-		return generateRandomMatrix(row, row, 10);
-	}
-	
-	/**
-	 * 返回随机生成的指定行数和列数的矩阵。
-	 * @param row 指定行数
-	 * @param column 指定列数
-	 * @return 生成的矩阵
-	 */
-	public static Matrix generateRandomMatrix(int row, int column) {
-		return generateRandomMatrix(row, column, 10);
+	public static Matrix generateRandomMatrix(int sideLength) {
+		return generateRandomMatrix(sideLength, sideLength, 10);
 	}
 
 	/**
-	 * 返回随机生成的指定行数和列数且指定元素大小上限的矩阵。
-	 * @param row 指定行数
-	 * @param column 指定列数
-	 * @param upperLimit 指定元素最大值
-	 * @return 生成的矩阵
+	 * Generate a random matrix with rows and columns specified.
+	 *
+	 * @param rows    The number of the rows of the matrix.
+	 * @param columns The number of columns of the matrix.
+	 * @return The generated random matrix.
 	 */
-	public static Matrix generateRandomMatrix(int row, int column, int upperLimit) {
-		Matrix matrix = new Matrix(row, column);
+	public static Matrix generateRandomMatrix(int rows, int columns) {
+		return generateRandomMatrix(rows, columns, 10);
+	}
+
+	/**
+	 * Generate a random matrix with rows, columns and upper limit specified.
+	 *
+	 * @param rows       The number of the rows of the matrix.
+	 * @param columns    The number of the columns of the matrix.
+	 * @param upperLimit The upper limit of the elements.
+	 * @return The generated random matrix.
+	 */
+	public static Matrix generateRandomMatrix(int rows, int columns, int upperLimit) {
+		Matrix matrix = new Matrix(rows, columns);
 		Random random = new Random(Seed.next());
-		for (int i=0; i<row; i++) {
-			for (int j=0; j<column; j++) {
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
 				matrix.value()[i][j] = random.nextInt(upperLimit);
 			}
 		}
 		return matrix;
 	}
-	
+
 }

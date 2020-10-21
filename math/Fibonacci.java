@@ -28,6 +28,7 @@ public class Fibonacci {
 
 	/**
 	 * Get the singleton instance of this class.
+	 *
 	 * @return The singleton instance.
 	 */
 	public static Fibonacci getInstance() {
@@ -39,6 +40,7 @@ public class Fibonacci {
 
 	/**
 	 * Get the first {@code n} fibonacci numbers.
+	 *
 	 * @param n The length of the sequence wanted.
 	 * @return A list of the first {@code n} fibonacci numbers.
 	 */
@@ -49,9 +51,10 @@ public class Fibonacci {
 		generateFibonacciToN(n);
 		return fibonacciSequence;
 	}
-	
+
 	/**
 	 * Get the {@code i}-th item of the fibonacci sequence.
+	 *
 	 * @param i The index of the item to be fetched.
 	 * @return The {@code i}-th item of the fibonacci sequence.
 	 */

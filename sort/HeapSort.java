@@ -1,6 +1,6 @@
 package sort;
 
-import math.Heap;
+import container.Heap;
 import utils.ArrayPrinter;
 import utils.ArrayGenerator;
 

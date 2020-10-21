@@ -1,18 +1,28 @@
+/**
+ * Copyright 2020 jingedawang
+ */
 package matrix;
 
-import math.Matrix;
-
+/**
+ * <h3>Plain matrix multiplier</h3>
+ * <p>
+ * This multiplier calculates matrix multiplication according to the definition.
+ */
 public class PlainMultiplier implements MatrixMultiplier {
 
+	/**
+	 * Multiply two matrices.
+	 *
+	 * @param A First operand of matrix multiplication.
+	 * @param B Second operand of matrix multiplication.
+	 * @return The product of the matrix multiplication.
+	 */
 	@Override
 	public Matrix multiply(Matrix A, Matrix B) {
-		if (A.row() != B.column() || A.column() != B.row()) {
-			throw new IllegalArgumentException("A multiply B is applicable only when A is an m x n matrix while B is an n x m matrix.");
-		}
-		Matrix C = new Matrix(A.row(), B.column());
-		for (int i=0; i<A.row(); i++) {
-			for (int j=0; j<B.column(); j++) {
-				for (int k=0; k<A.column(); k++) {
+		Matrix C = new Matrix(A.rows(), B.columns());
+		for (int i = 0; i < A.rows(); i++) {
+			for (int j = 0; j < B.columns(); j++) {
+				for (int k = 0; k < A.columns(); k++) {
 					C.value()[i][j] += A.value()[i][k] * B.value()[k][j];
 				}
 			}
