@@ -6,6 +6,11 @@ package sort;
 import utils.ArrayGenerator;
 import utils.TimeRecorder;
 
+/**
+ * <h3>Hybrid sort algorithm</h3>
+ * <p>
+ * This algorithm combines merge sort and insertion sort to achieve a faster speed.
+ */
 public class HybridSort extends MergeSort {
 
 	/**
