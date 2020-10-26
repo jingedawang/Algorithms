@@ -1,3 +1,6 @@
+/**
+ * Copyright 2020 jingedawang
+ */
 package sort;
 
 import container.Heap;
@@ -5,35 +8,38 @@ import utils.ArrayPrinter;
 import utils.ArrayGenerator;
 
 /**
- * 堆排序算法
- * @author wjg
- * @version 0.0.1
+ * <h3>Heap sort algorithm</h3>
  */
-public class HeapSort {
+public class HeapSort implements Sort {
 
+	/**
+	 * Test code.
+	 */
 	public static void main(String[] args) {
 
 		int[] arr = ArrayGenerator.fixedArray();
 //		int[] arr = IntegerArrayGenerator.randomArray(100, 100);
 		ArrayPrinter.print(arr);
-		
-		HeapSort sort = new HeapSort();
-		sort.heapSort(arr);
-		
+
+		Sort sort = new HeapSort();
+		sort.sort(arr);
+
 		ArrayPrinter.print(arr);
 	}
-	
+
 	/**
-	 * 使用堆排序算法对给定的数组排序
-	 * @param arr 需要排序的数组
+	 * Heap sort.
+	 *
+	 * @param arr Integer array to be sorted.
 	 */
-	public void heapSort(int[] arr) {
+	@Override
+	public void sort(int[] arr) {
 		Heap heap = Heap.buildMaxHeap(arr);
-		for (int i = heap.arr.length - 1; i >= 1; i--) {
-			int temp = heap.arr[i];
-			heap.arr[i] = heap.arr[0];
-			heap.arr[0] = temp;
-			heap.size --;
+		for (int i = heap.data.length - 1; i >= 1; i--) {
+			int temp = heap.data[i];
+			heap.data[i] = heap.data[0];
+			heap.data[0] = temp;
+			heap.size--;
 			heap.maxHeapify(0);
 		}
 	}
