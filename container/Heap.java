@@ -17,6 +17,7 @@ public class Heap {
 	public static Heap buildMaxHeap(int[] arr) {
 		Heap heap = new Heap();
 		heap.data = arr;
+		heap.capacity = arr.length;
 		heap.size = arr.length;
 		for (int i = heap.size / 2 - 1; i >= 0; i--) {
 			heap.maxHeapify(i);
@@ -33,6 +34,7 @@ public class Heap {
 	public static Heap buildMinHeap(int[] arr) {
 		Heap heap = new Heap();
 		heap.data = arr;
+		heap.capacity = arr.length;
 		heap.size = arr.length;
 		for (int i = heap.size / 2 - 1; i >= 0; i--) {
 			heap.minHeapify(i);
@@ -129,5 +131,10 @@ public class Heap {
 	 * The number of elements in this heap.
 	 */
 	public int size;
+
+	/**
+	 * The capacity of this heap.
+	 */
+	public int capacity;
 
 }
