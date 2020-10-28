@@ -1,64 +1,64 @@
 /**
- * 
+ * Copyright 2020 jingedawang
  */
 package sort;
 
-import java.util.Random;
-
 import utils.ArrayPrinter;
 import utils.ArrayGenerator;
-import utils.Seed;
 
 /**
- * 快速排序算法
- * 
- * @author wjg
- *
+ * <h3>Quick sort algorithm</h3>
  */
-public class QuickSort {
+public class QuickSort implements Sort {
 
 	public static void main(String[] args) {
-		
+
 		int[] arr = ArrayGenerator.fixedArray();
-//		int[] arr = IntegerArrayGenerator.randomArray(20, 20);
+//		int[] arr = ArrayGenerator.randomArray(20, 20);
 		ArrayPrinter.print(arr);
-		
-		QuickSort sort = new QuickSort();
-		sort.quickSort(arr, 0, arr.length - 1);
-		
+
+		Sort sort = new QuickSort();
+		sort.sort(arr);
+
 		ArrayPrinter.print(arr);
-		
-		int[] arr2 = ArrayGenerator.fixedArray();
-//		int[] arr2 = IntegerArrayGenerator.randomArray(20, 20);
-		ArrayPrinter.print(arr2);
-		
-		sort.randomizedQuickSort(arr2, 0, arr.length - 1);
-		
-		ArrayPrinter.print(arr2);
 	}
-	
+
 	/**
-	 * 使用快速排序算法对给定的数组排序
-	 * @param arr 需要排序的数组
-	 * @param p 指定排序区间的起始下标
-	 * @param r 指定排序区间的结束下标
+	 * Quick sort.
+	 *
+	 * @param arr Integer array to be sorted.
 	 */
-	public void quickSort(int[] arr, int p, int r) {
+	@Override
+	public void sort(int[] arr) {
+		quickSort(arr, 0, arr.length - 1);
+	}
+
+	/**
+	 * The recursive procedure in quick sort.
+	 *
+	 * @param arr The array to be sorted.
+	 * @param p   The start index of the sub-array to be sorted.
+	 * @param r   The end index of the sub-array to be sorted.
+	 */
+	protected void quickSort(int[] arr, int p, int r) {
 		if (p < r) {
 			int q = partition(arr, p, r);
 			quickSort(arr, p, q - 1);
 			quickSort(arr, q + 1, r);
 		}
 	}
-	
+
 	/**
-	 * 快速排序中的一趟划分
-	 * @param arr 需要排序的数组
-	 * @param p 指定排序区间的起始下标
-	 * @param r 指定排序区间的结束下标
-	 * @return 划分后主元的位置
+	 * Partition the array into two parts.
+	 * <p>
+	 * After this method, elements greater than pivot are put right, others are put left.
+	 *
+	 * @param arr The array to be sorted.
+	 * @param p   The start index of the sub-array to be sorted.
+	 * @param r   The end index of the sub-array to be sorted.
+	 * @return The index of the pivot after partition.
 	 */
-	public int partition(int[] arr, int p, int r) {
+	protected int partition(int[] arr, int p, int r) {
 		int x = arr[r];
 		int i = p - 1;
 		int temp;
@@ -74,35 +74,6 @@ public class QuickSort {
 		arr[i + 1] = arr[r];
 		arr[r] = temp;
 		return i + 1;
-	}
-	
-	/**
-	 * 使用随机化快速排序算法对给定的数组排序
-	 * @param arr 需要排序的数组
-	 * @param p 指定排序区间的起始下标
-	 * @param r 指定排序区间的结束下标
-	 */
-	public void randomizedQuickSort(int[] arr, int p, int r) {
-		if (p < r) {
-			int q = randomizedPartition(arr, p, r);
-			randomizedQuickSort(arr, p, q - 1);
-			randomizedQuickSort(arr, q + 1, r);
-		}
-	}
-	
-	/**
-	 * 随机化快速排序中的一趟划分
-	 * @param arr 需要排序的数组
-	 * @param p 指定排序区间的起始下标
-	 * @param r 指定排序区间的结束下标
-	 * @return 划分后主元的位置
-	 */
-	public int randomizedPartition(int[] arr, int p, int r) {
-		int i = new Random(Seed.next()).nextInt(r - p + 1) + p;
-		int temp = arr[r];
-		arr[r] = arr[i];
-		arr[i] = temp;
-		return partition(arr, p, r);
 	}
 
 }

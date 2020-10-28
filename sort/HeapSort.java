@@ -18,7 +18,7 @@ public class HeapSort implements Sort {
 	public static void main(String[] args) {
 
 		int[] arr = ArrayGenerator.fixedArray();
-//		int[] arr = IntegerArrayGenerator.randomArray(100, 100);
+//		int[] arr = ArrayGenerator.randomArray(20, 20);
 		ArrayPrinter.print(arr);
 
 		Sort sort = new HeapSort();
