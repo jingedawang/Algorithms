@@ -13,6 +13,6 @@ public interface Sort {
 	 *
 	 * @param arr Integer array to be sorted.
 	 */
-	public void sort(int[] arr);
+	void sort(int[] arr);
 
 }

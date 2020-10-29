@@ -1,79 +1,79 @@
 /**
- * 
+ * Copyright 2020 jingedawang
  */
 package sort;
 
 import utils.ArrayPrinter;
 import utils.ArrayGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * @author wjg
- *
+ * <h3>Bucket sort algorithm</h3>
  */
-public class BucketSort {
+public class BucketSort implements Sort {
 
 	/**
-	 * @param args
+	 * Test code.
 	 */
 	public static void main(String[] args) {
-		
-		double[] arr = ArrayGenerator.randomArrayDouble();
+		// The elements to be sorted by bucket sort must lies in [0, k).
+		int k = 10;
+
+		int[] arr = ArrayGenerator.randomArray(k);
 		ArrayPrinter.print(arr);
-		
-		BucketSort sort = new BucketSort();
-		sort.bucketSort(arr);
-		
+
+		Sort sort = new BucketSort(k);
+		sort.sort(arr);
+
 		ArrayPrinter.print(arr);
 	}
-	
+
 	/**
-	 * 桶排序中使用的链表数据结构
-	 * @author wjg
+	 * Constructor with {@code k} specified.
 	 *
+	 * @param k The upper limit of the array elements.
 	 */
-	class Node {
-		double value;
-		Node next;
+	public BucketSort(int k) {
+		this.k = k;
 	}
-	
+
 	/**
-	 * 使用桶排序算法对给定的数组排序
-	 * @param arr 需要排序的数组
+	 * Bucket sort.
+	 *
+	 * @param arr Integer array to be sorted.
 	 */
-	public void bucketSort(double[] arr) {
-		int n = arr.length;
-		Node[] B = new Node[n];
-		for (int i=0; i<n; i++) {
-			B[i] = new Node();
-		}
-		for (int i=0; i<n; i++) {
-			Node node = new Node();
-			node.value = arr[i];
-			int index = (int) (n * arr[i]);
-			node.next = B[index].next;
-			B[index].next = node;
-		}
-		InsertionSort insertionSort = new InsertionSort();
-		int arrIndex = 0;
-		for (int i=0; i<n; i++) {
-			Node head = B[i];
-			int length = 0;
-			while (head.next != null) {
-				head = head.next;
-				length++;
-			}
-			double[] bucketArr = new double[length];
-			head = B[i];
-			for (int j=0; j<length; j++) {
-				head = head.next;
-				bucketArr[j] = head.value;
-			}
-			insertionSort.sort(bucketArr);
-			for (int j=0; j<bucketArr.length; j++) {
-				arr[arrIndex++] = bucketArr[j];
-			}
-		}
-		
+	@Override
+	public void sort(int[] arr) {
+		bucketSort(arr, k);
 	}
+
+	/**
+	 * Bucket sort.
+	 *
+	 * @param arr The array to be sorted.
+	 * @param k   The upper limit of the array elements.
+	 */
+	private void bucketSort(int[] arr, int k) {
+		List<Integer>[] buckets = new List[arr.length];
+		for (int i = 0; i < buckets.length; i++) {
+			buckets[i] = new ArrayList<>();
+		}
+		for (int item : arr) {
+			buckets[item * arr.length / k].add(item);
+		}
+		int index = 0;
+		InsertionSort insertionSort = new InsertionSort();
+		for (List<Integer> bucket : buckets) {
+			int[] bucketArr = bucket.stream().mapToInt(Integer::valueOf).toArray();
+			insertionSort.sort(bucketArr);
+			System.arraycopy(bucketArr, 0, arr, index, bucketArr.length);
+			index += bucketArr.length;
+		}
+	}
+
+	// The upper limit of the array elements.
+	private final int k;
 
 }

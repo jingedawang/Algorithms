@@ -1,5 +1,5 @@
 /**
- * 
+ * Copyright 2020 jingedawang
  */
 package sort;
 
@@ -7,85 +7,85 @@ import utils.ArrayPrinter;
 import utils.ArrayGenerator;
 
 /**
- * @author wjg
- *
+ * <h3>Counting sort algorithm</h3>
  */
-public class CountingSort {
+public class CountingSort implements Sort {
 
 	/**
-	 * @param args
+	 * Test code.
 	 */
 	public static void main(String[] args) {
-		
-		//使用计数排序的数组的元素大小必须位于[0,k)区间内
+		// The elements to be sorted by counting sort must lies in [0, k).
 		int k = 10;
+
 		int[] arr = ArrayGenerator.randomArray(k);
 		ArrayPrinter.print(arr);
-		int[] resultArr = new int[arr.length];
-		
-		CountingSort sort = new CountingSort();
-		sort.countingSort(arr, resultArr, k);
-		
-		ArrayPrinter.print(resultArr);
-	}
-	
-	/**
-	 * 使用计数排序算法对给定的数组排序
-	 * @param A 需要排序的数组
-	 * @param B 存放排序结果的数组
-	 * @param k 数组中元素必须在[0,k)区间上
-	 */
-	public void countingSort(int[] A, int[] B, int k) {
-		//辅助数组
-		int[] C = new int[k];
-		for (int i=0; i<k; i++) {
-			C[i] = 0;
-		}
-		for (int j=0; j<A.length; j++) {
-			C[A[j]]++;
-		}
-		//C[i] now contains the number of elements equal to i.
-		for (int i=1; i<k; i++) {
-			C[i] += C[i - 1];
-		}
-		//C[i] now contains the number of elements less than or equal to i.
-		for (int j = A.length - 1; j>=0; j--) {
-			B[C[A[j]] - 1] = A[j];
-			C[A[j]] = C[A[j]] - 1;
-		}
-	}
-	
-	/**
-	 * 使用计数排序算法对给定的数组排序
-	 * @param A 需要排序的数组
-	 * @param B 存放排序结果的数组
-	 * @param k 数组中元素必须在[0,k)区间上
-	 * @return 指示排序后元素原序号的数组
-	 */
-	public int[] countingSortReturnOrder(int[] A, int k) {
-		//辅助数组
-		int[] C = new int[k];
-		int[] O = new int[A.length];
-		for (int i=0; i<A.length; i++) {
-			O[i] = i;
-		}
-		for (int i=0; i<k; i++) {
-			C[i] = 0;
-		}
-		for (int j=0; j<A.length; j++) {
-			C[A[j]]++;
-		}
-		//C[i] now contains the number of elements equal to i.
-		for (int i=1; i<k; i++) {
-			C[i] += C[i - 1];
-		}
-		//C[i] now contains the number of elements less than or equal to i.
-		for (int j = A.length - 1; j>=0; j--) {
-//			B[C[A[j]] - 1] = A[j];
-			O[C[A[j]] - 1] = j;
-			C[A[j]] = C[A[j]] - 1;
-		}
-		return O;
+
+		Sort sort = new CountingSort(k);
+		sort.sort(arr);
+
+		ArrayPrinter.print(arr);
 	}
 
+	/**
+	 * Constructor with {@code k} specified.
+	 *
+	 * @param k The upper limit of the array elements.
+	 */
+	public CountingSort(int k) {
+		this.k = k;
+	}
+
+	/**
+	 * Counting sort.
+	 *
+	 * @param arr Integer array to be sorted.
+	 */
+	@Override
+	public void sort(int[] arr) {
+		int[] sortedArr = new int[arr.length];
+		countingSort(arr, sortedArr, k);
+		System.arraycopy(sortedArr, 0, arr, 0, sortedArr.length);
+	}
+
+	/**
+	 * Counting sort.
+	 *
+	 * @param arr       The array to be sorted.
+	 * @param sortedArr The sorted array.
+	 * @param k         The upper limit of the array elements.
+	 */
+	public void countingSort(int[] arr, int[] sortedArr, int k) {
+		countingSortWithIndices(arr, sortedArr, k, null);
+	}
+
+	/**
+	 * Counting sort with indices.
+	 *
+	 * @param arr       The array to be sorted.
+	 * @param sortedArr The sorted array.
+	 * @param k         The upper limit of the array elements.
+	 * @param indices   The indices of the sorted elements in original array.
+	 */
+	public void countingSortWithIndices(int[] arr, int[] sortedArr, int k, int[] indices) {
+		int[] countingArr = new int[k];
+		for (int item : arr) {
+			countingArr[item]++;
+		}
+		// countingArr[i] now contains the number of elements equal to i.
+		for (int i = 1; i < k; i++) {
+			countingArr[i] += countingArr[i - 1];
+		}
+		//countingArr[i] now contains the number of elements less than or equal to i.
+		for (int i = arr.length - 1; i >= 0; i--) {
+			sortedArr[countingArr[arr[i]] - 1] = arr[i];
+			if (indices != null) {
+				indices[countingArr[arr[i]] - 1] = i;
+			}
+			countingArr[arr[i]]--;
+		}
+	}
+
+	// The upper limit of the array elements.
+	private final int k;
 }

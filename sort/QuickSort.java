@@ -12,7 +12,6 @@ import utils.ArrayGenerator;
 public class QuickSort implements Sort {
 
 	public static void main(String[] args) {
-
 		int[] arr = ArrayGenerator.fixedArray();
 //		int[] arr = ArrayGenerator.randomArray(20, 20);
 		ArrayPrinter.print(arr);

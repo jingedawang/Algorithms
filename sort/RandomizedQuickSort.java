@@ -15,7 +15,6 @@ import utils.Seed;
 public class RandomizedQuickSort extends QuickSort {
 
 	public static void main(String[] args) {
-
 		int[] arr = ArrayGenerator.fixedArray();
 //		int[] arr = ArrayGenerator.randomArray(20, 20);
 		ArrayPrinter.print(arr);
