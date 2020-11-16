@@ -36,7 +36,7 @@ public class BFPRT implements Select {
 	}
 
 	/**
-	 * Select interface for integer array.
+	 * BFPRT select.
 	 *
 	 * @param arr Integer array from which select.
 	 * @param i   The order of the element to be selected.
