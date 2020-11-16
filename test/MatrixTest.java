@@ -1,7 +1,7 @@
 /**
  * Copyright 2020 jingedawang
  */
-package test.matrix;
+package test;
 
 import enums.MultiplierType;
 import matrix.Matrix;
