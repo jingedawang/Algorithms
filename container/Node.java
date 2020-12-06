@@ -10,7 +10,15 @@ package container;
  * children. The implementation class can either use left and right fields to represent binary search tree, or use
  * children field to represent multi-branch search tree. But they shouldn't be used together.
  */
-public class Node {
+public class Node implements Cloneable {
+
+	/**
+	 * The color enumeration of the node.
+	 */
+	public enum Color {
+		RED,
+		BLACK
+	}
 
 	/**
 	 * Default constructor.
@@ -53,6 +61,44 @@ public class Node {
 	}
 
 	/**
+	 * Constructor with color.
+	 * @param color The color of the node.
+	 */
+	public Node(Color color) {
+		this.color = color;
+	}
+
+	/**
+	 * Clone this node.
+	 *
+	 * Since we are conducting a deep copy, so the entire tree under this node will be cloned.
+	 * @return A copy of this node.
+	 */
+	@Override
+	protected Node clone() {
+		Node node;
+		try {
+			node = (Node) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			throw new AssertionError();
+		}
+		if (left != null) {
+			node.left = left.clone();
+			if (left.parent != null) {
+				node.left.parent = node;
+			}
+		}
+		if (right != null) {
+			node.right = right.clone();
+			if (right.parent != null) {
+				node.right.parent = node;
+			}
+		}
+		return node;
+	}
+
+	/**
 	 * The key value of the node.
 	 */
 	public int value;
@@ -76,4 +122,9 @@ public class Node {
 	 * All the children of the node.
 	 */
 	public Node[] children;
+
+	/**
+	 * The color of the node, either red or black.
+	 */
+	public Color color;
 }

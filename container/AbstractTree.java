@@ -8,7 +8,24 @@ package container;
  * <p>
  * Some general methods are implemented here.
  */
-public class AbstractTree implements Tree {
+public class AbstractTree implements Tree, Cloneable {
+
+	/**
+	 * Clone this tree.
+	 * @return A copy of this tree.
+	 */
+	@Override
+	protected AbstractTree clone() {
+		AbstractTree tree;
+		try {
+			tree = (AbstractTree) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			throw new AssertionError();
+		}
+		tree.root = root.clone();
+		return tree;
+	}
 
 	/**
 	 * Get the root node of the tree.

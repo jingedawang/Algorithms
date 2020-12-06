@@ -36,6 +36,7 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 * Default constructor.
 	 */
 	public BinarySearchTree() {
+		root = nil;
 	}
 
 	/**
@@ -46,8 +47,9 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 * @param values The values used to constructing the tree.
 	 */
 	public BinarySearchTree(int[] values) {
+		root = nil;
 		for (int value : values) {
-			insert(new Node(value));
+			insert(new Node(value, nil, nil));
 		}
 	}
 
@@ -71,7 +73,7 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 */
 	@Override
 	public Node search(Node root, int k) {
-		while (root != null && k != root.value) {
+		while (root != nil && k != root.value) {
 			if (k < root.value) {
 				root = root.left;
 			} else {
@@ -99,7 +101,7 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 */
 	@Override
 	public Node minimum(Node root) {
-		while (root.left != null) {
+		while (root.left != nil) {
 			root = root.left;
 		}
 		return root;
@@ -123,7 +125,7 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 */
 	@Override
 	public Node maximum(Node root) {
-		while (root.right != null) {
+		while (root.right != nil) {
 			root = root.right;
 		}
 		return root;
@@ -137,11 +139,11 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 */
 	@Override
 	public Node predecessor(Node node) {
-		if (node.left != null) {
+		if (node.left != nil) {
 			return maximum(node.left);
 		}
 		Node parent = node.parent;
-		while (parent != null && node == parent.left) {
+		while (parent != nil && node == parent.left) {
 			node = parent;
 			parent = parent.parent;
 		}
@@ -156,11 +158,11 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 */
 	@Override
 	public Node successor(Node node) {
-		if (node.right != null) {
+		if (node.right != nil) {
 			return minimum(node.right);
 		}
 		Node parent = node.parent;
-		while (parent != null && node == parent.right) {
+		while (parent != nil && node == parent.right) {
 			node = parent;
 			parent = parent.parent;
 		}
@@ -174,9 +176,9 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 */
 	@Override
 	public void insert(Node newNode) {
-		Node parent = null;
+		Node parent = nil;
 		Node node = root;
-		while (node != null) {
+		while (node != nil) {
 			parent = node;
 			if (newNode.value < node.value) {
 				node = node.left;
@@ -185,7 +187,7 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 			}
 		}
 		newNode.parent = parent;
-		if (parent == null) {
+		if (parent == nil) {
 			root = newNode;
 		} else if (newNode.value < parent.value) {
 			parent.left = newNode;
@@ -201,9 +203,9 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 */
 	@Override
 	public void delete(Node node) {
-		if (node.left == null) {
+		if (node.left == nil) {
 			transplant(node.right, node);
-		} else if (node.right == null) {
+		} else if (node.right == nil) {
 			transplant(node.left, node);
 		} else {
 			Node y = minimum(node.right);
@@ -219,22 +221,91 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	}
 
 	/**
+	 * Clone this tree.
+	 * @return A copy of this tree.
+	 */
+	@Override
+	protected BinarySearchTree clone() {
+		nil.parent = null;
+		nil.left = null;
+		nil.right = null;
+		BinarySearchTree tree = (BinarySearchTree) super.clone();
+		if (tree.root.left == null && tree.root.right == null) {
+			tree.root = nil;
+		} else {
+			useNil(tree.root);
+		}
+		return tree;
+	}
+
+	/**
+	 * Use nil sentinel instead of extra leaf nodes.
+	 *
+	 * This method is used to fix up the cloned tree.
+	 * @param node The root of the current subtree.
+	 */
+	private void useNil(Node node) {
+		if (node.left.parent == null) {
+			node.left = nil;
+		} else {
+			useNil(node.left);
+		}
+		if (node.right.parent == null) {
+			node.right = nil;
+		} else {
+			useNil(node.right);
+		}
+	}
+
+	/**
+	 * Remove nil sentinel and return as a binary tree.
+	 * @return A binary tree without nil.
+	 */
+	public BinaryTree toBinaryTree() {
+		BinaryTree tree = (BinaryTree) clone();
+		removeNil(tree.getRoot());
+		return tree;
+	}
+
+	/**
+	 * Remove nil sentinel recursively.
+	 * @param node The root node of current subtree.
+	 */
+	private void removeNil(Node node) {
+		if (node.left == nil) {
+			node.left = null;
+		} else {
+			removeNil(node.left);
+		}
+		if (node.right == nil) {
+			node.right = null;
+		} else {
+			removeNil(node.right);
+		}
+	}
+
+	/**
 	 * Substitute the target tree by the source tree.
 	 *
 	 * @param source The root node of the source tree.
 	 * @param target The root node of the target tree.
 	 */
 	private void transplant(Node source, Node target) {
-		if (target.parent == null) {
+		if (target.parent == nil) {
 			root = source;
 		} else if (target == target.parent.left) {
 			target.parent.left = source;
 		} else {
 			target.parent.right = source;
 		}
-		if (source != null) {
+		if (source != nil) {
 			source.parent = target.parent;
 		}
 	}
+
+	/**
+	 * A sentinel node indicting all the external nodes.
+	 */
+	protected final Node nil = new Node();
 
 }

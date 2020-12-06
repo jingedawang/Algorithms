@@ -1,5 +1,6 @@
 package utils;
 
+import container.BinarySearchTree;
 import container.BinaryTree;
 import container.Node;
 
@@ -68,6 +69,14 @@ public class TreePrinter {
 			nextLayer = new ArrayList<>();
 			nextLayer.ensureCapacity(1 << depth++);
 		}
+	}
+
+	/**
+	 * Print a binary search tree.
+	 * @param tree The binary search tree to be printed.
+	 */
+	public static void print(BinarySearchTree tree) {
+		print(tree.toBinaryTree());
 	}
 
 	/**
