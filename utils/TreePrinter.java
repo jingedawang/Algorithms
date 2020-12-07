@@ -23,8 +23,9 @@ public class TreePrinter {
 	 *     +--0---+        +--2---+        +--6---+        +--9---+
 	 *                    1       3       5
 	 * @param tree The binary tree to be printed.
+	 * @param showColor Choose whether to show the color of each node.
 	 */
-	public static void print(BinaryTree tree) {
+	public static void print(BinaryTree tree, boolean showColor) {
 		Node root = tree.getRoot();
 		if (root == null) {
 			return;
@@ -45,13 +46,14 @@ public class TreePrinter {
 					nextLayer.add(null);
 					stringBuilder.append(repeatedChars(width * cellSize, ' '));
 				} else {
+					char marker = showColor ? (node.color == Node.Color.RED ? 'r' : 'b') : '+';
 					nextLayer.add(node.left);
 					nextLayer.add(node.right);
 					stringBuilder.append(repeatedChars(width * cellSize / 4, ' '));
 					if (depth == height) {
 						stringBuilder.append(repeatedChars(width * cellSize / 4 - 1, ' '));
 					} else {
-						stringBuilder.append('+');
+						stringBuilder.append(marker);
 						stringBuilder.append(repeatedChars(width * cellSize / 4 - 2, '-'));
 					}
 					stringBuilder.append(node.value);
@@ -59,7 +61,7 @@ public class TreePrinter {
 						stringBuilder.append(repeatedChars(width * cellSize / 4, ' '));
 					} else {
 						stringBuilder.append(repeatedChars(width * cellSize / 4 - 1, '-'));
-						stringBuilder.append('+');
+						stringBuilder.append(marker);
 					}
 					stringBuilder.append(repeatedChars(width * cellSize / 4, ' '));
 				}
@@ -72,11 +74,19 @@ public class TreePrinter {
 	}
 
 	/**
+	 * Print a binary tree.
+	 * @param tree The binary tree to be printed.
+	 */
+	public static void print(BinaryTree tree) {
+		print(tree, false);
+	}
+
+	/**
 	 * Print a binary search tree.
 	 * @param tree The binary search tree to be printed.
 	 */
 	public static void print(BinarySearchTree tree) {
-		print(tree.toBinaryTree());
+		print(tree.toBinaryTree(), true);
 	}
 
 	/**

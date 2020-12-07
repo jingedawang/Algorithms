@@ -221,7 +221,17 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	}
 
 	/**
+	 * Get the nil node.
+	 *
+	 * @return The nil node.
+	 */
+	public Node getNil() {
+		return nil;
+	}
+
+	/**
 	 * Clone this tree.
+	 *
 	 * @return A copy of this tree.
 	 */
 	@Override
@@ -240,8 +250,9 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 
 	/**
 	 * Use nil sentinel instead of extra leaf nodes.
-	 *
+	 * <p>
 	 * This method is used to fix up the cloned tree.
+	 *
 	 * @param node The root of the current subtree.
 	 */
 	private void useNil(Node node) {
@@ -259,6 +270,7 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 
 	/**
 	 * Remove nil sentinel and return as a binary tree.
+	 *
 	 * @return A binary tree without nil.
 	 */
 	public BinaryTree toBinaryTree() {
@@ -269,6 +281,7 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 
 	/**
 	 * Remove nil sentinel recursively.
+	 *
 	 * @param node The root node of current subtree.
 	 */
 	private void removeNil(Node node) {
@@ -290,7 +303,7 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 * @param source The root node of the source tree.
 	 * @param target The root node of the target tree.
 	 */
-	private void transplant(Node source, Node target) {
+	protected void transplant(Node source, Node target) {
 		if (target.parent == nil) {
 			root = source;
 		} else if (target == target.parent.left) {
@@ -298,14 +311,12 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 		} else {
 			target.parent.right = source;
 		}
-		if (source != nil) {
-			source.parent = target.parent;
-		}
+		source.parent = target.parent;
 	}
 
 	/**
 	 * A sentinel node indicting all the external nodes.
 	 */
-	protected final Node nil = new Node();
+	protected final Node nil = new Node(Node.Color.BLACK);
 
 }
