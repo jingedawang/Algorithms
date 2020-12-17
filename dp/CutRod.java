@@ -3,6 +3,8 @@
  */
 package dp;
 
+import java.util.Arrays;
+
 /**
  * <h3>Cut rod problem solved by dynamic programming</h3>
  */
@@ -18,6 +20,7 @@ public class CutRod {
 		System.out.println("The rod length is " + n + ".");
 		CutRod cutRod = new CutRod();
 		int price = cutRod.cutRod(n, prices);
+//		int price = cutRod.memoizedCutRod(n, prices);
 		System.out.println("The best price of the rod is " + price);
 		cutRod.printSolution(n, prices);
 	}
@@ -59,19 +62,53 @@ public class CutRod {
 	 */
 	private int cutRod(int n, int[] prices, int[] lengths) {
 		int[] bestPrices = new int[n + 1];
-		bestPrices[1] = prices[1];
-		lengths[1] = 1;
-		for (int i = 2; i <= n; i++) {
-			int bestPrice = 0;
-			for (int j = 0; j < i; j++) {
-				if (prices[i - j] + bestPrices[j] > bestPrice) {
-					bestPrice = prices[i - j] + bestPrices[j];
-					lengths[i] = i - j;
+		for (int i = 1; i <= n; i++) {
+			int bestPrice = Integer.MIN_VALUE;
+			for (int j = 1; j <= i; j++) {
+				if (prices[j] + bestPrices[i - j] > bestPrice) {
+					bestPrice = prices[j] + bestPrices[i - j];
+					lengths[i] = j;
 				}
 			}
 			bestPrices[i] = bestPrice;
 		}
 		return bestPrices[n];
+	}
+
+	/**
+	 * Cut a rod in order to get the best price. This method uses a memo to reuse the solutions of the sub-problems.
+	 *
+	 * @param n      The length of the rod.
+	 * @param prices The prices of each length of the rod.
+	 * @return The best price accumulated by cut rods.
+	 */
+	private int memoizedCutRod(int n, int[] prices) {
+		int[] bestPrices = new int[n + 1];
+		Arrays.fill(bestPrices, Integer.MIN_VALUE);
+		return memoizedCutRodAux(n, prices, bestPrices);
+	}
+
+	/**
+	 * The recursive implementation of memoized cut rod.
+	 *
+	 * @param n          The length of the rod.
+	 * @param prices     The prices of each length of the rod.
+	 * @param bestPrices The memo remembering the best prices of each length.
+	 * @return The best price accumulated by cut rods.
+	 */
+	private int memoizedCutRodAux(int n, int[] prices, int[] bestPrices) {
+		if (bestPrices[n] >= 0) {
+			return bestPrices[n];
+		}
+		if (n == 0) {
+			return 0;
+		}
+		int bestPrice = Integer.MIN_VALUE;
+		for (int i = 1; i <= n; i++) {
+			bestPrice = Math.max(bestPrice, prices[i] + memoizedCutRodAux(n - i, prices, bestPrices));
+		}
+		bestPrices[n] = bestPrice;
+		return bestPrice;
 	}
 
 }
