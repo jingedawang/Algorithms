@@ -6,7 +6,7 @@ package dp;
 import java.util.Arrays;
 
 /**
- * <h3>Cut rod problem solved by dynamic programming</h3>
+ * <h3>Cut rod problem</h3>
  */
 public class CutRod {
 
