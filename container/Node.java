@@ -37,7 +37,7 @@ public class Node implements Cloneable {
 	}
 
 	/**
-	 * Constructor with value and two child nodes.
+	 * Constructor for binary search tree node.
 	 *
 	 * @param value The value of the node.
 	 * @param left  The left child of the node.
@@ -50,18 +50,19 @@ public class Node implements Cloneable {
 	}
 
 	/**
-	 * Constructor with value and children.
+	 * Constructor for B-Tree node.
 	 *
-	 * @param value    The value of the node.
+	 * @param values   The values of the node.
 	 * @param children The children of the node.
 	 */
-	public Node(int value, Node[] children) {
-		this.value = value;
+	public Node(int[] values, Node[] children) {
+		this.values = values;
 		this.children = children;
 	}
 
 	/**
 	 * Constructor with color.
+	 *
 	 * @param color The color of the node.
 	 */
 	public Node(Color color) {
@@ -70,8 +71,9 @@ public class Node implements Cloneable {
 
 	/**
 	 * Clone this node.
-	 *
+	 * <p>
 	 * Since we are conducting a deep copy, so the entire tree under this node will be cloned.
+	 *
 	 * @return A copy of this node.
 	 */
 	@Override
@@ -95,8 +97,21 @@ public class Node implements Cloneable {
 				node.right.parent = node;
 			}
 		}
+		if (values != null) {
+			node.values = values.clone();
+		}
+		if (children != null) {
+			node.children = new Node[children.length];
+			for (int i = 0; i < children.length; i++) {
+				node.children[i] = children[i].clone();
+			}
+		}
 		return node;
 	}
+
+	///
+	/// Fields for binary search tree and red-black tree.
+	///
 
 	/**
 	 * The key value of the node.
@@ -119,12 +134,42 @@ public class Node implements Cloneable {
 	public Node right;
 
 	/**
+	 * The color of the node, either red or black.
+	 */
+	public Color color;
+
+	///
+	/// Fields for B-Tree.
+	///
+
+	/**
+	 * Key values of the node.
+	 */
+	public int[] values;
+
+	/**
+	 * Number of values.
+	 */
+	public int numberOfValues;
+
+	/**
+	 * The index of the selected value in values.
+	 */
+	public int index;
+
+	/**
+	 * The index of this node in its parent's children.
+	 */
+	public int indexOfParent;
+
+	/**
 	 * All the children of the node.
 	 */
 	public Node[] children;
 
 	/**
-	 * The color of the node, either red or black.
+	 * Flag indicating whether this node is leaf node or not.
 	 */
-	public Color color;
+	public boolean isLeaf;
+
 }

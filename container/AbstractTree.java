@@ -12,6 +12,7 @@ public class AbstractTree implements Tree, Cloneable {
 
 	/**
 	 * Clone this tree.
+	 *
 	 * @return A copy of this tree.
 	 */
 	@Override
@@ -57,7 +58,16 @@ public class AbstractTree implements Tree, Cloneable {
 		if (root == null) {
 			return 0;
 		}
-		return 1 + Math.max(computeHeight(root.left), computeHeight(root.right));
+		int maxSubtreeHeight = Math.max(computeHeight(root.left), computeHeight(root.right));
+		if (root.children != null) {
+			for (int i = 0; i < root.children.length; i++) {
+				int ithHeight = computeHeight(root.children[i]);
+				if (ithHeight > maxSubtreeHeight) {
+					maxSubtreeHeight = ithHeight;
+				}
+			}
+		}
+		return 1 + maxSubtreeHeight;
 	}
 
 	/**

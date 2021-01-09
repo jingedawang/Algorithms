@@ -1,5 +1,6 @@
 package utils;
 
+import container.BTree;
 import container.BinarySearchTree;
 import container.BinaryTree;
 import container.Node;
@@ -87,6 +88,44 @@ public class TreePrinter {
 	 */
 	public static void print(BinarySearchTree tree) {
 		print(tree.toBinaryTree(), true);
+	}
+
+	/**
+	 * Print a B-Tree.
+	 * @param tree The B-Tree to be printed.
+	 */
+	public static void print(BTree tree) {
+		ArrayList<Node> row = new ArrayList<>();
+		ArrayList<Node> nextRow;
+		row.add(tree.getRoot());
+		int level = 0;
+		while (!row.isEmpty()) {
+			nextRow = new ArrayList<>((row.size() + 2) * 2 * tree.getMinimumDegree());
+			System.out.print("Level " + level++ + ": ");
+			StringBuilder stringBuilder = new StringBuilder();
+			boolean isLeaf = false;
+			for (Node node : row) {
+				stringBuilder.append('|');
+				nextRow.add(null);
+				if (node != null) {
+					for (int i = 0; i < node.numberOfValues; i++) {
+						stringBuilder.append(node.values[i]);
+						stringBuilder.append(',');
+					}
+					for (int i = 0; i < node.numberOfValues + 1; i++) {
+						nextRow.add(node.children[i]);
+					}
+					stringBuilder.append('|');
+					nextRow.add(null);
+					isLeaf = node.isLeaf;
+				}
+			}
+			System.out.println(stringBuilder.toString());
+			if (isLeaf) {
+				nextRow.clear();
+			}
+			row = nextRow;
+		}
 	}
 
 	/**
