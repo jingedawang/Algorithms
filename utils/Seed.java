@@ -1,22 +1,25 @@
+/**
+ * Copyright 2021 jingedawang
+ */
 package utils;
 
 import java.util.Random;
 
 /**
- * 种子生成器，在同一应用程序中生成不重复的种子，可用于随机数生成器。
- * @author wjg
- *
+ * <h3>Seed generator</h3>
+ * <p>
+ * Generate random seed for other random generators.
  */
 public class Seed {
 
-	private static Random random = new Random(System.currentTimeMillis());
-	
-	/**
-	 * 获得一个种子
-	 * @return 种子
-	 */
-	public static long next() {
-		return random.nextLong();
-	}
-	
+    /**
+     * Get next randomly generated seed.
+     *
+     * @return A long number that can be used as seed.
+     */
+    public static long next() {
+        return random.nextLong();
+    }
+
+    private static Random random = new Random(System.currentTimeMillis());
 }

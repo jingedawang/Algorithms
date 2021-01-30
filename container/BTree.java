@@ -157,13 +157,29 @@ public class BTree extends AbstractTree implements SearchTree {
 	}
 
 	/**
-	 * Find the predecessor node of the given node.
+	 * Find the real predecessor of the given node.
 	 *
+	 * The node found must have different value with the given node.
 	 * @param node The node whose predecessor will be found.
 	 * @return The predecessor node of the given node.
 	 */
 	@Override
 	public Node predecessor(Node node) {
+		int originalValue = node.values[node.index];
+		Node predecessor = predecessorNode(node);
+		while (predecessor != null && predecessor.values[predecessor.index] == originalValue) {
+			predecessor = predecessorNode(predecessor);
+		}
+		return predecessor;
+	}
+
+	/**
+	 * Find the predecessor node of the given node.
+	 *
+	 * @param node The node whose predecessor will be found.
+	 * @return The predecessor node of the given node.
+	 */
+	public Node predecessorNode(Node node) {
 		if (!node.isLeaf) {
 			return maximum(node.children[node.index]);
 		}
@@ -182,13 +198,29 @@ public class BTree extends AbstractTree implements SearchTree {
 	}
 
 	/**
-	 * Find the successor node of the given node.
+	 * Find the real successor of the given node.
 	 *
+	 * The node found must have different value with the given node.
 	 * @param node The node whose successor will be found.
 	 * @return The successor node of the given node.
 	 */
 	@Override
 	public Node successor(Node node) {
+		int originalValue = node.values[node.index];
+		Node successor = successorNode(node);
+		while (successor != null && successor.values[successor.index] == originalValue) {
+			successor = successorNode(successor);
+		}
+		return successor;
+	}
+
+	/**
+	 * Find the successor node of the given node.
+	 *
+	 * @param node The node whose successor will be found.
+	 * @return The successor node of the given node.
+	 */
+	public Node successorNode(Node node) {
 		if (!node.isLeaf) {
 			return minimum(node.children[node.index + 1]);
 		}
@@ -276,6 +308,7 @@ public class BTree extends AbstractTree implements SearchTree {
 		child.numberOfValues = minimumDegree - 1;
 		for (int i = node.numberOfValues; i >= index + 1; i--) {
 			node.children[i + 1] = node.children[i];
+			node.children[i + 1].indexOfParent++;
 		}
 		node.children[index + 1] = newChild;
 		for (int i = node.numberOfValues - 1; i >= index; i--) {

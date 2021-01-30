@@ -21,7 +21,8 @@ public class SearchTreeTest {
 
 	@Test
 	void searchTree() {
-		int[] arr = ArrayGenerator.randomArray(20, 20);
+//		int[] arr = ArrayGenerator.fixedArray();
+		int[] arr = ArrayGenerator.randomArray(20, 100);
 
 		BinarySearchTree binarySearchTree = new BinarySearchTree(arr);
 		RedBlackTree redBlackTree = new RedBlackTree(arr);
@@ -38,7 +39,6 @@ public class SearchTreeTest {
 		}
 		arr = new int[count];
 		System.arraycopy(uniqueArr, 0, arr, 0, count);
-
 
 		Assertions.assertEquals(arr[0], binarySearchTree.minimum().value);
 		Assertions.assertEquals(arr[0], redBlackTree.minimum().value);
@@ -64,6 +64,9 @@ public class SearchTreeTest {
 				Assertions.assertEquals(arr[i - 1], redBlackTreePredecessor.value);
 				Assertions.assertEquals(arr[i - 1], bTreePredecessor.values[bTreePredecessor.index]);
 			}
+
+			// Re-search the node to fix the selected index because the predecessor operation may modify bTreeNode.
+			bTreeNode = bTree.search(arr[i]);
 
 			if (i < arr.length - 1) {
 				Node binarySearchTreeSuccessor = binarySearchTree.successor(binarySearchTreeNode);

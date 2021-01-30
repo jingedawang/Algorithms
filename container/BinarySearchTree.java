@@ -132,13 +132,28 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	}
 
 	/**
-	 * Find the predecessor node of the given node.
+	 * Find the real predecessor of the given node.
 	 *
+	 * The node found must have different value with the given node.
 	 * @param node The node whose predecessor will be found.
 	 * @return The predecessor node of the given node.
 	 */
 	@Override
 	public Node predecessor(Node node) {
+		Node predecessor = predecessorNode(node);
+		while (predecessor != nil && predecessor.value == node.value) {
+			predecessor = predecessorNode(predecessor);
+		}
+		return predecessor;
+	}
+
+	/**
+	 * Find the predecessor node of the given node.
+	 *
+	 * @param node The node whose predecessor will be found.
+	 * @return The predecessor node of the given node.
+	 */
+	public Node predecessorNode(Node node) {
 		if (node.left != nil) {
 			return maximum(node.left);
 		}
@@ -151,13 +166,28 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	}
 
 	/**
-	 * Find the successor node of the given node.
+	 * Find the real successor of the given node.
 	 *
+	 * The node found must have different value with the given node.
 	 * @param node The node whose successor will be found.
 	 * @return The successor node of the given node.
 	 */
 	@Override
 	public Node successor(Node node) {
+		Node successor = successorNode(node);
+		while (successor != nil && successor.value == node.value) {
+			successor = successorNode(successor);
+		}
+		return successor;
+	}
+
+	/**
+	 * Find the successor node of the given node.
+	 *
+	 * @param node The node whose successor will be found.
+	 * @return The successor node of the given node.
+	 */
+	public Node successorNode(Node node) {
 		if (node.right != nil) {
 			return minimum(node.right);
 		}
