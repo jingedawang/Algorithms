@@ -22,17 +22,19 @@ public class BTreeTest {
 
     @Test
     void nodeAssociate() {
-        int[] arr = ArrayGenerator.randomArray(20, 20);
-        BTree bTree = new BTree(arr);
-        checkNode(bTree.getRoot());
-        Random random = new Random(Seed.next());
-        List<Integer> arrayRemains = Arrays.stream(arr).boxed().collect(Collectors.toList());
-        for (int i = 0; i < arr.length; i++) {
-            int deleteIndex = random.nextInt(arrayRemains.size());
-            Node node = bTree.search(arrayRemains.get(deleteIndex));
-            bTree.delete(node);
-            arrayRemains.remove(deleteIndex);
+        for (int scale = 1; scale < 10; scale++) {
+            int[] arr = ArrayGenerator.randomArray(20 * scale, 20 * scale);
+            BTree bTree = new BTree(arr, scale + 1);
             checkNode(bTree.getRoot());
+            Random random = new Random(Seed.next());
+            List<Integer> arrayRemains = Arrays.stream(arr).boxed().collect(Collectors.toList());
+            for (int i = 0; i < arr.length; i++) {
+                int deleteIndex = random.nextInt(arrayRemains.size());
+                Node node = bTree.search(arrayRemains.get(deleteIndex));
+                bTree.delete(node);
+                arrayRemains.remove(deleteIndex);
+                checkNode(bTree.getRoot());
+            }
         }
     }
 

@@ -35,7 +35,8 @@ public class BTree extends AbstractTree implements SearchTree {
 		} else {
 			System.out.println("The successor of " + searchResult.values[searchResult.index] + " is " + successor.values[successor.index] + ".");
 		}
-//		tree.delete(tree.root);
+		System.out.println("After delete " + successor.values[successor.index]);
+		tree.delete(successor);
 		TreePrinter.print(tree);
 	}
 
@@ -272,7 +273,12 @@ public class BTree extends AbstractTree implements SearchTree {
 	 */
 	@Override
 	public void delete(Node node) {
-
+		if (root.numberOfValues == 0) {
+			// Root node is empty, we should delete it and make its only child as new root.
+			root = root.children[0];
+			root.parent = null;
+		}
+		deleteNonEmpty(root, node.values[node.index]);
 	}
 
 	/**
@@ -282,6 +288,136 @@ public class BTree extends AbstractTree implements SearchTree {
 	 */
 	public int getMinimumDegree() {
 		return minimumDegree;
+	}
+
+	/**
+	 * Insert a key value into a non-full node.
+	 *
+	 * @param node The non-full node where the key value will be inserted.
+	 * @param k    The key value to be inserted.
+	 */
+	private void insertNonFull(Node node, int k) {
+		int i = node.numberOfValues - 1;
+		if (node.isLeaf) {
+			while (i >= 0 && k < node.values[i]) {
+				node.values[i + 1] = node.values[i];
+				i--;
+			}
+			node.values[i + 1] = k;
+			node.numberOfValues++;
+		} else {
+			while (i >= 0 && k < node.values[i]) {
+				i--;
+			}
+			i++;
+			if (node.children[i].numberOfValues == 2 * minimumDegree - 1) {
+				splitChild(node, i);
+				if (k > node.values[i]) {
+					i++;
+				}
+			}
+			insertNonFull(node.children[i], k);
+		}
+	}
+
+	/**
+	 * Delete a node from a non-empty node.
+	 * @param node The non-empty node where the delete value resides.
+	 * @param deleteValue The value to be deleted.
+	 */
+	void deleteNonEmpty(Node node, int deleteValue) {
+		int index = 0;
+		while (index < node.numberOfValues && deleteValue > node.values[index]) {
+			index++;
+		}
+		if (index < node.numberOfValues && deleteValue == node.values[index]) {
+			// The value to be deleted is in current node.
+			if (node.isLeaf) {
+				for (int i = index; i < node.numberOfValues - 1; i++) {
+					node.values[i] = node.values[i + 1];
+				}
+				node.numberOfValues--;
+			} else {
+				if (node.children[index].numberOfValues >= minimumDegree) {
+					node.index = index;
+					Node predecessor = predecessorNode(node);
+					node.values[index] = predecessor.values[predecessor.index];
+					deleteNonEmpty(node.children[index], predecessor.values[predecessor.index]);
+				} else if (node.children[index + 1].numberOfValues >= minimumDegree) {
+					node.index = index;
+					Node successor = successorNode(node);
+					node.values[index] = successor.values[successor.index];
+					deleteNonEmpty(node.children[index + 1], successor.values[successor.index]);
+				} else {
+					mergeChild(node, index);
+					// Delete recursively.
+					deleteNonEmpty(node.children[index], deleteValue);
+				}
+			}
+		} else {
+			// We assume the deleteNode is always the search result to ensure when delete value has multiple nodes, the
+			// deleteNode always has the highest height. So that we don't need to consider equal values here.
+			if (node.children[index].numberOfValues >= minimumDegree) {
+				deleteNonEmpty(node.children[index], deleteValue);
+			} else {
+				if (index > 0 && node.children[index - 1].numberOfValues >= minimumDegree) {
+					// Move the most right value in node.children[index - 1] to node.values[index - 1] and move
+					// node.values[index - 1] to the most left value in node.children[index].
+					for (int i = minimumDegree - 1; i > 0; i--) {
+						node.children[index].values[i] = node.children[index].values[i - 1];
+					}
+					node.children[index].values[0] = node.values[index - 1];
+					node.values[index - 1] =
+							node.children[index - 1].values[node.children[index - 1].numberOfValues - 1];
+					if (!node.children[index].isLeaf) {
+						for (int i = minimumDegree; i > 0; i--) {
+							node.children[index].children[i] = node.children[index].children[i - 1];
+							node.children[index].children[i].indexOfParent = i;
+						}
+						node.children[index].children[0] =
+								node.children[index - 1].children[node.children[index - 1].numberOfValues];
+						node.children[index].children[0].parent = node.children[index];
+						node.children[index].children[0].indexOfParent = 0;
+					}
+					node.children[index - 1].numberOfValues--;
+					node.children[index].numberOfValues++;
+					deleteNonEmpty(node.children[index], deleteValue);
+				} else if (index < node.numberOfValues && node.children[index + 1].numberOfValues >= minimumDegree) {
+					// Move the most left value in node.children[index + 1] to node.values[index] and move
+					// node.values[index] to the most right value in node.children[index].
+					node.children[index].values[node.children[index].numberOfValues] = node.values[index];
+					node.values[index] = node.children[index + 1].values[0];
+					for (int i = 0; i < node.children[index + 1].numberOfValues - 1; i++) {
+						node.children[index + 1].values[i] = node.children[index + 1].values[i + 1];
+					}
+					if (!node.children[index].isLeaf) {
+						node.children[index].children[node.children[index].numberOfValues + 1] =
+								node.children[index + 1].children[0];
+						node.children[index].children[node.children[index].numberOfValues + 1].parent =
+								node.children[index];
+						node.children[index].children[node.children[index].numberOfValues + 1].indexOfParent =
+								node.children[index].numberOfValues + 1;
+						for (int i = 0; i < node.children[index + 1].numberOfValues; i++) {
+							node.children[index + 1].children[i] = node.children[index + 1].children[i + 1];
+							node.children[index + 1].children[i].indexOfParent = i;
+						}
+					}
+					node.children[index].numberOfValues++;
+					node.children[index + 1].numberOfValues--;
+					deleteNonEmpty(node.children[index], deleteValue);
+				} else {
+					if (index < node.numberOfValues) {
+						// Merge node.children[index] with node.children[index + 1] whenever the latter exists.
+						mergeChild(node, index);
+						deleteNonEmpty(node.children[index], deleteValue);
+					} else {
+						// If node.children[index] is the right most one, we merge it with its left brother.
+						mergeChild(node, index - 1);
+						deleteNonEmpty(node.children[index - 1], deleteValue);
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -319,33 +455,34 @@ public class BTree extends AbstractTree implements SearchTree {
 	}
 
 	/**
-	 * Insert a key value into a non-full node.
-	 *
-	 * @param node The non-full node where the key value will be inserted.
-	 * @param k    The key value to be inserted.
+	 * Merge two child nodes into one.
+	 * @param node The node whose child nodes will be merged.
+	 * @param index The index of the left child in current node.
 	 */
-	private void insertNonFull(Node node, int k) {
-		int i = node.numberOfValues - 1;
-		if (node.isLeaf) {
-			while (i >= 0 && k < node.values[i]) {
-				node.values[i + 1] = node.values[i];
-				i--;
-			}
-			node.values[i + 1] = k;
-			node.numberOfValues++;
-		} else {
-			while (i >= 0 && k < node.values[i]) {
-				i--;
-			}
-			i++;
-			if (node.children[i].numberOfValues == 2 * minimumDegree - 1) {
-				splitChild(node, i);
-				if (k > node.values[i]) {
-					i++;
-				}
-			}
-			insertNonFull(node.children[i], k);
+	private void mergeChild(Node node, int index) {
+		Node leftChild = node.children[index];
+		Node rightChild = node.children[index + 1];
+		// Merge node.values[index] and rightChild into leftChild.
+		leftChild.values[leftChild.numberOfValues] = node.values[index];
+		for (int i = 0; i < minimumDegree - 1; i++) {
+			leftChild.values[minimumDegree + i] = rightChild.values[i];
 		}
+		for (int i = index; i < node.numberOfValues - 1; i++) {
+			node.values[i] = node.values[i + 1];
+		}
+		for (int i = index + 1; i < node.numberOfValues; i++) {
+			node.children[i] = node.children[i + 1];
+			node.children[i].indexOfParent = i;
+		}
+		if (!leftChild.isLeaf) {
+			for (int i = 0; i < minimumDegree; i++) {
+				leftChild.children[minimumDegree + i] = rightChild.children[i];
+				leftChild.children[minimumDegree + i].indexOfParent = minimumDegree + i;
+				leftChild.children[minimumDegree + i].parent = leftChild;
+			}
+		}
+		leftChild.numberOfValues = 2 * minimumDegree - 1;
+		node.numberOfValues--;
 	}
 
 	/**
