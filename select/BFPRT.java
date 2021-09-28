@@ -57,6 +57,9 @@ public class BFPRT implements Select {
 	 * @return The selected element.
 	 */
 	protected int bfprt(int[] arr, int p, int r, int i) {
+		if (i < 0 || i >= arr.length) {
+			throw new IndexOutOfBoundsException("Selected index " + i + " is out of array bound.");
+		}
 		if (p == r) {
 			return arr[p];
 		}
