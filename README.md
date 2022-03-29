@@ -20,11 +20,11 @@ Just run it, the core principle will flash on you at once.
 
 We encourage you to open the project with IntelliJ IDEA, which can provide more flexible and powerful debug experiences.
 
-Open IntelliJ IDEA, click [Open], choose the cloned **Algorithms** directory,
-confirm by clicking [OK]. Then you will be able to open the project.
+Open IntelliJ IDEA, click [**Open**], choose the cloned `Algorithms` directory,
+confirm by clicking [**OK**]. Then you will be able to see the project structure.
 
-After that, right-click the **test** folder on the left side, choose [Run 'All Tests'].
-Wait for building and test running.
+After that, right-click the `test` folder on the left side, choose [**Run 'All Tests'**].
+It triggers the build procedure, and after that, all tests will be executed.
 If all tests succeeds, congratulations, the code works well on your machine.
 
 ### Usage
