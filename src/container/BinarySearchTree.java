@@ -133,8 +133,9 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 
 	/**
 	 * Find the real predecessor of the given node.
-	 *
+	 * <p>
 	 * The node found must have different value with the given node.
+	 *
 	 * @param node The node whose predecessor will be found.
 	 * @return The predecessor node of the given node.
 	 */
@@ -167,8 +168,9 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 
 	/**
 	 * Find the real successor of the given node.
-	 *
+	 * <p>
 	 * The node found must have different value with the given node.
+	 *
 	 * @param node The node whose successor will be found.
 	 * @return The successor node of the given node.
 	 */

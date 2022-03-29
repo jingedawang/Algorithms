@@ -19,13 +19,13 @@ public class LRUCache {
 
 	/**
 	 * Test code.
-     *
-     * <p>Invoke as the following order
-     * {@code [[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]}，
-     * in which we invoke {@link #put(int, int)}} for number pairs, and {@link #get(int)} for single numbers.</p>
-     *
+	 *
+	 * <p>Invoke as the following order
+	 * {@code [[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]}，
+	 * in which we invoke {@link #put(int, int)}} for number pairs, and {@link #get(int)} for single numbers.</p>
+	 *
 	 * <p>The output should be {@code [1],[-1],[-1],[3],[4]}，where {@code -1} indicates a cache miss,
-     * otherwise cache hit.</p>
+	 * otherwise cache hit.</p>
 	 */
 	public static void main(String[] args) {
 		LRUCache cache = new LRUCache(2);
@@ -40,105 +40,107 @@ public class LRUCache {
 		System.out.println(cache.get(4));
 	}
 
-    /**
-     * Constructor. Initialize underlying data.
-     * @param capacity The capacity of the cache.
-     */
-    public LRUCache(int capacity) {
-        this.capacity = capacity;
-        map = new HashMap<Integer, Entry>((int)(capacity / 0.75 + 1), 0.75f);
-        head = new Entry(0, 0);
-        tail = new Entry(0, 0);
-        head.next = tail;
-        tail.prev = head;
-    }
-    
-    /**
-     * Get specified key from cache.
-     * @param key The key to be fetched.
-     * @return The key if cache hit, -1 otherwise.
-     */
-    public int get(int key) {
-        if (map.containsKey(key)) {
-            Entry entry = map.get(key);
-            popToTail(entry);
-            return entry.value;
-        }
-        return -1;
-    }
-    
-    /**
-     * Put new value into the cache or update an existing value.
-     * @param key The key to be added or updated.
-     * @param value The new value to be added or updated.
-     */
-    public void put(int key, int value) {
-        if (map.containsKey(key)) {
-            Entry entry = map.get(key);
-            entry.value = value;
-            popToTail(entry);
-        }
-        else {
-            Entry newEntry = new Entry(key, value);
-            if (map.size() >= capacity) {
-                Entry first = removeFirst();
-                map.remove(first.key);
-            }
-            addToTail(newEntry);
-            map.put(key, newEntry);
-        }
-    }
+	/**
+	 * Constructor. Initialize underlying data.
+	 *
+	 * @param capacity The capacity of the cache.
+	 */
+	public LRUCache(int capacity) {
+		this.capacity = capacity;
+		map = new HashMap<Integer, Entry>((int) (capacity / 0.75 + 1), 0.75f);
+		head = new Entry(0, 0);
+		tail = new Entry(0, 0);
+		head.next = tail;
+		tail.prev = head;
+	}
 
-    // Node wrapper class for cache elements. It's also used as the node of bidirectional linked list.
-    private class Entry {
-        int key;
-        int value;
-        Entry prev;
-        Entry next;
+	/**
+	 * Get specified key from cache.
+	 *
+	 * @param key The key to be fetched.
+	 * @return The key if cache hit, -1 otherwise.
+	 */
+	public int get(int key) {
+		if (map.containsKey(key)) {
+			Entry entry = map.get(key);
+			popToTail(entry);
+			return entry.value;
+		}
+		return -1;
+	}
 
-        Entry(int key, int value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
+	/**
+	 * Put new value into the cache or update an existing value.
+	 *
+	 * @param key   The key to be added or updated.
+	 * @param value The new value to be added or updated.
+	 */
+	public void put(int key, int value) {
+		if (map.containsKey(key)) {
+			Entry entry = map.get(key);
+			entry.value = value;
+			popToTail(entry);
+		} else {
+			Entry newEntry = new Entry(key, value);
+			if (map.size() >= capacity) {
+				Entry first = removeFirst();
+				map.remove(first.key);
+			}
+			addToTail(newEntry);
+			map.put(key, newEntry);
+		}
+	}
 
-    // Capacity of the cache
-    private final int capacity;
-    // Underlying data structure used for accelerating random access
-    private HashMap<Integer, Entry> map;
-    // Head node of the bidirectional linked list, the cache nodes near this side have earlier access time
-    private Entry head;
-    // Tail node of the bidirectional linked list, the cache nodes near this side have newer access time
-    private Entry tail;
+	// Node wrapper class for cache elements. It's also used as the node of bidirectional linked list.
+	private class Entry {
+		int key;
+		int value;
+		Entry prev;
+		Entry next;
 
-    // Pop the entry to the tail of the linked list.
-    private void popToTail(Entry entry) {
-        Entry prev = entry.prev;
-        Entry next = entry.next;
-        prev.next = next;
-        next.prev = prev;
-        Entry last = tail.prev;
-        last.next = entry;
-        tail.prev = entry;
-        entry.prev = last;
-        entry.next = tail;
-    }
+		Entry(int key, int value) {
+			this.key = key;
+			this.value = value;
+		}
+	}
 
-    // Add the entry to the tail of the linked list.
-    private void addToTail(Entry entry) {
-        Entry last = tail.prev;
-        last.next = entry;
-        tail.prev = entry;
-        entry.prev = last;
-        entry.next = tail;
-    }
+	// Capacity of the cache
+	private final int capacity;
+	// Underlying data structure used for accelerating random access
+	private HashMap<Integer, Entry> map;
+	// Head node of the bidirectional linked list, the cache nodes near this side have earlier access time
+	private Entry head;
+	// Tail node of the bidirectional linked list, the cache nodes near this side have newer access time
+	private Entry tail;
 
-    // Remove the first entry of the linked list and return it.
-    private Entry removeFirst() {
-        Entry first = head.next;
-        Entry second = first.next;
-        head.next = second;
-        second.prev = head;
-        return first;
-    }
+	// Pop the entry to the tail of the linked list.
+	private void popToTail(Entry entry) {
+		Entry prev = entry.prev;
+		Entry next = entry.next;
+		prev.next = next;
+		next.prev = prev;
+		Entry last = tail.prev;
+		last.next = entry;
+		tail.prev = entry;
+		entry.prev = last;
+		entry.next = tail;
+	}
+
+	// Add the entry to the tail of the linked list.
+	private void addToTail(Entry entry) {
+		Entry last = tail.prev;
+		last.next = entry;
+		tail.prev = entry;
+		entry.prev = last;
+		entry.next = tail;
+	}
+
+	// Remove the first entry of the linked list and return it.
+	private Entry removeFirst() {
+		Entry first = head.next;
+		Entry second = first.next;
+		head.next = second;
+		second.prev = head;
+		return first;
+	}
 }

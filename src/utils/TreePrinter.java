@@ -10,14 +10,14 @@ import java.util.Arrays;
 
 /**
  * <h3>Tree printer</h3>
- *
+ * <p>
  * This class can display a tree in the console.
  */
 public class TreePrinter {
 
 	/**
 	 * Print a binary tree.
-	 *
+	 * <p>
 	 * To show the display pattern, here is a simple example.
 	 *                 +--------------4---------------+
 	 *         +------1-------+                +------8-------+
@@ -76,6 +76,7 @@ public class TreePrinter {
 
 	/**
 	 * Print a binary tree.
+	 *
 	 * @param tree The binary tree to be printed.
 	 */
 	public static void print(BinaryTree tree) {
@@ -84,6 +85,7 @@ public class TreePrinter {
 
 	/**
 	 * Print a binary search tree.
+	 *
 	 * @param tree The binary search tree to be printed.
 	 */
 	public static void print(BinarySearchTree tree) {
@@ -92,6 +94,7 @@ public class TreePrinter {
 
 	/**
 	 * Print a B-Tree.
+	 *
 	 * @param tree The B-Tree to be printed.
 	 */
 	public static void print(BTree tree) {
@@ -130,8 +133,9 @@ public class TreePrinter {
 
 	/**
 	 * Generate repeated characters.
+	 *
 	 * @param count The count of the repeated characters.
-	 * @param c The specified character.
+	 * @param c     The specified character.
 	 * @return A generated character array.
 	 */
 	private static char[] repeatedChars(int count, char c) {

@@ -10,7 +10,7 @@ import utils.TimeRecorder;
 /**
  * <h3>Merge sort algorithm</h3>
  */
-public class MergeSort implements Sort{
+public class MergeSort implements Sort {
 
 	/**
 	 * Test code.
@@ -29,9 +29,10 @@ public class MergeSort implements Sort{
 
 		ArrayPrinter.print(arr);
 	}
-	
+
 	/**
 	 * Merge sort.
+	 *
 	 * @param arr Integer array to be sorted.
 	 */
 	@Override
@@ -41,9 +42,10 @@ public class MergeSort implements Sort{
 
 	/**
 	 * Merge sort a subarray recursively.
+	 *
 	 * @param arr The integer array where the subarray resides.
-	 * @param p The start index of the subarray to be sorted.
-	 * @param r The end index(included) of the subarray to be sorted.
+	 * @param p   The start index of the subarray to be sorted.
+	 * @param r   The end index(included) of the subarray to be sorted.
 	 */
 	private void mergeSort(int[] arr, int p, int r) {
 		if (p < r) {
@@ -56,11 +58,12 @@ public class MergeSort implements Sort{
 
 	/**
 	 * Merge the two sorted subarray.
+	 *
 	 * @param arr The integer array where the two sorted subarrays reside.
-	 * @param p The start index of the first subarray.
-	 * @param q The end index(included) of the first subarray.
-	 * @param r The end index(included) of the second subarray. Note that the start index of the second subarray is
-	 *          always the next position of the end of the first subarray.
+	 * @param p   The start index of the first subarray.
+	 * @param q   The end index(included) of the first subarray.
+	 * @param r   The end index(included) of the second subarray. Note that the start index of the second subarray is
+	 *            always the next position of the end of the first subarray.
 	 */
 	protected void merge(int[] arr, int p, int q, int r) {
 		int n1 = q - p + 1;
@@ -81,8 +84,7 @@ public class MergeSort implements Sort{
 			if (arrL[i] <= arrR[j]) {
 				arr[k] = arrL[i];
 				i++;
-			}
-			else {
+			} else {
 				arr[k] = arrR[j];
 				j++;
 			}

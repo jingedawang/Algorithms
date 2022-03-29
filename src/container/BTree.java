@@ -159,8 +159,9 @@ public class BTree extends AbstractTree implements SearchTree {
 
 	/**
 	 * Find the real predecessor of the given node.
-	 *
+	 * <p>
 	 * The node found must have different value with the given node.
+	 *
 	 * @param node The node whose predecessor will be found.
 	 * @return The predecessor node of the given node.
 	 */
@@ -200,8 +201,9 @@ public class BTree extends AbstractTree implements SearchTree {
 
 	/**
 	 * Find the real successor of the given node.
-	 *
+	 * <p>
 	 * The node found must have different value with the given node.
+	 *
 	 * @param node The node whose successor will be found.
 	 * @return The successor node of the given node.
 	 */
@@ -322,7 +324,8 @@ public class BTree extends AbstractTree implements SearchTree {
 
 	/**
 	 * Delete a node from a non-empty node.
-	 * @param node The non-empty node where the delete value resides.
+	 *
+	 * @param node        The non-empty node where the delete value resides.
 	 * @param deleteValue The value to be deleted.
 	 */
 	void deleteNonEmpty(Node node, int deleteValue) {
@@ -456,7 +459,8 @@ public class BTree extends AbstractTree implements SearchTree {
 
 	/**
 	 * Merge two child nodes into one.
-	 * @param node The node whose child nodes will be merged.
+	 *
+	 * @param node  The node whose child nodes will be merged.
 	 * @param index The index of the left child in current node.
 	 */
 	private void mergeChild(Node node, int index) {

@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * <h3>A more simple implementation of LRU cache</h3>
- *
+ * <p>
  * {@link LinkedHashMap} is a data structure implemented by {@code HashMap} and bidirectional linked list provided by
  * JDK. We just need reimplement {@link LinkedHashMap#removeEldestEntry(Map.Entry)} method. When it returns {@code true},
  * {@link LinkedHashMap} will remove the oldest node.
@@ -41,11 +41,12 @@ public class LRUCacheSimple {
 	/**
 	 * Constructor. Create {@link LinkedHashMap} object and override the
 	 * {@link LinkedHashMap#removeEldestEntry(Map.Entry)} method.
+	 *
 	 * @param capacity The capacity of the cache.
 	 */
 	public LRUCacheSimple(int capacity) {
 		this.capacity = capacity;
-		map = new LinkedHashMap<Integer, Integer>(capacity, 0.75f, true){
+		map = new LinkedHashMap<Integer, Integer>(capacity, 0.75f, true) {
 			protected boolean removeEldestEntry(Map.Entry eldest) {
 				return size() > capacity;
 			}
@@ -54,6 +55,7 @@ public class LRUCacheSimple {
 
 	/**
 	 * Get specified key from cache.
+	 *
 	 * @param key The key to be fetched.
 	 * @return The key if cache hit, -1 otherwise.
 	 */
@@ -63,7 +65,8 @@ public class LRUCacheSimple {
 
 	/**
 	 * Put new value into the cache or update an existing value.
-	 * @param key The key to be added or updated.
+	 *
+	 * @param key   The key to be added or updated.
 	 * @param value The new value to be added or updated.
 	 */
 	public void put(int key, int value) {
@@ -71,5 +74,5 @@ public class LRUCacheSimple {
 	}
 
 	private LinkedHashMap<Integer, Integer> map;
-    private final int capacity;
+	private final int capacity;
 }

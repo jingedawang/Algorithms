@@ -12,14 +12,14 @@ import java.util.Random;
  */
 public class Seed {
 
-    /**
-     * Get next randomly generated seed.
-     *
-     * @return A long number that can be used as seed.
-     */
-    public static long next() {
-        return random.nextLong();
-    }
+	/**
+	 * Get next randomly generated seed.
+	 *
+	 * @return A long number that can be used as seed.
+	 */
+	public static long next() {
+		return random.nextLong();
+	}
 
-    private static Random random = new Random(System.currentTimeMillis());
+	private static Random random = new Random(System.currentTimeMillis());
 }
