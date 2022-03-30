@@ -3,7 +3,6 @@
  */
 package sort;
 
-import math.Arithmetic;
 import utils.ArrayPrinter;
 import utils.ArrayGenerator;
 
@@ -21,7 +20,7 @@ public class RadixSort implements Sort {
 		// The upper limit of each digit.
 		int k = 10;
 
-		int[] arr = ArrayGenerator.randomArray(Arithmetic.pow(k, d));
+		int[] arr = ArrayGenerator.randomArray((int) Math.pow(k, d));
 		ArrayPrinter.print(arr);
 
 		Sort sort = new RadixSort(d, k);
