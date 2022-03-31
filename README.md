@@ -36,7 +36,7 @@ As a technical writer, I published several blogs in my Zhihu column [算法导�
 It is recommended to follow it and receive the latest update.
 
 Following is the catalogue of the content.
-For each algorithm, we provide code, test, chapter of the original book, and blog.
+For each algorithm, we provide code, online book, and blog. Feel free to click them and see what you got.
 
 + [Cache](https://github.com/jingedawang/Algorithms/tree/master/src/cache)
     + [LRUCache](https://github.com/jingedawang/Algorithms/blob/master/src/cache/LRUCache.java)
