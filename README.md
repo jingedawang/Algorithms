@@ -104,6 +104,6 @@ For each algorithm, we provide code, online book, and blog. Feel free to click t
     + [RandomizedQuickSort](https://github.com/jingedawang/Algorithms/blob/master/src/sort/RandomizedQuickSort.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=200)
 
-###Contact
+### Contact
 
 Please create an issue or send E-mail to wjg172184@163.com.
