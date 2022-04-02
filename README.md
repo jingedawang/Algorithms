@@ -88,6 +88,7 @@ For each algorithm, we provide code, online book, and blog. Feel free to click t
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=172)
       [`blog`](https://zhuanlan.zhihu.com/p/269427787)
     + [HybridSort](https://github.com/jingedawang/Algorithms/blob/master/src/sort/HybridSort.java)
+      [`blog`](https://zhuanlan.zhihu.com/p/259208295)
     + [InsertionSort](https://github.com/jingedawang/Algorithms/blob/master/src/sort/InsertionSort.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=37)
       [`blog`](https://zhuanlan.zhihu.com/p/258827607)
@@ -102,3 +103,7 @@ For each algorithm, we provide code, online book, and blog. Feel free to click t
       [`blog`](https://zhuanlan.zhihu.com/p/270158986)
     + [RandomizedQuickSort](https://github.com/jingedawang/Algorithms/blob/master/src/sort/RandomizedQuickSort.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=200)
+
+###Contact
+
+Please create an issue or send E-mail to wjg172184@163.com.
