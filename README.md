@@ -16,27 +16,45 @@ Then grasp the main idea of the algorithm by careful observation.
 We created the most intuitive demos for each algorithm.
 Just run it, the core principle will flash on you at once.
 
-### Setup
+### Quick Start
+
+You can use either Intellij IDEA or Gradle to build and test the code.
+
+#### Intellij IDEA
 
 We encourage you to open the project with IntelliJ IDEA, which can provide more flexible and powerful debug experiences.
 
 Start IntelliJ IDEA, click [**Open**], choose the cloned `Algorithms` directory,
 confirm by clicking [**OK**]. Then you will be able to see the project structure.
 
-After that, right-click the `test` folder from the Project window, choose [**Run 'All Tests'**], which will trigger the
-build procedure. When building finished, all tests will be executed.
-If all tests succeeds, congratulations, the code works well on your machine.
+To run a demo of an algorithm, please right-click the source file, choose [**Run '\<className\>.main()'**].
 
-### Usage
-You can try to run each algorithm individually.
-We provide a simple demo directly in the `main` method of each algorithm class.
-Meanwhile, there are more sophisticated examples in corresponding tests. (TODO)
+To run all tests, please right-click the `test` folder from the Project window, choose [**Run 'All Tests'**].
 
-As a technical writer, I published several blogs in my Zhihu column [算法导论](https://www.zhihu.com/column/introduction-to-algorithms).
-It is recommended to follow it and receive the latest update.
+#### Gradle
 
-Following is the catalogue of the content.
-For each algorithm, we provide code, online book, and blog. Feel free to click them and see what you got.
+If you don't have Intellij IDEA installed, it's also convenient to build and test with Gradle.
+You don't need to have Gradle installed, `gradlew` script will download a proper version for you
+during the first run.
+
+To run a demo of an algorithm, use command like
+```shell
+./gradlew run -PclassName='<package>.<className>'
+```
+For example, run BFPRT algorithm like
+```shell
+./gradlew run -PclassName='select.BFPRT'
+```
+
+To run all tests, use command like
+```shell
+./gradlew test
+```
+
+### Catalogue
+
+To help people understand the core concept of each algorithm, we provided multiple resources.
+Except for code, you can click the `book` and `blog` links for more information.
 
 + [Cache](https://github.com/jingedawang/Algorithms/tree/master/src/cache)
     + [LRUCache](https://github.com/jingedawang/Algorithms/blob/master/src/cache/LRUCache.java)
