@@ -1,5 +1,7 @@
 # Algorithms
 
+[![build](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml)
+
 Welcome to the world of **Algorithms**.
 
 This repository provides commonly used algorithms according to *Introduction to Algorithms*.
