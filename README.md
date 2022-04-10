@@ -1,5 +1,6 @@
 # Algorithms
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![build](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml)
 
 Welcome to the world of **Algorithms**.
