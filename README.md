@@ -1,6 +1,7 @@
 # Algorithms
 
 [![build](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml)
+[![test](https://github.com/jingedawang/Algorithms/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/jingedawang/Algorithms/actions/workflows/test.yml)
 
 Welcome to the world of **Algorithms**.
 
