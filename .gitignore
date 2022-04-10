@@ -7,3 +7,7 @@
 
 # Ignore Gradle build output directory
 build
+
+# Ignore library directory in .idea.
+# Not sure what these file used for.
+/.idea/libraries/
