@@ -1,6 +1,6 @@
 # This workflow builds the project in both Windows and Ubuntu systems with gradle.
 
-name: build
+name: Build
 
 on:
   push:

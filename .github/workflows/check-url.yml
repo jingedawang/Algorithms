@@ -1,7 +1,7 @@
 # Check if the URLs in README are valid.
 # Use awesome_bot to do the check.
 
-name: url
+name: Url
 
 on:
   push:
