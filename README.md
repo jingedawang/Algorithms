@@ -126,6 +126,10 @@ Except for code, you can click the `book` and `blog` links for more information.
     + [RandomizedQuickSort](https://github.com/jingedawang/Algorithms/blob/master/src/sort/RandomizedQuickSort.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=200)
 
+### Contribute
+
+We highly encourage you to contribute to this project, especially if you are a beginner to algorithms. Read this [Contributing Guideline](https://github.com/jingedawang/Algorithms/blob/master/CONTRIBUTING.md) to learn more.
+
 ### Contact
 
 Please create an issue or send E-mail to wjg172184@163.com.
