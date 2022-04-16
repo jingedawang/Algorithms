@@ -19,10 +19,10 @@ public class LRUCacheSimple {
 	 * Test code.
 	 *
 	 * <p>Invoke as the following order
-	 * {@code [[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]}，
+	 * {@code [[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]},
 	 * in which we invoke {@link #put(int, int)}} for number pairs, and {@link #get(int)} for single numbers.</p>
 	 *
-	 * <p>The output should be {@code [1],[-1],[-1],[3],[4]}，where {@code -1} indicates a cache miss,
+	 * <p>The output should be {@code [1],[-1],[-1],[3],[4]}, where {@code -1} indicates a cache miss,
 	 * otherwise cache hit.</p>
 	 */
 	public static void main(String[] args) {
