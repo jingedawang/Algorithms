@@ -3,6 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![build](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml)
 [![check-url](https://github.com/jingedawang/Algorithms/actions/workflows/check-url.yml/badge.svg?branch=master)](https://github.com/jingedawang/Algorithms/actions/workflows/check-url.yml)
+[![codecov](https://codecov.io/gh/jingedawang/Algorithms/branch/master/graph/badge.svg?token=01G6F59X5L)](https://codecov.io/gh/jingedawang/Algorithms)
 
 Welcome to the world of **Algorithms**.
 
