@@ -8,6 +8,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'jacoco'
 }
 
 repositories {
@@ -38,4 +39,12 @@ tasks.named('test') {
 
 application {
     getMainClass().set(findProperty("className").toString())
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+    setSourceCompatibility(1.8)
+    dependsOn(test)
 }
