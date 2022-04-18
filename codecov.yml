@@ -1,0 +1,10 @@
+coverage:
+  precision: 2
+  round: down
+  range: "50...70"
+  status:
+    project:
+      default:
+        target: auto
+        # We allow a 2% drop from the previous base commit coverage
+        threshold: 2%
