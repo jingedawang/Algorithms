@@ -26,13 +26,13 @@ public class HybridSort extends MergeSort {
 		timeRecorder.start();
 		sort.sort(arr);
 		timeRecorder.stop();
-		timeRecorder.showElapsedTime();
+		timeRecorder.print();
 
 		MergeSort mergeSort = new MergeSort();
 		timeRecorder.start();
 		mergeSort.sort(arr2);
 		timeRecorder.stop();
-		timeRecorder.showElapsedTime();
+		timeRecorder.print();
 
 //		ArrayPrinter.print(arr);
 	}

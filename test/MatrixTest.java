@@ -1,16 +1,44 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 
 import enums.MultiplierType;
 import matrix.Matrix;
+import matrix.MatrixMultiplier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import utils.MatrixGenerator;
+import utils.TimeRecorder;
 
 /**
  * <h3>Test class for {@link Matrix}</h3>
  */
 public class MatrixTest {
+
+	@Test
+	void main() {
+		MatrixMultiplier.main(new String[]{});
+	}
+
+	@Test
+	void speed() {
+		Matrix A = MatrixGenerator.generateRandomMatrix(1 << 10);
+		Matrix B = MatrixGenerator.generateRandomMatrix(1 << 10);
+
+		TimeRecorder timeRecorderPlain = new TimeRecorder("Plain");
+		timeRecorderPlain.start();
+		A.multiply(B, MultiplierType.PLAIN);
+		timeRecorderPlain.stop();
+		int elapsedTimePlain = timeRecorderPlain.getElapsedTime();
+
+		TimeRecorder timeRecorderStrassen = new TimeRecorder("Strassen");
+		timeRecorderStrassen.start();
+		A.multiply(B, MultiplierType.STRASSEN);
+		timeRecorderStrassen.stop();
+		int elapsedTimeStrassen = timeRecorderStrassen.getElapsedTime();
+
+		Assertions.assertTrue(elapsedTimeStrassen <= elapsedTimePlain);
+	}
 
 	@Test
 	void value() {
@@ -36,7 +64,7 @@ public class MatrixTest {
 	}
 
 	@Test
-	void multiply2() {
+	void multiplyWithStrassen() {
 		Matrix result = matrix3.multiply(matrix4, MultiplierType.STRASSEN);
 		equals(result, product);
 	}

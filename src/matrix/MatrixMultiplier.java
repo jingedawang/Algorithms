@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package matrix;
 
@@ -17,22 +17,21 @@ public interface MatrixMultiplier {
 	 */
 	static void main(String[] args) {
 
-		for (int n = 0; n < 12; n++) {
+		for (int n = 0; n < 11; n++) {
 			Matrix A = MatrixGenerator.generateRandomMatrix(1 << n);
 			Matrix B = MatrixGenerator.generateRandomMatrix(1 << n);
 
-			TimeRecorder timeRecorder = new TimeRecorder();
-			timeRecorder.start();
-			Matrix plainC = A.multiply(B, MultiplierType.PLAIN);
-			timeRecorder.stop();
-			System.out.print(n + " x " + n + ": plain: ");
-			timeRecorder.showElapsedTime();
+			TimeRecorder timeRecorderPlain = new TimeRecorder(n + " x " + n + " plain");
+			timeRecorderPlain.start();
+			A.multiply(B, MultiplierType.PLAIN);
+			timeRecorderPlain.stop();
+			timeRecorderPlain.print();
 
-			timeRecorder.start();
-			Matrix strassenC = A.multiply(B, MultiplierType.STRASSEN);
-			timeRecorder.stop();
-			System.out.print(n + " x " + n + ": strassen: ");
-			timeRecorder.showElapsedTime();
+			TimeRecorder timeRecorderStrassen = new TimeRecorder(n + " x " + n + " strassen");
+			timeRecorderStrassen.start();
+			A.multiply(B, MultiplierType.STRASSEN);
+			timeRecorderStrassen.stop();
+			timeRecorderStrassen.print();
 		}
 
 	}

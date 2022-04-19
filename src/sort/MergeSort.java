@@ -25,7 +25,7 @@ public class MergeSort implements Sort {
 		timeRecorder.start();
 		sort.sort(arr);
 		timeRecorder.stop();
-		timeRecorder.showElapsedTime();
+		timeRecorder.print();
 
 		ArrayPrinter.print(arr);
 	}
