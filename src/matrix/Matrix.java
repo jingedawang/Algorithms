@@ -1,13 +1,15 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package matrix;
 
 import enums.MultiplierType;
 import enums.Operation;
 
+import java.util.Arrays;
+
 /**
- * <h3>Matrix entity class</h3>
+ * Matrix entity class
  */
 public class Matrix {
 
@@ -70,7 +72,7 @@ public class Matrix {
 	 */
 	public Matrix multiply(Matrix m) {
 		if (isSquare() && m.isSquare() && rows() == m.rows() && (rows() & -rows()) == rows() &&
-				(m.rows() & -m.rows()) == m.rows() && rows() > 512) {
+				(m.rows() & -m.rows()) == m.rows() && rows() >= 512) {
 			return multiply(m, MultiplierType.STRASSEN);
 		} else {
 			return multiply(m, MultiplierType.PLAIN);
@@ -158,6 +160,45 @@ public class Matrix {
 	 */
 	public int columns() {
 		return matrix[0].length;
+	}
+
+	/**
+	 * Transform the matrix.
+	 *
+	 * @return A new matrix which is the transform of this matrix.
+	 */
+	public Matrix transform() {
+		Matrix transformed = new Matrix(columns(), rows());
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				transformed.matrix[j][i] = matrix[i][j];
+			}
+		}
+		return transformed;
+	}
+
+	/**
+	 * Check if the matrix param equals this matrix.
+	 *
+	 * @param o The matrix object.
+	 * @return {@code true} if the matrix object equals this matrix, {@code false} otherwise.
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Matrix matrix1 = (Matrix) o;
+		return Arrays.deepEquals(matrix, matrix1.matrix);
+	}
+
+	/**
+	 * Get the hash code of this matrix.
+	 *
+	 * @return A hash code of this matrix.
+	 */
+	@Override
+	public int hashCode() {
+		return Arrays.deepHashCode(matrix);
 	}
 
 	/**

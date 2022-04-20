@@ -8,7 +8,7 @@ import utils.MatrixGenerator;
 import utils.TimeRecorder;
 
 /**
- * <h3>Matrix multiplier interface</h3>
+ * Matrix multiplier interface
  */
 public interface MatrixMultiplier {
 
@@ -43,6 +43,6 @@ public interface MatrixMultiplier {
 	 * @param B Second operand of matrix multiplication.
 	 * @return The product of the matrix multiplication.
 	 */
-	public Matrix multiply(Matrix A, Matrix B);
+	Matrix multiply(Matrix A, Matrix B);
 
 }

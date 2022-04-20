@@ -40,6 +40,15 @@ public class MatrixTest {
 		Assertions.assertTrue(elapsedTimeStrassen <= elapsedTimePlain);
 	}
 
+	@Test()
+	void constructWithNegativeRows() {
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> new Matrix(-1, 2),
+				"Should throw error for negative rows or columns."
+		);
+	}
+
 	@Test
 	void value() {
 		equals(matrix1, data1);
@@ -61,6 +70,12 @@ public class MatrixTest {
 	void multiply() {
 		Matrix result = matrix3.multiply(matrix4);
 		equals(result, product);
+
+		Matrix A = MatrixGenerator.generateRandomMatrix(512);
+		Matrix B = MatrixGenerator.generateRandomMatrix(512);
+		Matrix product1 = A.multiply(B, MultiplierType.PLAIN);
+		Matrix product2 = A.multiply(B, MultiplierType.STRASSEN);
+		Assertions.assertEquals(product1, product2);
 	}
 
 	@Test
@@ -70,12 +85,42 @@ public class MatrixTest {
 	}
 
 	@Test
+	void multiplyWithWrongSizeMatrices() {
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> matrix3.multiply(matrix2),
+				"Should throw error for not corresponding rows and columns."
+		);
+	}
+
+	@Test
 	void split() {
 		Matrix[] results = matrix1.split();
 		equals(results[0], A11);
 		equals(results[1], A12);
 		equals(results[2], A21);
 		equals(results[3], A22);
+
+		Matrix[] resultsTransformed = matrix1.transform().split();
+		equals(resultsTransformed[0], new Matrix(A11).transform().value());
+		equals(resultsTransformed[1], new Matrix(A21).transform().value());
+		equals(resultsTransformed[2], new Matrix(A12).transform().value());
+		equals(resultsTransformed[3], new Matrix(A22).transform().value());
+
+		Matrix[] resultsOddWidth = matrix5.split();
+		equals(resultsOddWidth[0], new double[][] {{1, 2}, {4, 5}});
+		equals(resultsOddWidth[1], new double[][] {{3}, {6}});
+		equals(resultsOddWidth[2], new double[][] {{7, 8}});
+		equals(resultsOddWidth[3], new double[][] {{9}});
+	}
+
+	@Test
+	void splitWithLessRows() {
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> MatrixGenerator.generateRandomMatrix(1, 4).split(),
+				"Should throw error when splitting a matrix with only 1 row."
+		);
 	}
 
 	@Test
@@ -94,6 +139,21 @@ public class MatrixTest {
 		Assertions.assertEquals(matrix1.columns(), matrix1.value()[0].length);
 	}
 
+	@Test
+	void mergeWithWrongSize() {
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> Matrix.merge(matrix1, matrix2, matrix3, matrix4),
+				"Should throw error if one of the param is not square matrix."
+		);
+
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> Matrix.merge(matrix3, matrix3, matrix4, matrix5),
+				"Should throw error if the size of the matrices are not the same."
+		);
+	}
+
 	private void equals(Matrix matrix, double[][] data) {
 		Assertions.assertEquals(matrix.rows(), data.length);
 		Assertions.assertEquals(matrix.columns(), data[0].length);
@@ -108,6 +168,7 @@ public class MatrixTest {
 	private final double[][] data2 = {{-1, 3, 4, 2}, {12, 1, 0, 8}, {-5, -3, 0, 9}};
 	private final double[][] data3 = {{3, 1, -5, 17}, {-13, 1, 6, 11}, {22, -9, -1, 0}, {31, 12, 0, 3}};
 	private final double[][] data4 = {{10, -2, 8, 0}, {-11, 12, 1, 6}, {8, 7, -9, -3}, {-12, 4, 7, -7}};
+	private final double[][] data5 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 	private final double[][] sum = {{0, 5, 7, 6}, {17, 7, 7, 16}, {4, 7, 11, 21}};
 	private final double[][] difference = {{2, -1, -1, 2}, {-7, 5, 7, 0}, {14, 13, 11, 3}};
 	private final double[][] product = {{-225, 39, 189, -98}, {-225, 124, -80, -89}, {311, -159, 176, -51}, {142, 94, 281, 51}};
@@ -119,4 +180,5 @@ public class MatrixTest {
 	private final Matrix matrix2 = new Matrix(data2);
 	private final Matrix matrix3 = new Matrix(data3);
 	private final Matrix matrix4 = new Matrix(data4);
+	private final Matrix matrix5 = new Matrix(data5);
 }
