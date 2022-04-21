@@ -6,9 +6,9 @@ package cache;
 import java.util.HashMap;
 
 /**
- * <h3>LRU（Least Recently Used）cache</h3>
+ * LRU(Least Recently Used) cache.
  *
- * <p>This class combines {@link HashMap} and bidirectional linked list to make {@link #get(int)} and
+ * This class combines {@link HashMap} and bidirectional linked list to make {@link #get(int)} and
  * {@link #put(int, int)} reachin O(1) time complexity.
  * Lookup key from {@link HashMap} when reading cache. Update {@link HashMap} and the bidirectional linked list when
  * updating cache. During the operations, the bidirectional linked list is always in access order.</p>

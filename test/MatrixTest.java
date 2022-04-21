@@ -11,7 +11,7 @@ import utils.MatrixGenerator;
 import utils.TimeRecorder;
 
 /**
- * <h3>Test class for {@link Matrix}</h3>
+ * Test class for {@link Matrix}.
  */
 public class MatrixTest {
 
