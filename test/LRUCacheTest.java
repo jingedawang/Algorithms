@@ -26,6 +26,8 @@ public class LRUCacheTest {
 		Assertions.assertEquals(2, lruCache.get(2));
 		lruCache.put(4, 4);
 		Assertions.assertEquals(-1, lruCache.get(3));
+		lruCache.put(4, 4);
+		Assertions.assertEquals(2, lruCache.get(2));
 
 		LRUCacheSimple lruCacheSimple = new LRUCacheSimple(2);
 		lruCacheSimple.put(1, 1);
@@ -37,6 +39,8 @@ public class LRUCacheTest {
 		Assertions.assertEquals(2, lruCacheSimple.get(2));
 		lruCacheSimple.put(4, 4);
 		Assertions.assertEquals(-1, lruCacheSimple.get(3));
+		lruCacheSimple.put(4, 4);
+		Assertions.assertEquals(2, lruCacheSimple.get(2));
 	}
 
 }
