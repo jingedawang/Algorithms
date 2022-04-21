@@ -21,6 +21,13 @@ import java.util.Random;
 public class SearchTreeTest {
 
 	@Test
+	void main() {
+		BinarySearchTree.main(new String[]{});
+		BTree.main(new String[]{});
+		RedBlackTree.main(new String[]{});
+	}
+
+	@Test
 	void searchTree() {
 		for (int loop = 1; loop < 50; loop += 3) {
 			int[] arr = ArrayGenerator.randomArray(20, loop);
