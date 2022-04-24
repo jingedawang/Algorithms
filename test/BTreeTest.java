@@ -20,6 +20,13 @@ import java.util.stream.Collectors;
 public class BTreeTest {
 
 	@Test
+	void getHeight() {
+		int[] arr = ArrayGenerator.fixedArray();
+		BTree bTree = new BTree(arr);
+		Assertions.assertEquals(3, bTree.getHeight());
+	}
+
+	@Test
 	void nodeAssociate() {
 		for (int scale = 1; scale < 10; scale++) {
 			int[] arr = ArrayGenerator.randomArray(20 * scale, 20 * scale);

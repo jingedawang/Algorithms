@@ -1,12 +1,12 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package container;
 
 /**
- * <h3>The abstract class of tree</h3>
+ * Base class for all kinds of trees.
  * <p>
- * Some general methods are implemented here.
+ * Some general methods of trees are provided here.
  */
 public class AbstractTree implements Tree, Cloneable {
 
@@ -58,7 +58,11 @@ public class AbstractTree implements Tree, Cloneable {
 		if (root == null) {
 			return 0;
 		}
+
+		// For binary tree
 		int maxSubtreeHeight = Math.max(computeHeight(root.left), computeHeight(root.right));
+
+		// For B-tree
 		if (root.children != null) {
 			for (int i = 0; i < root.children.length; i++) {
 				int ithHeight = computeHeight(root.children[i]);
@@ -67,6 +71,7 @@ public class AbstractTree implements Tree, Cloneable {
 				}
 			}
 		}
+
 		return 1 + maxSubtreeHeight;
 	}
 

@@ -306,8 +306,13 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 * @return A binary tree without nil.
 	 */
 	public BinaryTree toBinaryTree() {
-		BinaryTree tree = (BinaryTree) clone();
-		removeNil(tree.getRoot());
+		BinarySearchTree tree = clone();
+		if (tree.root == nil) {
+			tree.root = null;
+		}
+		else {
+			removeNil(tree.root);
+		}
 		return tree;
 	}
 

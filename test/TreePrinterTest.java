@@ -12,14 +12,16 @@ public class TreePrinterTest {
 
 	@Test
 	void print() {
-		int[] arr = ArrayGenerator.randomArray(20, 20);
-		BinarySearchTree binarySearchTree = new BinarySearchTree(arr);
-		BTree btree = new BTree(arr);
-		RedBlackTree redBlackTree = new RedBlackTree(arr);
+		for (int i = 0; i < 100; i += 20) {
+			int[] arr = ArrayGenerator.randomArray(i * 2, i);
+			BinarySearchTree binarySearchTree = new BinarySearchTree(arr);
+			BTree btree = new BTree(arr);
+			RedBlackTree redBlackTree = new RedBlackTree(arr);
 
-		TreePrinter.print(binarySearchTree);
-		TreePrinter.print(btree);
-		TreePrinter.print(redBlackTree);
+			TreePrinter.print(binarySearchTree);
+			TreePrinter.print(btree);
+			TreePrinter.print(redBlackTree);
+		}
 	}
 
 }
