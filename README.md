@@ -74,6 +74,7 @@ Except for code, you can click the `book` and `blog` links for more information.
     + [Heap](https://github.com/jingedawang/Algorithms/blob/master/src/container/Heap.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=172)
     + [PriorityQueue](https://github.com/jingedawang/Algorithms/blob/master/src/container/PriorityQueue.java)
+      [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=183)
     + [RedBlackTree](https://github.com/jingedawang/Algorithms/blob/master/src/container/RedBlackTree.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=329)
       [`blog`](https://zhuanlan.zhihu.com/p/335016486)

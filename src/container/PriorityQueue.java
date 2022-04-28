@@ -12,96 +12,69 @@ public class PriorityQueue {
 	 * Test code.
 	 */
 	public static void main(String[] args) {
-		PriorityQueue priorityQueue = new PriorityQueue();
-		priorityQueue.insert(3);
-		priorityQueue.insert(6);
-		priorityQueue.insert(1);
-		priorityQueue.insert(5);
-		priorityQueue.insert(2);
-		priorityQueue.insert(4);
-		System.out.println(priorityQueue.extractMax());
-		System.out.println(priorityQueue.extractMax());
-		System.out.println(priorityQueue.extractMax());
-		priorityQueue.insert(10);
-		System.out.println(priorityQueue.extractMax());
-		System.out.println(priorityQueue.extractMax());
-		System.out.println(priorityQueue.extractMax());
-		System.out.println(priorityQueue.extractMax());
+		PriorityQueue priorityQueue = new PriorityQueue(new int[] {3, 6, 1});
+		priorityQueue.push(5);
+		priorityQueue.push(2);
+		priorityQueue.push(4);
+		System.out.println(priorityQueue.pop());
+		System.out.println(priorityQueue.pop());
+		System.out.println(priorityQueue.pop());
+		priorityQueue.push(10);
+		System.out.println(priorityQueue.pop());
+		System.out.println(priorityQueue.pop());
+		System.out.println(priorityQueue.pop());
+		System.out.println(priorityQueue.pop());
 	}
 
 	/**
-	 * Insert a value into priority queue.
-	 *
-	 * @param x The value to be inserted.
+	 * Construct an empty priority queue.
 	 */
-	public void insert(int x) {
-		if (heap.size >= heap.capacity) {
-			int[] newArr;
-			if (heap.capacity > 0) {
-				newArr = new int[heap.capacity * 2];
-				System.arraycopy(heap.data, 0, newArr, 0, heap.size);
-			} else {
-				newArr = new int[8];
-			}
-			heap.data = newArr;
-			heap.capacity = newArr.length;
-		}
-		heap.size++;
-		heap.data[heap.size - 1] = Integer.MIN_VALUE;
-		increaseKey(heap.size - 1, x);
+	public PriorityQueue() {
+		heap = new Heap();
 	}
 
 	/**
-	 * Get the maximum value of the priority queue.
+	 * Construct a priority queue with given array.
 	 *
-	 * @return The maximum value of the priority queue.
+	 * @param arr The data array to be pushed into the priority queue in order.
 	 */
-	public int maximum() {
-		if (heap.size <= 0) {
+	public PriorityQueue(int[] arr) {
+		heap = new Heap(arr, true);
+	}
+
+	/**
+	 * Push a value into the priority queue.
+	 *
+	 * @param value The value to be pushed into the priority queue.
+	 */
+	public void push(int value) {
+		heap.insert(new Node(value));
+	}
+
+	/**
+	 * Get the highest priority item of the priority queue.
+	 *
+	 * @return The highest priority item of the priority queue.
+	 */
+	public int head() {
+		if (heap.getSize() <= 0) {
 			throw new ArrayIndexOutOfBoundsException("Can not get a value from an empty priority queue.");
 		}
-		return heap.data[0];
+		return heap.top();
 	}
 
 	/**
-	 * Extract the maximum value of the priority queue.
-	 * <p>
-	 * After the maximum value is extracted, the heap will shrink and reorganize.
+	 * Get and remove the highest priority item in the priority queue.
 	 *
-	 * @return The maximum value of the priority queue.
+	 * @return The highest priority item value.
 	 */
-	public int extractMax() {
-		if (heap.size <= 0) {
-			throw new ArrayIndexOutOfBoundsException("Can not extract a value from an empty priority queue.");
+	public int pop() {
+		if (heap.getSize() <= 0) {
+			throw new ArrayIndexOutOfBoundsException("Can not pop a value from an empty priority queue.");
 		}
-		int max = heap.data[0];
-		heap.data[0] = heap.data[heap.size - 1];
-		heap.size--;
-		heap.maxHeapify(0);
-		return max;
+		return heap.pop();
 	}
 
-	/**
-	 * Increase the value of the specified item.
-	 * <p>
-	 * The new value must be greater than the original value, or this method would raise an error.
-	 *
-	 * @param i The index of the specified item.
-	 * @param k The new value of the specified item.
-	 */
-	public void increaseKey(int i, int k) {
-		if (k < heap.data[i]) {
-			throw new IllegalArgumentException("k must be greater than the item of index i.");
-		}
-		heap.data[i] = k;
-		while (i > 0 && heap.data[i] > heap.data[heap.parent(i)]) {
-			int temp = heap.data[i];
-			heap.data[i] = heap.data[heap.parent(i)];
-			heap.data[heap.parent(i)] = temp;
-			i = heap.parent(i);
-		}
-	}
-
-	private final Heap heap = new Heap();
+	private final Heap heap;
 
 }

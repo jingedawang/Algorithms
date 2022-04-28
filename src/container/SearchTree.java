@@ -71,18 +71,4 @@ public interface SearchTree extends Tree {
 	 */
 	Node successor(Node node);
 
-	/**
-	 * Insert a node into the tree.
-	 *
-	 * @param newNode The node to be inserted.
-	 */
-	void insert(Node newNode);
-
-	/**
-	 * Delete a node from the tree.
-	 *
-	 * @param node The node to be deleted.
-	 */
-	void delete(Node node);
-
 }
