@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package container;
 
@@ -8,7 +8,7 @@ import utils.ArrayPrinter;
 import utils.TreePrinter;
 
 /**
- * <h3>Binary search tree</h3>
+ * Binary search tree.
  */
 public class BinarySearchTree extends AbstractTree implements SearchTree, BinaryTree {
 
@@ -262,45 +262,6 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	}
 
 	/**
-	 * Clone this tree.
-	 *
-	 * @return A copy of this tree.
-	 */
-	@Override
-	protected BinarySearchTree clone() {
-		nil.parent = null;
-		nil.left = null;
-		nil.right = null;
-		BinarySearchTree tree = (BinarySearchTree) super.clone();
-		if (tree.root.left == null && tree.root.right == null) {
-			tree.root = nil;
-		} else {
-			useNil(tree.root);
-		}
-		return tree;
-	}
-
-	/**
-	 * Use nil sentinel instead of extra leaf nodes.
-	 * <p>
-	 * This method is used to fix up the cloned tree.
-	 *
-	 * @param node The root of the current subtree.
-	 */
-	private void useNil(Node node) {
-		if (node.left.parent == null) {
-			node.left = nil;
-		} else {
-			useNil(node.left);
-		}
-		if (node.right.parent == null) {
-			node.right = nil;
-		} else {
-			useNil(node.right);
-		}
-	}
-
-	/**
 	 * Remove nil sentinel and return as a binary tree.
 	 *
 	 * @return A binary tree without nil.
@@ -317,21 +278,62 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	}
 
 	/**
-	 * Remove nil sentinel recursively.
+	 * Check if the tree is empty.
 	 *
-	 * @param node The root node of current subtree.
+	 * @return {@code true} if the tree has no elements, {@code false} otherwise.
 	 */
-	private void removeNil(Node node) {
-		if (node.left == nil) {
-			node.left = null;
-		} else {
-			removeNil(node.left);
+	@Override
+	public boolean empty() {
+		return root == null || root == nil;
+	}
+
+	/**
+	 * Get the size of the tree.
+	 *
+	 * @return The size of the tree.
+	 */
+	@Override
+	public int size() {
+		if (root == null || root == nil) {
+			return 0;
 		}
-		if (node.right == nil) {
-			node.right = null;
-		} else {
-			removeNil(node.right);
+		return subtreeSize(root);
+	}
+
+	/**
+	 * Get the size of the subtree.
+	 *
+	 * @param root The root of the subtree.
+	 * @return The size of the subtree.
+	 */
+	@Override
+	protected int subtreeSize(Node root) {
+		if (root == null || root == nil) {
+			return 0;
 		}
+		int size = 1;
+		size += subtreeSize(root.left);
+		size += subtreeSize(root.right);
+		return size;
+	}
+
+	/**
+	 * Clone this tree.
+	 *
+	 * @return A copy of this tree.
+	 */
+	@Override
+	protected BinarySearchTree clone() {
+		nil.parent = null;
+		nil.left = null;
+		nil.right = null;
+		BinarySearchTree tree = (BinarySearchTree) super.clone();
+		if (tree.root.left == null && tree.root.right == null) {
+			tree.root = nil;
+		} else {
+			useNil(tree.root);
+		}
+		return tree;
 	}
 
 	/**
@@ -355,5 +357,43 @@ public class BinarySearchTree extends AbstractTree implements SearchTree, Binary
 	 * A sentinel node indicting all the external nodes.
 	 */
 	protected final Node nil = new Node(Node.Color.BLACK);
+
+	/**
+	 * Use nil sentinel instead of extra leaf nodes.
+	 * <p>
+	 * This method is used to fix up the cloned tree.
+	 *
+	 * @param node The root of the current subtree.
+	 */
+	private void useNil(Node node) {
+		if (node.left.parent == null) {
+			node.left = nil;
+		} else {
+			useNil(node.left);
+		}
+		if (node.right.parent == null) {
+			node.right = nil;
+		} else {
+			useNil(node.right);
+		}
+	}
+
+	/**
+	 * Remove nil sentinel recursively.
+	 *
+	 * @param node The root node of current subtree.
+	 */
+	private void removeNil(Node node) {
+		if (node.left == nil) {
+			node.left = null;
+		} else {
+			removeNil(node.left);
+		}
+		if (node.right == nil) {
+			node.right = null;
+		} else {
+			removeNil(node.right);
+		}
+	}
 
 }

@@ -6,10 +6,17 @@ package container;
 public interface Container {
 
 	/**
-	 * Checks whether the container has no elements.
+	 * Check if the container has no elements.
 	 *
 	 * @return {@code true} if the container has no elements, {@code false} otherwise.
 	 */
 	boolean empty();
+
+	/**
+	 * Get the size of the container.
+	 *
+	 * @return The size of the container.
+	 */
+	int size();
 
 }

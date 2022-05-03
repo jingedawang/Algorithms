@@ -1,12 +1,12 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package container;
 
 /**
- * <h3>Priority queue implemented by heap</h3>
+ * Priority queue implemented by heap.
  */
-public class PriorityQueue {
+public class PriorityQueue implements Queue {
 
 	/**
 	 * Test code.
@@ -47,8 +47,21 @@ public class PriorityQueue {
 	 *
 	 * @param value The value to be pushed into the priority queue.
 	 */
+	@Override
 	public void push(int value) {
 		heap.insert(new Node(value));
+	}
+
+	/**
+	 * Get the value from the back of the queue.
+	 *
+	 * This method is not supported because it is based on heap.
+	 *
+	 * @return The value at the back.
+	 */
+	@Override
+	public int back() {
+		throw new UnsupportedOperationException("Get back value is not supported in PriorityQueue.");
 	}
 
 	/**
@@ -56,8 +69,9 @@ public class PriorityQueue {
 	 *
 	 * @return The highest priority item of the priority queue.
 	 */
-	public int head() {
-		if (heap.getSize() <= 0) {
+	@Override
+	public int front() {
+		if (heap.size() <= 0) {
 			throw new ArrayIndexOutOfBoundsException("Can not get a value from an empty priority queue.");
 		}
 		return heap.top();
@@ -68,11 +82,32 @@ public class PriorityQueue {
 	 *
 	 * @return The highest priority item value.
 	 */
+	@Override
 	public int pop() {
-		if (heap.getSize() <= 0) {
+		if (heap.size() <= 0) {
 			throw new ArrayIndexOutOfBoundsException("Can not pop a value from an empty priority queue.");
 		}
 		return heap.pop();
+	}
+
+	/**
+	 * Check if the queue has no elements.
+	 *
+	 * @return {@code true} if the queue has no elements, {@code false} otherwise.
+	 */
+	@Override
+	public boolean empty() {
+		return heap.empty();
+	}
+
+	/**
+	 * Get the size of the queue.
+	 *
+	 * @return The size of the queue.
+	 */
+	@Override
+	public int size() {
+		return heap.size();
 	}
 
 	private final Heap heap;

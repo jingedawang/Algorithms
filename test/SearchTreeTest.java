@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 
 import container.BTree;
@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * <h3>Test class for {@link SearchTree}</h3>
+ * Test class for {@link SearchTree}.
  */
 public class SearchTreeTest {
 

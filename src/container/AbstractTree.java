@@ -11,31 +11,50 @@ package container;
 public class AbstractTree implements Tree, Cloneable {
 
 	/**
-	 * Clone this tree.
-	 *
-	 * @return A copy of this tree.
-	 */
-	@Override
-	protected AbstractTree clone() {
-		AbstractTree tree;
-		try {
-			tree = (AbstractTree) super.clone();
-		} catch (CloneNotSupportedException e) {
-			e.printStackTrace();
-			throw new AssertionError();
-		}
-		tree.root = root.clone();
-		return tree;
-	}
-
-	/**
-	 * Checks whether the tree is empty.
+	 * Checks if the tree is empty.
 	 *
 	 * @return {@code true} if the tree has no elements, {@code false} otherwise.
 	 */
 	@Override
 	public boolean empty() {
 		return root == null;
+	}
+
+	/**
+	 * Get the size of the tree.
+	 *
+	 * @return The element count of the tree.
+	 */
+	@Override
+	public int size() {
+		if (root == null) {
+			return 0;
+		}
+		return subtreeSize(root);
+	}
+
+	/**
+	 * Get the size of the subtree.
+	 *
+	 * @param root The root of the subtree.
+	 * @return The size of the subtree.
+	 */
+	protected int subtreeSize(Node root) {
+		if (root == null) {
+			return 0;
+		}
+		int size = 1;
+		if (root.values != null) {
+			size = root.numberOfValues;
+		}
+		size += subtreeSize(root.left);
+		size += subtreeSize(root.right);
+		if (root.children != null) {
+			for (int i = 0; i <= root.numberOfValues; i++) {
+				size += subtreeSize(root.children[i]);
+			}
+		}
+		return size;
 	}
 
 	/**
@@ -76,6 +95,24 @@ public class AbstractTree implements Tree, Cloneable {
 	@Override
 	public void delete(Node node) {
 		throw new UnsupportedOperationException("'delete' method not supported for object: " + this);
+	}
+
+	/**
+	 * Clone this tree.
+	 *
+	 * @return A copy of this tree.
+	 */
+	@Override
+	protected AbstractTree clone() {
+		AbstractTree tree;
+		try {
+			tree = (AbstractTree) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			throw new AssertionError();
+		}
+		tree.root = root.clone();
+		return tree;
 	}
 
 	/**

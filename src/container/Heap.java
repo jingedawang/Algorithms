@@ -42,7 +42,7 @@ public class Heap extends AbstractTree implements BinaryTree {
 	}
 
 	/**
-	 * Checks whether the heap has no elements.
+	 * Check if the heap has no elements.
 	 *
 	 * @return {@code true} if the heap has no elements, {@code false} otherwise.
 	 */
@@ -56,7 +56,7 @@ public class Heap extends AbstractTree implements BinaryTree {
 	 *
 	 * @return The element count of the heap.
 	 */
-	public int getSize() {
+	public int size() {
 		return size;
 	}
 
