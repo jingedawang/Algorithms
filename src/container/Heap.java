@@ -10,7 +10,14 @@ package container;
  * After the heap is built, the values are stored layer by layer in the array. For example, an array
  * [4, 8, 1, 2, 0, 6, 5, 1, 9, 3]
  * represents a heap like
- * TODO
+ * <pre>
+ *                 +--------------0---------------+
+ *         +------1-------+                +------1-------+
+ *     +--2---+        +--3---+        +--6---+        +--5---+
+ *    4       9       8
+ * </pre>
+ * To save time, we won't maintain a tree structure all the time. If you need to access the data by traversing
+ * its nodes, please call {@code toBinaryTree} method, which will return as a structured binary tree.
  */
 public class Heap extends AbstractTree implements BinaryTree {
 
@@ -125,6 +132,16 @@ public class Heap extends AbstractTree implements BinaryTree {
 			maxHeapify(0);
 		}
 		return top;
+	}
+
+	/**
+	 * Construct the tree structure and return as a binary tree.
+	 *
+	 * @return A binary tree converted from the heap.
+	 */
+	public BinaryTree toBinaryTree() {
+		root = constructSubtree(0);
+		return this;
 	}
 
 	/**
@@ -249,6 +266,22 @@ public class Heap extends AbstractTree implements BinaryTree {
 	 */
 	private int right(int i) {
 		return 2 * (i + 1);
+	}
+
+	/**
+	 * Construct tree structure recursively.
+	 *
+	 * @param index The index of the subtree to be constructed.
+	 * @return The root node of the constructed subtree.
+	 */
+	private Node constructSubtree(int index) {
+		if (index >= size()) {
+			return null;
+		}
+		Node root = new Node(data[index]);
+		root.left = constructSubtree(left(index));
+		root.right = constructSubtree(right(index));
+		return root;
 	}
 
 	// Flag to indicate whether this heap is a min heap or a max heap.

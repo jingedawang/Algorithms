@@ -1,8 +1,12 @@
+/**
+ * Copyright 2022 jingedawang
+ */
 package utils;
 
 import container.BTree;
 import container.BinarySearchTree;
 import container.BinaryTree;
+import container.Heap;
 import container.Node;
 import container.RedBlackTree;
 
@@ -20,10 +24,12 @@ public class TreePrinter {
 	 * Print a binary tree.
 	 * <p>
 	 * To show the display pattern, here is a simple example.
+	 * <pre>
 	 *                 +--------------4---------------+
 	 *         +------1-------+                +------8-------+
 	 *     +--0---+        +--2---+        +--6---+        +--9---+
 	 *                    1       3       5
+	 * </pre>
 	 * @param tree The binary tree to be printed.
 	 * @param showColor Choose whether to show the color of each node.
 	 */
@@ -146,6 +152,14 @@ public class TreePrinter {
 			}
 			row = nextRow;
 		}
+	}
+
+	/**
+	 * Print a heap.
+	 * @param heap The heap to be printed.
+	 */
+	public static void print(Heap heap) {
+		print(heap.toBinaryTree());
 	}
 
 	/**
