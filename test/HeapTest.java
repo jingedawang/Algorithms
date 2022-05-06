@@ -1,3 +1,6 @@
+/**
+ * Copyright 2022 jingedawang
+ */
 import container.Heap;
 import container.Node;
 import org.junit.jupiter.api.Assertions;
@@ -6,6 +9,9 @@ import utils.ArrayGenerator;
 
 import java.util.Arrays;
 
+/**
+ * Test class for {@link Heap}.
+ */
 public class HeapTest {
 
 	@Test

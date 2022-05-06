@@ -1,7 +1,6 @@
 /**
- * Copyright 2021 jingedawang
+ * Copyright 2022 jingedawang
  */
-
 import container.BTree;
 import container.Node;
 import org.junit.jupiter.api.Assertions;
@@ -15,9 +14,14 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
- * <h3>Test class for {@link BTree}</h3>
+ * Test class for {@link BTree}.
  */
 public class BTreeTest {
+
+	@Test
+	void main() {
+		BTree.main(new String[]{});
+	}
 
 	@Test
 	void getHeight() {
