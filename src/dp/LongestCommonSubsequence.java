@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package dp;
 
@@ -7,12 +7,15 @@ import utils.ArrayGenerator;
 import utils.ArrayPrinter;
 
 /**
- * <h3>Longest common subsequence problem</h3>
+ * Longest common subsequence problem.
+ *
+ * Given two sequences, find the longest common subsequence between them. The subsequence is not required to be
+ * consecutive.
  */
 public class LongestCommonSubsequence {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		int[] sequence1 = ArrayGenerator.randomArray(20, 20);
@@ -22,8 +25,9 @@ public class LongestCommonSubsequence {
 		ArrayPrinter.print(sequence1);
 		ArrayPrinter.print(sequence2);
 
-		LongestCommonSubsequence lcs = new LongestCommonSubsequence();
-		int[] longestCommonSequence = lcs.longestCommonSequence(sequence1, sequence2);
+		LongestCommonSubsequence longestCommonSubsequence = new LongestCommonSubsequence();
+		int[] longestCommonSequence = longestCommonSubsequence.longestCommonSequence(sequence1, sequence2);
+		System.out.println();
 		System.out.println("The longest common sequence is:");
 		ArrayPrinter.print(longestCommonSequence);
 	}

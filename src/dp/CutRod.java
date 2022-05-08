@@ -1,28 +1,39 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package dp;
 
+import utils.ArrayPrinter;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * <h3>Cut rod problem</h3>
+ * Cut rod problem.
+ *
+ * Different length of rods have different prices. The prices are defined by a table, which are not linearly related.
+ * Given a rod, the problem is how to cut it to make the cut rods accumulated to the highest price.
  */
 public class CutRod {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		int n = 7;
 		int[] prices = {0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
 
 		System.out.println("The rod length is " + n + ".");
+		System.out.println("The prices of each length is:");
+		ArrayPrinter.print(prices);
 		CutRod cutRod = new CutRod();
 		int price = cutRod.cutRod(n, prices);
 //		int price = cutRod.memoizedCutRod(n, prices);
-		System.out.println("The best price of the rod is " + price);
-		cutRod.printSolution(n, prices);
+		System.out.println();
+		System.out.println("The best price of the rod is " + price + ".");
+		System.out.println("And it is cut to following lengths:");
+		int[] cutLengths = cutRod.getCutLengths(n, prices);
+		ArrayPrinter.print(cutLengths);
 	}
 
 	/**
@@ -42,14 +53,31 @@ public class CutRod {
 	 * @param n      The length of the rod.
 	 * @param prices The prices of each length of the rod.
 	 */
-	public void printSolution(int n, int[] prices) {
+	public int[] getCutLengths(int n, int[] prices) {
 		int[] lengths = new int[n + 1];
 		cutRod(n, prices, lengths);
-		System.out.println("And it is cut to following parts:");
+		ArrayList<Integer> cutLengths = new ArrayList<>();
 		while (n > 0) {
-			System.out.println(lengths[n]);
+			cutLengths.add(lengths[n]);
 			n = n - lengths[n];
 		}
+		return cutLengths.stream().mapToInt(i -> i).toArray();
+	}
+
+	/**
+	 * Cut a rod in order to get the best price.
+	 *
+	 * This method uses a memo to reuse the solutions of the sub-problems. It's not the recommended implementation, just
+	 * for demonstration. For the recommended implementation, please refer to {@code cutRod} method.
+	 *
+	 * @param n      The length of the rod.
+	 * @param prices The prices of each length of the rod.
+	 * @return The best price accumulated by cut rods.
+	 */
+	public int memoizedCutRod(int n, int[] prices) {
+		int[] bestPrices = new int[n + 1];
+		Arrays.fill(bestPrices, Integer.MIN_VALUE);
+		return memoizedCutRodAux(n, prices, bestPrices);
 	}
 
 	/**
@@ -57,7 +85,7 @@ public class CutRod {
 	 *
 	 * @param n       The length of the rod.
 	 * @param prices  The prices of each length of the rod.
-	 * @param lengths Output param. The length of the first cut part in every circumstances.
+	 * @param lengths Output param. The length of the first cut part in each circumstance.
 	 * @return The best price accumulated by cut rods.
 	 */
 	private int cutRod(int n, int[] prices, int[] lengths) {
@@ -73,19 +101,6 @@ public class CutRod {
 			bestPrices[i] = bestPrice;
 		}
 		return bestPrices[n];
-	}
-
-	/**
-	 * Cut a rod in order to get the best price. This method uses a memo to reuse the solutions of the sub-problems.
-	 *
-	 * @param n      The length of the rod.
-	 * @param prices The prices of each length of the rod.
-	 * @return The best price accumulated by cut rods.
-	 */
-	private int memoizedCutRod(int n, int[] prices) {
-		int[] bestPrices = new int[n + 1];
-		Arrays.fill(bestPrices, Integer.MIN_VALUE);
-		return memoizedCutRodAux(n, prices, bestPrices);
 	}
 
 	/**

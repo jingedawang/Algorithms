@@ -1,7 +1,6 @@
 /**
  * Copyright 2020 jingedawang
  */
-
 import container.Node;
 import container.RedBlackTree;
 import org.junit.jupiter.api.Assertions;

@@ -1,32 +1,42 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package dp;
+
+import utils.ArrayPrinter;
 
 import java.util.Arrays;
 import java.util.TreeSet;
 
 /**
- * <h3>0-1 knapsack problem</h3>
+ * 0-1 knapsack problem.
+ *
+ * There are several items, each has a value and a weight. Given a knapsack with a capacity limit, find which items
+ * could be put into the knapsack and make the highest total value.
  */
 public class ZeroOneKnapsack {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		int[] values = {60, 100, 120};
 		int[] weights = {10, 20, 30};
 		int weightLimit = 50;
+		System.out.println("We have items with following values and weights.");
+		System.out.print("Values: ");
+		ArrayPrinter.print(values);
+		System.out.print("Weights: ");
+		ArrayPrinter.print(weights);
+		System.out.println("The capacity of the knapsack is " + weightLimit + ".");
+
 		ZeroOneKnapsack zeroOneKnapsack = new ZeroOneKnapsack();
 		int[] selectedIndices = zeroOneKnapsack.select(values, weights, weightLimit);
-		System.out.println("Selected items include the following indices:");
-		int maxValue = 0;
-		for (int index : selectedIndices) {
-			System.out.println(index);
-			maxValue += values[index];
-		}
-		System.out.println("The value of the selected items is " + maxValue + ".");
+		System.out.println();
+		System.out.println("Selected items with the following indices:");
+		ArrayPrinter.print(selectedIndices);
+		System.out.println("The value of the selected items is "
+				+ Arrays.stream(selectedIndices).map(i -> values[i]).sum() + ".");
 	}
 
 	/**
