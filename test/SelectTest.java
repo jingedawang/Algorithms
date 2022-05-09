@@ -1,6 +1,7 @@
 /**
  * Copyright 2020 jingedawang
  */
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import select.BFPRT;

@@ -1,10 +1,10 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package utils;
 
 /**
- * <h3>Array printer</h3>
+ * Array printer.
  */
 public class ArrayPrinter {
 
@@ -42,6 +42,20 @@ public class ArrayPrinter {
 	 * @param arr The double array to be printed.
 	 */
 	public static void print(double[] arr) {
+		System.out.print("[");
+		int i = 0;
+		for (; i < arr.length - 1; i++) {
+			System.out.print(arr[i] + ", ");
+		}
+		System.out.println(arr[i] + "]");
+	}
+
+	/**
+	 * Print all the elements in the array.
+	 *
+	 * @param arr The char array to be printed.
+	 */
+	public static void print(char[] arr) {
 		System.out.print("[");
 		int i = 0;
 		for (; i < arr.length - 1; i++) {

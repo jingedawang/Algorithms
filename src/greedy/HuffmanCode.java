@@ -1,32 +1,43 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package greedy;
+
+import utils.ArrayPrinter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
 /**
- * <h3>Huffman code</h3>
+ * Huffman code.
+ *
+ * Given the frequencies of each character, we need to find the most efficient encoding strategy to make the encoded
+ * text short. The variant encoding method is called Huffman code.
  */
 public class HuffmanCode {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		char[] characters = {'a', 'b', 'c', 'd', 'e', 'f'};
 		int[] frequencies = {45, 13, 12, 16, 9, 5};
+		System.out.println("The character collection is:");
+		ArrayPrinter.print(characters);
+		System.out.println("The frequencies of each character are:");
+		ArrayPrinter.print(frequencies);
+
 		HuffmanCode huffmanCode = new HuffmanCode();
 		huffmanCode.buildHuffmanTree(characters, frequencies);
+		System.out.println();
 		System.out.println("The huffman code book is");
 		for (int i = 0; i < characters.length; i++) {
 			System.out.println(characters[i] + ": " + huffmanCode.encode(String.valueOf(characters[i])));
 		}
 		String str = "abcdef";
 		String code = huffmanCode.encode(str);
-		System.out.println("The code of string \"" + str + "\" is " + code + ".");
+		System.out.println("The huffman code of string \"" + str + "\" is " + code + ".");
 	}
 
 	/**
@@ -49,7 +60,7 @@ public class HuffmanCode {
 			root.right = right;
 			queue.add(root);
 		}
-		huffmanTree = queue.poll();
+		Node huffmanTree = queue.poll();
 		codeBook = new HashMap<Character, String>(characters.length * 2);
 		generateCodeBook(huffmanTree, "");
 	}
@@ -73,7 +84,7 @@ public class HuffmanCode {
 	 * <p>
 	 * The comparison between instances is based on {@code frequency} field.
 	 */
-	private class Node implements Comparable<Node> {
+	private static class Node implements Comparable<Node> {
 
 		Node(char character, int frequency) {
 			this.character = character;
@@ -92,11 +103,6 @@ public class HuffmanCode {
 	}
 
 	/**
-	 * The huffman tree field.
-	 */
-	private Node huffmanTree;
-
-	/**
 	 * The code book field.
 	 */
 	private HashMap<Character, String> codeBook;
@@ -104,8 +110,8 @@ public class HuffmanCode {
 	/**
 	 * Generate the code book recursively.
 	 *
-	 * @param root   The root of current sub-tree.
-	 * @param prefix The prefix string from the root to this sub-tree.
+	 * @param root   The root of current subtree.
+	 * @param prefix The prefix string from the root to this subtree.
 	 */
 	private void generateCodeBook(Node root, String prefix) {
 		if (root.left == null || root.right == null) {

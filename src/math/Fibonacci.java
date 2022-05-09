@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package math;
 
@@ -10,20 +10,20 @@ import java.util.List;
 import utils.ArrayPrinter;
 
 /**
- * <h3>Fibonacci sequence</h3>
+ * Fibonacci sequence.
  *
- * <p>To reuse the generated fibonacci sequence, this class is designed as singleton.</p>
+ * To reuse the generated fibonacci sequence, this class is designed as singleton.
  */
 public class Fibonacci {
 
 	/**
-	 * Test code.
-	 *
-	 * <p>Generate the first n fibonacci numbers.</p>
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
-		List<BigDecimal> f10 = Fibonacci.getInstance().getNFibonacci(10);
-		ArrayPrinter.print(f10.toArray(new BigDecimal[1]));
+		List<BigDecimal> fibonacciList = Fibonacci.getInstance().getFibonacciList(10);
+		System.out.println("The first 10 fibonacci numbers are:");
+		ArrayPrinter.print(fibonacciList.toArray(new BigDecimal[1]));
+		System.out.println("The 99-th fibonacci number is " + Fibonacci.getInstance().getFibonacci(99) + ".");
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class Fibonacci {
 	 * @param n The length of the sequence wanted.
 	 * @return A list of the first {@code n} fibonacci numbers.
 	 */
-	public List<BigDecimal> getNFibonacci(int n) {
+	public List<BigDecimal> getFibonacciList(int n) {
 		if (n <= fibonacciSequence.size()) {
 			return fibonacciSequence.subList(0, n);
 		}
@@ -70,7 +70,7 @@ public class Fibonacci {
 	private static Fibonacci instance;
 
 	// Cache list for generated fibonacci sequence.
-	private List<BigDecimal> fibonacciSequence = new ArrayList<BigDecimal>();
+	private final List<BigDecimal> fibonacciSequence = new ArrayList<>();
 
 	// Disabled constructor.
 	private Fibonacci() {
