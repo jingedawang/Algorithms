@@ -17,18 +17,24 @@ import java.util.Arrays;
 public class SelectTest {
 
 	@Test
+	void main() {
+		BFPRT.main(new String[]{});
+		QuickSelect.main(new String[]{});
+	}
+
+	@Test
 	void select() {
-		Select quickSelect = new QuickSelect();
 		Select bfprtSelect = new BFPRT();
+		Select quickSelect = new QuickSelect();
 		for (int i = 0; i < 200; i++) {
 			int[] arr = ArrayGenerator.randomArray(20, 20);
 			int[] sortedArr = arr.clone();
 			Arrays.sort(sortedArr);
 			for (int j = 0; j < 20; j++) {
-				int resultByQuickSelect = quickSelect.select(arr, j);
 				int resultByBfprt = bfprtSelect.select(arr, j);
-				Assertions.assertEquals(sortedArr[j], resultByQuickSelect);
+				int resultByQuickSelect = quickSelect.select(arr, j);
 				Assertions.assertEquals(sortedArr[j], resultByBfprt);
+				Assertions.assertEquals(sortedArr[j], resultByQuickSelect);
 			}
 		}
 	}
