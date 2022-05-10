@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 jingedawang
+ * Copyright 2022 jingedawang
  */
 package randomize;
 
@@ -10,17 +10,21 @@ import utils.ArrayGenerator;
 import utils.Seed;
 
 /**
- * <h3>A util class used for randomizing arrays.</h3>
+ * A utility class used for randomizing arrays.
  */
 public class RandomizeArray {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		int[] arr = ArrayGenerator.fixedArray();
+		System.out.println("Given an array:");
 		ArrayPrinter.print(arr);
+
 		randomizeInPlace(arr);
+		System.out.println();
+		System.out.println("Randomize the array to:");
 		ArrayPrinter.print(arr);
 	}
 

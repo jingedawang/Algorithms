@@ -9,21 +9,27 @@ package container;
 public class PriorityQueue implements Queue {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
+		System.out.println("Create a PriorityQueue with initial values [3, 6, 1].");
 		PriorityQueue priorityQueue = new PriorityQueue(new int[] {3, 6, 1});
+		System.out.println("Push 5 into the queue.");
 		priorityQueue.push(5);
+		System.out.println("Push 2 into the queue.");
 		priorityQueue.push(2);
+		System.out.println("Push 4 into the queue.");
 		priorityQueue.push(4);
-		System.out.println(priorityQueue.pop());
-		System.out.println(priorityQueue.pop());
-		System.out.println(priorityQueue.pop());
+		System.out.println("Pop the front value of the queue: " + priorityQueue.pop());
+		System.out.println("Pop the front value of the queue: " + priorityQueue.pop());
+		System.out.println("Pop the front value of the queue: " + priorityQueue.pop());
+		System.out.println("Push 10 into the queue.");
 		priorityQueue.push(10);
-		System.out.println(priorityQueue.pop());
-		System.out.println(priorityQueue.pop());
-		System.out.println(priorityQueue.pop());
-		System.out.println(priorityQueue.pop());
+		System.out.println("Get the front value of the queue: " + priorityQueue.front());
+		System.out.println("Pop the front value of the queue: " + priorityQueue.pop());
+		System.out.println("Pop the front value of the queue: " + priorityQueue.pop());
+		System.out.println("Pop the front value of the queue: " + priorityQueue.pop());
+		System.out.println("Pop the front value of the queue: " + priorityQueue.pop());
 	}
 
 	/**
@@ -39,7 +45,7 @@ public class PriorityQueue implements Queue {
 	 * @param arr The data array to be pushed into the priority queue in order.
 	 */
 	public PriorityQueue(int[] arr) {
-		heap = new Heap(arr, true);
+		heap = new Heap(arr, false);
 	}
 
 	/**

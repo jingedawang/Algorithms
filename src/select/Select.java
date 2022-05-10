@@ -1,12 +1,12 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package select;
 
 /**
- * <h3>Interface for all select classes</h3>
+ * Interface for all select classes.
  * <p>
- * A select algorithm can select the i-th smallest number in an array.
+ * Select algorithm is used for selecting the i-th smallest number in an array.
  */
 public interface Select {
 

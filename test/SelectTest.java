@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 
 import org.junit.jupiter.api.Assertions;
@@ -12,34 +12,23 @@ import utils.ArrayGenerator;
 import java.util.Arrays;
 
 /**
- * <h3>Test class for {@link Select}</h3>
+ * Test class for all select algorithms.
  */
 public class SelectTest {
 
 	@Test
-	void quickSelect() {
+	void select() {
+		Select quickSelect = new QuickSelect();
+		Select bfprtSelect = new BFPRT();
 		for (int i = 0; i < 200; i++) {
 			int[] arr = ArrayGenerator.randomArray(20, 20);
 			int[] sortedArr = arr.clone();
 			Arrays.sort(sortedArr);
-			QuickSelect select = new QuickSelect();
 			for (int j = 0; j < 20; j++) {
-				int selected = select.select(arr, j);
-				Assertions.assertEquals(sortedArr[j], selected);
-			}
-		}
-	}
-
-	@Test
-	void bfprt() {
-		for (int i = 0; i < 200; i++) {
-			int[] arr = ArrayGenerator.randomArray(20, 20);
-			int[] sortedArr = arr.clone();
-			Arrays.sort(sortedArr);
-			BFPRT bfprt = new BFPRT();
-			for (int j = 0; j < 20; j++) {
-				int selected = bfprt.select(arr, j);
-				Assertions.assertEquals(sortedArr[j], selected);
+				int resultByQuickSelect = quickSelect.select(arr, j);
+				int resultByBfprt = bfprtSelect.select(arr, j);
+				Assertions.assertEquals(sortedArr[j], resultByQuickSelect);
+				Assertions.assertEquals(sortedArr[j], resultByBfprt);
 			}
 		}
 	}

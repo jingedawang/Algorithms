@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package select;
 
@@ -9,30 +9,25 @@ import utils.ArrayPrinter;
 import java.util.Arrays;
 
 /**
- * <h3>BFPRT algorithm</h3>
- * <p>
+ * BFPRT algorithm.
+ *
+ * This is a select algorithm which ensures O(n) complexity even in worst case.
  * This algorithm is also referenced as median of medians algorithm.
  */
 public class BFPRT implements Select {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		int[] arr = ArrayGenerator.fixedArray();
-//		int[] arr = ArrayGenerator.randomArray(20, 20);
-		int[] sortedArr = arr.clone();
-		Arrays.sort(sortedArr);
-		System.out.println("Original array:");
+		System.out.println("Let's select items from this array:");
 		ArrayPrinter.print(arr);
-		System.out.println("Sorted array:");
-		ArrayPrinter.print(sortedArr);
 
 		Select select = new BFPRT();
-		for (int k = 0; k < arr.length; k++) {
-			int result = select.select(arr, k);
-			System.out.println("The " + k + "-th smallest number is " + result);
-		}
+		System.out.println();
+		int result = select.select(arr, 4);
+		System.out.println("The 4-th smallest number is " + result + ".");
 	}
 
 	/**

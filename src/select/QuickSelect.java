@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package select;
 
@@ -7,23 +7,24 @@ import utils.ArrayGenerator;
 import utils.ArrayPrinter;
 
 /**
- * <h3>Quick select algorithm</h3>
+ * Quick select algorithm.
+ *
+ * This select algorithm is a variant of quick sort algorithm by always cutting half of the branch when dividing.
  */
 public class QuickSelect implements Select {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		int[] arr = ArrayGenerator.fixedArray();
-//		int[] arr = ArrayGenerator.randomArray(20, 20);
+		System.out.println("Let's select items from this array:");
 		ArrayPrinter.print(arr);
-		int i = 2;
 
 		Select select = new QuickSelect();
-		int result = select.select(arr, i);
-
-		System.out.println("The " + i + "-th smallest number is " + result);
+		System.out.println();
+		int result = select.select(arr, 4);
+		System.out.println("The 4-th smallest number is " + result + ".");
 	}
 
 	/**
