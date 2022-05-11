@@ -78,6 +78,8 @@ Except for code, you can click the `book` and `blog` links for more information.
     + [RedBlackTree](https://github.com/jingedawang/Algorithms/blob/master/src/container/RedBlackTree.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=329)
       [`blog`](https://zhuanlan.zhihu.com/p/335016486)
++ [Divide and Conquer](https://github.com/jingedawang/Algorithms/tree/master/src/divideandconquer)
+    + [FindMaximumSubarray](https://github.com/jingedawang/Algorithms/blob/master/src/divideandconquer/FindMaximumSubarray.java)
 + [Dynamic Programming](https://github.com/jingedawang/Algorithms/tree/master/src/dp)
     + [CutRod](https://github.com/jingedawang/Algorithms/blob/master/src/dp/CutRod.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=381)
