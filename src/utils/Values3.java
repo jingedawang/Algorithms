@@ -1,10 +1,10 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package utils;
 
 /**
- * <h3>A value entity that represents three values with different types</h3>
+ * A value entity that represents three values with different types.
  * <p>
  * This class can be used as the return type of the method when three return values are needed.
  */

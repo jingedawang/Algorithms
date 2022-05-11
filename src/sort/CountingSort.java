@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package sort;
 
@@ -7,23 +7,24 @@ import utils.ArrayPrinter;
 import utils.ArrayGenerator;
 
 /**
- * <h3>Counting sort algorithm</h3>
+ * Counting sort algorithm.
  */
 public class CountingSort implements Sort {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		// The elements to be sorted by counting sort must lies in [0, k).
 		int k = 10;
-
 		int[] arr = ArrayGenerator.randomArray(k);
+		System.out.println("Original array:");
 		ArrayPrinter.print(arr);
 
 		Sort sort = new CountingSort(k);
 		sort.sort(arr);
-
+		System.out.println();
+		System.out.println("Sorted by counting sort:");
 		ArrayPrinter.print(arr);
 	}
 

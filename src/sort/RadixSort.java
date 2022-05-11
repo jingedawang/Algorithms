@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package sort;
 
@@ -7,25 +7,26 @@ import utils.ArrayPrinter;
 import utils.ArrayGenerator;
 
 /**
- * <h3>Radix sort algorithm</h3>
+ * Radix sort algorithm.
  */
 public class RadixSort implements Sort {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		// The maximum number of digits of the elements.
 		int d = 3;
 		// The upper limit of each digit.
 		int k = 10;
-
 		int[] arr = ArrayGenerator.randomArray((int) Math.pow(k, d));
+		System.out.println("Original array:");
 		ArrayPrinter.print(arr);
 
 		Sort sort = new RadixSort(d, k);
 		sort.sort(arr);
-
+		System.out.println();
+		System.out.println("Sorted by radix sort:");
 		ArrayPrinter.print(arr);
 	}
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package sort;
 
@@ -10,18 +10,19 @@ import utils.ArrayPrinter;
 import utils.Seed;
 
 /**
- * <h3>Randomized quick sort algorithm</h3>
+ * Randomized quick sort algorithm.
  */
 public class RandomizedQuickSort extends QuickSort {
 
 	public static void main(String[] args) {
 		int[] arr = ArrayGenerator.fixedArray();
-//		int[] arr = ArrayGenerator.randomArray(20, 20);
+		System.out.println("Original array:");
 		ArrayPrinter.print(arr);
 
 		Sort sort = new RandomizedQuickSort();
 		sort.sort(arr);
-
+		System.out.println();
+		System.out.println("Sorted by randomized quick sort:");
 		ArrayPrinter.print(arr);
 	}
 

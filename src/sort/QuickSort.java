@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package sort;
 
@@ -7,18 +7,19 @@ import utils.ArrayPrinter;
 import utils.ArrayGenerator;
 
 /**
- * <h3>Quick sort algorithm</h3>
+ * Quick sort algorithm.
  */
 public class QuickSort implements Sort {
 
 	public static void main(String[] args) {
 		int[] arr = ArrayGenerator.fixedArray();
-//		int[] arr = ArrayGenerator.randomArray(20, 20);
+		System.out.println("Original array:");
 		ArrayPrinter.print(arr);
 
 		Sort sort = new QuickSort();
 		sort.sort(arr);
-
+		System.out.println();
+		System.out.println("Sorted by quick sort:");
 		ArrayPrinter.print(arr);
 	}
 

@@ -15,16 +15,17 @@ import utils.ArrayGenerator;
 public class HeapSort implements Sort {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		int[] arr = ArrayGenerator.fixedArray();
-//		int[] arr = ArrayGenerator.randomArray(20, 20);
+		System.out.println("Original array:");
 		ArrayPrinter.print(arr);
 
 		Sort sort = new HeapSort();
 		sort.sort(arr);
-
+		System.out.println();
+		System.out.println("Sorted by heap sort:");
 		ArrayPrinter.print(arr);
 	}
 

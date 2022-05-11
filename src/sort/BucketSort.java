@@ -1,5 +1,5 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package sort;
 
@@ -10,23 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <h3>Bucket sort algorithm</h3>
+ * Bucket sort algorithm.
  */
 public class BucketSort implements Sort {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
-		// The elements to be sorted by bucket sort must lies in [0, k).
+		// The elements to be sorted by bucket sort must lie in [0, k).
 		int k = 10;
-
 		int[] arr = ArrayGenerator.randomArray(k);
+		System.out.println("Original array:");
 		ArrayPrinter.print(arr);
 
 		Sort sort = new BucketSort(k);
 		sort.sort(arr);
-
+		System.out.println();
+		System.out.println("Sorted by bucket sort:");
 		ArrayPrinter.print(arr);
 	}
 

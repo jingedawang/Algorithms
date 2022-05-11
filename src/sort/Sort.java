@@ -1,10 +1,10 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package sort;
 
 /**
- * <h3>Interface for all sort classes</h3>
+ * Interface for all sort classes.
  */
 public interface Sort {
 

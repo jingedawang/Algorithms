@@ -1,32 +1,28 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package sort;
 
 import utils.ArrayGenerator;
 import utils.ArrayPrinter;
-import utils.TimeRecorder;
 
 /**
- * <h3>Merge sort algorithm</h3>
+ * Merge sort algorithm.
  */
 public class MergeSort implements Sort {
 
 	/**
-	 * Test code.
+	 * Demo code.
 	 */
 	public static void main(String[] args) {
 		int[] arr = ArrayGenerator.fixedArray();
-//		int[] arr = ArrayGenerator.randomArray(20, 20);
+		System.out.println("Original array:");
 		ArrayPrinter.print(arr);
 
 		MergeSort sort = new MergeSort();
-		TimeRecorder timeRecorder = new TimeRecorder();
-		timeRecorder.start();
 		sort.sort(arr);
-		timeRecorder.stop();
-		timeRecorder.print();
-
+		System.out.println();
+		System.out.println("Sorted by merge sort:");
 		ArrayPrinter.print(arr);
 	}
 
