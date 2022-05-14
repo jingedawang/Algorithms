@@ -1,12 +1,12 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package utils;
 
 import java.util.Random;
 
 /**
- * <h3>Array generator</h3>
+ * Array generator.
  */
 public class ArrayGenerator {
 
@@ -31,7 +31,7 @@ public class ArrayGenerator {
 	/**
 	 * Get a randomly generated array of length 10 with specified upper limit.
 	 *
-	 * @param upperLimit The upper limit of elements.
+	 * @param upperLimit The upper limit of elements (exclusive).
 	 * @return The random array.
 	 */
 	public static int[] randomArray(int upperLimit) {
@@ -41,7 +41,7 @@ public class ArrayGenerator {
 	/**
 	 * Get a randomly generated array of specified length with specified upper limit.
 	 *
-	 * @param upperLimit The upper limit of elements.
+	 * @param upperLimit The upper limit of elements (exclusive).
 	 * @param size       The length of the array.
 	 * @return The random array.
 	 */
@@ -57,8 +57,8 @@ public class ArrayGenerator {
 	/**
 	 * Get a randomly generated array of specified length with specified upper limit and lower limit.
 	 *
-	 * @param lowerLimit The lower limit of elements.
-	 * @param upperLimit The upper limit of elements.
+	 * @param lowerLimit The lower limit of elements (inclusive).
+	 * @param upperLimit The upper limit of elements (exclusive).
 	 * @param size       The length of the array.
 	 * @return The random array.
 	 */
@@ -71,20 +71,20 @@ public class ArrayGenerator {
 	}
 
 	/**
-	 * Get a randomly generated double array of length 10 between 0 and 1.
+	 * Get a randomly generated double array of specified length with values between 0.0 (inclusive) and 1.0 (exclusive).
 	 *
 	 * @return The random double array.
 	 */
-	public static double[] randomArrayDouble() {
-		int[] arr = randomArray();
-		double[] arrDouble = new double[arr.length];
-		for (int i = 0; i < arr.length; i++) {
-			arrDouble[i] = arr[i] / 10.0;
+	public static double[] randomDoubleArray(int size) {
+		Random random = new Random(Seed.next());
+		double[] arr = new double[size];
+		for (int i = 0; i < size; i++) {
+			arr[i] = random.nextDouble();
 		}
-		return arrDouble;
+		return arr;
 	}
 
 	// Built-in fixed array
-	private static int[] A = new int[]{4, 8, 1, 2, 0, 6, 5, 1, 9, 3};
+	private static final int[] A = new int[]{4, 8, 1, 2, 0, 6, 5, 1, 9, 3};
 
 }
