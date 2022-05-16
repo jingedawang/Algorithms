@@ -82,11 +82,30 @@ public class ArrayPrinter {
 	 * @param length The length of the subarray to be printed.
 	 */
 	public static <T> void print(T[] arr, int index, int length) {
+		print(arr, index, length, false);
+	}
+
+	/**
+	 * Print the specified part of the array.
+	 *
+	 * @param arr           The array to be printed.
+	 * @param index         The index where the printing started.
+	 * @param length        The length of the subarray to be printed.
+	 * @param noLengthLimit Boolean flag indicating whether to perform length limit when printing the array.
+	 */
+	public static <T> void print(T[] arr, int index, int length, boolean noLengthLimit) {
 		System.out.print("[");
 		int i = 0;
-		for (; i < length - 1 && index + i < arr.length - 1; i++) {
+		int printLength = noLengthLimit ? length - 1 : Math.min(length - 1, maxPrintLength - 1);
+		for (; i < printLength && index + i < arr.length - 1; i++) {
 			System.out.print(arr[index + i] + ", ");
 		}
-		System.out.println(arr[index + i] + "]");
+		if (!noLengthLimit && length > maxPrintLength) {
+			System.out.print("...(" + (length - maxPrintLength) + " items omitted), ");
+		}
+		System.out.println(arr[index + length - 1] + "]");
 	}
+
+	// The max length to be printed. If the array exceeds this limit, the exceeded part will be printed as "...".
+	private static final int maxPrintLength = 20;
 }

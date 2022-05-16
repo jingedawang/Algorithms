@@ -4,6 +4,7 @@
 package sort;
 
 import utils.ArrayGenerator;
+import utils.ArrayPrinter;
 import utils.TimeRecorder;
 
 /**
@@ -20,7 +21,7 @@ public class HybridSort extends MergeSort {
 		int[] arrForHybridSort = ArrayGenerator.randomArray(100000, 10000000);
 		int[] arrForMergeSort = arrForHybridSort.clone();
 		System.out.println("Create a big array with 10000000 elements:");
-		// TODO: print the array
+		ArrayPrinter.print(arrForHybridSort);
 
 		HybridSort sort = new HybridSort();
 		TimeRecorder timeRecorder1 = new TimeRecorder();
@@ -29,7 +30,7 @@ public class HybridSort extends MergeSort {
 		timeRecorder1.stop();
 		System.out.println();
 		System.out.println("Sorted by hybrid sort:");
-		// TODO: Print the sorted array
+		ArrayPrinter.print(arrForHybridSort);
 		System.out.println("Hybrid sort used " + timeRecorder1.getElapsedTime() + "ms.");
 
 		MergeSort mergeSort = new MergeSort();
@@ -39,7 +40,7 @@ public class HybridSort extends MergeSort {
 		timeRecorder2.stop();
 		System.out.println();
 		System.out.println("Sorted by merge sort:");
-		// TODO: Print the sorted array
+		ArrayPrinter.print(arrForMergeSort);
 		System.out.println("Merge sort used " + timeRecorder2.getElapsedTime() + "ms.");
 	}
 
