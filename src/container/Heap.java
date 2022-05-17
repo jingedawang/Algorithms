@@ -110,6 +110,19 @@ public class Heap extends AbstractTree implements BinaryTree {
 	}
 
 	/**
+	 * Delete a node from the heap.
+	 *
+	 * Since the heap doesn't maintain the tree structure, so deleting a node from a heap is meaningless. Also, it's not
+	 * useful to delete a node from a heap.
+	 *
+	 * @param node The node to be deleted.
+	 */
+	@Override
+	public void delete(Node node) {
+		throw new UnsupportedOperationException("'delete' method not supported in Heap class");
+	}
+
+	/**
 	 * Get and remove the top value of the heap.
 	 *
 	 * If this is a max heap, the return value is the maximum.

@@ -4,11 +4,11 @@
 package container;
 
 /**
- * Base class for all kinds of trees.
+ * Abstract base class for all kinds of trees.
  * <p>
- * Some general methods of trees are provided here.
+ * Some implementations of general methods of trees are provided here.
  */
-public class AbstractTree implements Tree, Cloneable {
+public abstract class AbstractTree implements Tree, Cloneable {
 
 	/**
 	 * Checks if the tree is empty.
@@ -75,26 +75,6 @@ public class AbstractTree implements Tree, Cloneable {
 	@Override
 	public int getHeight() {
 		return computeHeight(root);
-	}
-
-	/**
-	 * Insert a node into the tree.
-	 *
-	 * @param newNode The node to be inserted.
-	 */
-	@Override
-	public void insert(Node newNode) {
-
-	}
-
-	/**
-	 * Delete a node from the tree.
-	 *
-	 * @param node The node to be deleted.
-	 */
-	@Override
-	public void delete(Node node) {
-		throw new UnsupportedOperationException("'delete' method not supported for object: " + this);
 	}
 
 	/**
