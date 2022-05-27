@@ -14,8 +14,11 @@ public class MatrixPrinterTest {
 
 	@Test
 	void print() {
-		Matrix<Double> matrix = MatrixGenerator.generateRandomDoubleMatrix(4, 5);
-		MatrixPrinter.print(matrix);
+		Matrix<Integer> integerMatrix = MatrixGenerator.generateRandomIntegerMatrix(4, 5, 50);
+		MatrixPrinter.print(integerMatrix);
+
+		Matrix<Double> doubleMatrix = MatrixGenerator.generateRandomDoubleMatrix(4, 5, 100);
+		MatrixPrinter.print(doubleMatrix);
 	}
 
 }

@@ -1,27 +1,50 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package utils;
 
 import matrix.Matrix;
 
 /**
- * <h3>Matrix printer</h3>
+ * Matrix printer.
  */
 public class MatrixPrinter {
 
 	/**
 	 * Print the matrix in a readable format.
 	 *
-	 * @param m The matrix to be printed.
+	 * @param matrix The matrix to be printed.
 	 */
-	public static void print(Matrix m) {
-		System.out.print("[");
-		for (int i = 0; i < m.rows(); i++) {
-			for (int j = 0; j < m.columns() - 1; j++) {
-				System.out.print(m.value()[i][j] + ",");
+	public static <T extends Number> void print(Matrix<T> matrix) {
+		double maxValue = MatrixUtils.max(matrix).doubleValue();
+		double minValue = MatrixUtils.min(matrix).doubleValue();
+		double maxAbsValue = Math.max(Math.abs(maxValue), Math.abs(minValue));
+		int digitNumberBeforePoint = String.format("%.0f", maxAbsValue).length();
+
+		for (int i = 0; i < matrix.rows(); i++) {
+			if (i == 0) {
+				System.out.print('[');
 			}
-			System.out.println(m.value()[i][m.columns() - 1] + (i == m.rows() - 1 ? "]" : ""));
+			else {
+				System.out.print(' ');
+			}
+			for (int j = 0; j < matrix.columns(); j++) {
+				if (matrix.get(i, j) instanceof Integer) {
+					System.out.printf("%" + digitNumberBeforePoint + "d", matrix.get(i, j));
+				}
+				else {
+					System.out.printf("%" + (digitNumberBeforePoint + 3) + ".2f", matrix.get(i, j));
+				}
+				if (j != matrix.columns() - 1) {
+					System.out.print(", ");
+				}
+			}
+			if (i != matrix.rows() - 1) {
+				System.out.println();
+			}
+			else {
+				System.out.println(']');
+			}
 		}
 	}
 
