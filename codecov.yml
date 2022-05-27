@@ -8,3 +8,8 @@ coverage:
         target: auto
         # We allow a 2% drop from the previous base commit coverage
         threshold: 2%
+    # Disable patch since it is noisy and not correct
+    patch:
+      default:
+        enabled: no
+        if_not_found: success
