@@ -18,8 +18,8 @@ public interface MatrixMultiplier {
 	static void main(String[] args) {
 
 		for (int n = 0; n < 11; n++) {
-			Matrix A = MatrixGenerator.generateRandomMatrix(1 << n);
-			Matrix B = MatrixGenerator.generateRandomMatrix(1 << n);
+			Matrix<Double> A = MatrixGenerator.generateRandomDoubleMatrix(1 << n);
+			Matrix<Double> B = MatrixGenerator.generateRandomDoubleMatrix(1 << n);
 
 			TimeRecorder timeRecorderPlain = new TimeRecorder(n + " x " + n + " plain");
 			timeRecorderPlain.start();
@@ -41,8 +41,9 @@ public interface MatrixMultiplier {
 	 *
 	 * @param A First operand of matrix multiplication.
 	 * @param B Second operand of matrix multiplication.
+	 * @param <T> The type of the underlying elements of the matrix to be multiplied.
 	 * @return The product of the matrix multiplication.
 	 */
-	Matrix multiply(Matrix A, Matrix B);
+	<T extends Number> Matrix<T> multiply(Matrix<T> A, Matrix<T> B);
 
 }
