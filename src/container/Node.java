@@ -21,13 +21,6 @@ public class Node implements Cloneable {
 	}
 
 	/**
-	 * Default constructor.
-	 */
-	public Node() {
-
-	}
-
-	/**
 	 * Constructor with value.
 	 *
 	 * @param value The value of the node.

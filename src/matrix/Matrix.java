@@ -186,15 +186,6 @@ public class Matrix<E extends Number> {
 	}
 
 	/**
-	 * Check if the matrix is empty.
-	 *
-	 * @return {@code true} if this matrix has no elements.
-	 */
-	public boolean empty() {
-		return matrix == null || matrix.length == 0 || matrix[0].length == 0;
-	}
-
-	/**
 	 * Check if the matrix is a square matrix.
 	 *
 	 * @return {@code true} if this is a square matrix, {@code false} otherwise.

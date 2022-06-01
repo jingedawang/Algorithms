@@ -41,12 +41,36 @@ public class MatrixTest {
 		Assertions.assertTrue(elapsedTimeStrassen <= elapsedTimePlain);
 	}
 
-	@Test()
-	void constructWithNegativeRows() {
+	@Test
+	void constructWithNegativeRowsOrColumns() {
 		Assertions.assertThrows(
 				IllegalArgumentException.class,
 				() -> new Matrix<Double>(-1, 2),
 				"Should throw error for negative rows or columns."
+		);
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> new Matrix<Double>(1, -2),
+				"Should throw error for negative rows or columns."
+		);
+	}
+
+	@Test
+	void constructWithEmptyDataArray() {
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> new Matrix<Double>(new double[0][]),
+				"Should throw error when the data array used to construct matrix has no rows."
+		);
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> new Matrix<Double>(new double[][] { {}, {} }),
+				"Should throw error when the data array used to construct matrix has no columns."
+		);
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> new Matrix<Double>(new double[][] { {1, 2, 3}, {4, 5} }),
+				"Should throw error when the data array used to construct matrix has different length in each row."
 		);
 	}
 
@@ -117,11 +141,16 @@ public class MatrixTest {
 	}
 
 	@Test
-	void splitWithLessRows() {
+	void splitWithLessRowsOrColumns() {
 		Assertions.assertThrows(
 				IllegalArgumentException.class,
 				() -> MatrixGenerator.generateRandomDoubleMatrix(1, 4).split(),
 				"Should throw error when splitting a matrix with only 1 row."
+		);
+		Assertions.assertThrows(
+				IllegalArgumentException.class,
+				() -> MatrixGenerator.generateRandomDoubleMatrix(6, 1).split(),
+				"Should throw error when splitting a matrix with only 1 column."
 		);
 	}
 
