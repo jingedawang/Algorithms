@@ -4,6 +4,7 @@
 [![build](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/jingedawang/Algorithms/actions/workflows/build.yml)
 [![check-url](https://github.com/jingedawang/Algorithms/workflows/Url/badge.svg?branch=master)](https://github.com/jingedawang/Algorithms/actions/workflows/check-url.yml)
 [![codecov](https://codecov.io/gh/jingedawang/Algorithms/branch/master/graph/badge.svg?token=01G6F59X5L)](https://codecov.io/gh/jingedawang/Algorithms)
+[![Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-FFB45B?logo=gitpod)](https://gitpod.io/#https://github.com/jingedawang/Algorithms)
 
 Welcome to the world of **Algorithms**.
 
@@ -23,7 +24,9 @@ Just run it, the core principle will flash on you at once.
 
 ### Quick Start
 
-You can use either Intellij IDEA or Gradle to build and test the code.
+We support Gitpod as online coding platform, you can try it [here](https://gitpod.io/#https://github.com/jingedawang/Algorithms).
+
+You can use either Intellij IDEA or Gradle to build and test the code locally. But you can only use Gradle as build tool online since Gitpod is using VSCode.
 
 #### Intellij IDEA
 
@@ -38,7 +41,7 @@ To run all tests, please right-click the `test` folder from the Project window, 
 
 #### Gradle
 
-If you don't have Intellij IDEA installed, it's also convenient to build and test with Gradle.
+If you don't have Intellij IDEA installed or if you are using Gitpod, it's also convenient to build and test with Gradle.
 You don't need to have Gradle installed, `gradlew` script will download a proper version for you
 during the first run.
 
