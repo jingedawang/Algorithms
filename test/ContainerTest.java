@@ -16,7 +16,7 @@ public class ContainerTest {
 	void empty() {
 		BinarySearchTree binarySearchTree = new BinarySearchTree();
 		BTree bTree = new BTree();
-		Heap heap = new Heap();
+		BinaryHeap heap = new BinaryHeap();
 		PriorityQueue priorityQueue = new PriorityQueue();
 		RedBlackTree redBlackTree = new RedBlackTree();
 
@@ -32,7 +32,7 @@ public class ContainerTest {
 		int[] arr = ArrayGenerator.randomArray(30, 33);
 		BinarySearchTree binarySearchTree = new BinarySearchTree(arr.clone());
 		BTree bTree = new BTree(arr.clone());
-		Heap heap = new Heap(arr.clone(), true);
+		BinaryHeap heap = new BinaryHeap(arr.clone(), true);
 		PriorityQueue priorityQueue = new PriorityQueue(arr.clone());
 		RedBlackTree redBlackTree = new RedBlackTree(arr.clone());
 

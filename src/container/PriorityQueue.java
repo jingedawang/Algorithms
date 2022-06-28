@@ -36,7 +36,7 @@ public class PriorityQueue implements Queue {
 	 * Construct an empty priority queue.
 	 */
 	public PriorityQueue() {
-		heap = new Heap();
+		heap = new BinaryHeap();
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class PriorityQueue implements Queue {
 	 * @param arr The data array to be pushed into the priority queue in order.
 	 */
 	public PriorityQueue(int[] arr) {
-		heap = new Heap(arr, false);
+		heap = new BinaryHeap(arr, false);
 	}
 
 	/**
@@ -116,6 +116,6 @@ public class PriorityQueue implements Queue {
 		return heap.size();
 	}
 
-	private final Heap heap;
+	private final BinaryHeap heap;
 
 }

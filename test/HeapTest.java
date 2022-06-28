@@ -2,7 +2,7 @@
  * Copyright 2022 jingedawang
  */
 
-import container.Heap;
+import container.BinaryHeap;
 import container.Node;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,13 +11,13 @@ import utils.ArrayGenerator;
 import java.util.Arrays;
 
 /**
- * Test class for {@link Heap}.
+ * Test class for {@link BinaryHeap}.
  */
 public class HeapTest {
 
 	@Test
 	void maxHeap() {
-		Heap heap = new Heap();
+		BinaryHeap heap = new BinaryHeap();
 		Assertions.assertTrue(heap.empty());
 
 		int[] arr = ArrayGenerator.fixedArray();
@@ -37,7 +37,7 @@ public class HeapTest {
 		int[] arr = ArrayGenerator.randomArray(100, 100);
 		int[] halfArr = new int[arr.length / 2];
 		System.arraycopy(arr, 0, halfArr, 0, halfArr.length);
-		Heap heap = new Heap(halfArr, true);
+		BinaryHeap heap = new BinaryHeap(halfArr, true);
 		for (int i = halfArr.length; i < arr.length; i++) {
 			heap.insert(new Node(arr[i]));
 		}

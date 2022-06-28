@@ -3,14 +3,14 @@
  */
 package sort;
 
-import container.Heap;
+import container.BinaryHeap;
 import utils.ArrayPrinter;
 import utils.ArrayGenerator;
 
 /**
  * Heap sort algorithm.
  *
- * This sort algorithm is implemented with {@link Heap}.
+ * This sort algorithm is implemented with {@link BinaryHeap}.
  */
 public class HeapSort implements Sort {
 
@@ -36,7 +36,7 @@ public class HeapSort implements Sort {
 	 */
 	@Override
 	public void sort(int[] arr) {
-		Heap heap = new Heap(arr, true);
+		BinaryHeap heap = new BinaryHeap(arr, true);
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = heap.pop();
 		}

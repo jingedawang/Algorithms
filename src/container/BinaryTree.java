@@ -1,10 +1,10 @@
 /**
- * Copyright 2020 jingedawang
+ * Copyright 2022 jingedawang
  */
 package container;
 
 /**
- * <h3>Interface for all binary tree classes</h3>
+ * Interface for all binary tree classes.
  */
 public interface BinaryTree extends Tree {
 }

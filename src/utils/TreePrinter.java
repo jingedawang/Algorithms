@@ -5,8 +5,8 @@ package utils;
 
 import container.BTree;
 import container.BinarySearchTree;
+import container.BinaryHeap;
 import container.BinaryTree;
-import container.Heap;
 import container.Node;
 import container.RedBlackTree;
 
@@ -158,7 +158,7 @@ public class TreePrinter {
 	 * Print a heap.
 	 * @param heap The heap to be printed.
 	 */
-	public static void print(Heap heap) {
+	public static void print(BinaryHeap heap) {
 		print(heap.toBinaryTree());
 	}
 
