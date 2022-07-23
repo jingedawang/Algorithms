@@ -8,7 +8,7 @@ package container;
  *
  * A heap is a data structure which could easily access and extract values from its top.
  */
-public interface Heap {
+public interface Heap extends Container {
 
 	/**
 	 * Get the top value of the heap.

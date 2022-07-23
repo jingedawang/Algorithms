@@ -6,8 +6,8 @@ Very thanks for all of you interested in contributing!
 
 We encourage you to contribute anything that makes this project a better one. You can think about the following questions:
 
-+ Is there any BUGs or bad implementations in the current code?
-+ Is the documents and comments not clearly enough?
++ Are there any BUGs or bad implementations in the current code?
++ Are the documents and comments not clear enough?
 + An algorithm not found?
 
 If yes, don't hesitate to be a contributor!

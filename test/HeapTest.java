@@ -3,6 +3,7 @@
  */
 
 import container.BinaryHeap;
+import container.FibonacciHeap;
 import container.Node;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class HeapTest {
 		Arrays.sort(sortedArr);
 		for (int i = 0; i < arr.length; i++) {
 			Assertions.assertEquals(sortedArr[sortedArr.length - 1 - i], heap.top());
-			Assertions.assertEquals(heap.top(), heap.pop());
+			Assertions.assertEquals(sortedArr[sortedArr.length - 1 - i], heap.pop());
 		}
 	}
 
@@ -37,15 +38,21 @@ public class HeapTest {
 		int[] arr = ArrayGenerator.randomArray(100, 100);
 		int[] halfArr = new int[arr.length / 2];
 		System.arraycopy(arr, 0, halfArr, 0, halfArr.length);
-		BinaryHeap heap = new BinaryHeap(halfArr, true);
+
+		BinaryHeap binaryHeap = new BinaryHeap(halfArr.clone(), true);
+		FibonacciHeap fibonacciHeap = new FibonacciHeap(halfArr.clone());
 		for (int i = halfArr.length; i < arr.length; i++) {
-			heap.insert(new Node(arr[i]));
+			binaryHeap.insert(new Node(arr[i]));
+			fibonacciHeap.insert(new Node(arr[i]));
 		}
+
 		int[] sortedRandomArr = arr.clone();
 		Arrays.sort(sortedRandomArr);
 		for (int value : sortedRandomArr) {
-			Assertions.assertEquals(value, heap.top());
-			Assertions.assertEquals(heap.top(), heap.pop());
+			Assertions.assertEquals(value, binaryHeap.top());
+			Assertions.assertEquals(value, binaryHeap.pop());
+			Assertions.assertEquals(value, fibonacciHeap.top());
+			Assertions.assertEquals(value, fibonacciHeap.pop());
 		}
 	}
 

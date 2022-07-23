@@ -3,6 +3,8 @@
  */
 package container;
 
+import java.util.LinkedList;
+
 /**
  * Node class for each element of search tree.
  *
@@ -63,7 +65,7 @@ public class Node implements Cloneable {
 	}
 
 	///
-	/// Fields for binary search tree and red-black tree.
+	/// Fields for binary search tree.
 	///
 
 	/**
@@ -85,6 +87,10 @@ public class Node implements Cloneable {
 	 * The right child of the node.
 	 */
 	public Node right;
+
+	///
+	/// Fields for red-black tree.
+	///
 
 	/**
 	 * The color of the node, either red or black.
@@ -125,6 +131,27 @@ public class Node implements Cloneable {
 	 */
 	public boolean isLeaf;
 
+	///
+	/// Fields for fibonacci heap.
+	///
+
+	/**
+	 * The number of the children of this node.
+	 */
+	public int degree;
+
+	/**
+	 * Flag indicates whether this node has lost children since it was placed to current position.
+	 */
+	public boolean marked;
+
+	/**
+	 * The children list of the node.
+	 *
+	 * In fibonacci heap, we use a linked list to accelerate the modification for children.
+	 */
+	public LinkedList<Node> childrenList;
+	
 	/**
 	 * Clone this node.
 	 * <p>
