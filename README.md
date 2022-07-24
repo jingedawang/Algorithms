@@ -76,6 +76,8 @@ Except for code, you can click the `book` and `blog` links for more information.
     + [BTree](https://github.com/jingedawang/Algorithms/blob/master/src/container/BTree.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=505)
       [`blog`](https://zhuanlan.zhihu.com/p/342999669)
+    + [FibonacciHeap](https://github.com/jingedawang/Algorithms/blob/master/src/container/FibonacciHeap.java)
+      [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=526)
     + [PriorityQueue](https://github.com/jingedawang/Algorithms/blob/master/src/container/PriorityQueue.java)
       [`book`](https://edutechlearners.com/download/Introduction_to_algorithms-3rd%20Edition.pdf#page=183)
     + [RedBlackTree](https://github.com/jingedawang/Algorithms/blob/master/src/container/RedBlackTree.java)

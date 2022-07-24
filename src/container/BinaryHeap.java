@@ -3,6 +3,9 @@
  */
 package container;
 
+import utils.ArrayGenerator;
+import utils.ArrayPrinter;
+
 /**
  * BinaryHeap is basically a binary tree, whose each sub-tree keeps the max or min value in the root node.
  *
@@ -20,6 +23,25 @@ package container;
  * its nodes, please call {@code toBinaryTree} method, which will return as a structured binary tree.
  */
 public class BinaryHeap extends AbstractTree implements BinaryTree, Heap {
+
+	/**
+	 * Demo code.
+	 */
+	public static void main(String[] args) {
+		int[] arr = ArrayGenerator.fixedArray();
+		System.out.println("Array used to build binary heap:");
+		ArrayPrinter.print(arr);
+		BinaryHeap heap = new BinaryHeap(arr, true);
+
+		System.out.println("The top value of the binary heap is:");
+		System.out.println(heap.top());
+
+		System.out.println("Pop values from the binary heap:");
+		while (heap.size() > 1) {
+			System.out.print(heap.pop() + ", ");
+		}
+		System.out.println(heap.pop());
+	}
 
 	/**
 	 * Construct an empty max heap.

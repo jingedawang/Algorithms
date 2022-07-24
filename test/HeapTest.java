@@ -9,12 +9,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.ArrayGenerator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Test class for {@link BinaryHeap}.
  */
 public class HeapTest {
+
+	@Test
+	void main() {
+		BinaryHeap.main(new String[]{});
+		FibonacciHeap.main(new String[]{});
+	}
 
 	@Test
 	void maxHeap() {
@@ -54,6 +62,26 @@ public class HeapTest {
 			Assertions.assertEquals(value, fibonacciHeap.top());
 			Assertions.assertEquals(value, fibonacciHeap.pop());
 		}
+	}
+
+	@Test
+	void delete() {
+		int[] arr = ArrayGenerator.randomArray(100, 100);
+		FibonacciHeap fibonacciHeap = new FibonacciHeap();
+
+		ArrayList<Node> nodes = new ArrayList<>(arr.length);
+		for (int value : arr) {
+			Node node = new Node(value);
+			nodes.add(node);
+			fibonacciHeap.insert(node);
+		}
+		Assertions.assertEquals(nodes.size(), fibonacciHeap.size());
+
+		Collections.shuffle(nodes);
+		for (Node node : nodes) {
+			fibonacciHeap.delete(node);
+		}
+		Assertions.assertTrue(fibonacciHeap.empty());
 	}
 
 }

@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * FibonacciHeap is a kind of heap which is fast when adjusting a key.
+ * FibonacciHeap is a kind of heap which is fast for some kinds of operations in view of amortized complexity.
  *
- * Specifically, when decrease the key of a node, Fibonacci heap can finish it in constant-time amortized complexity.
+ * Specifically, inserting node and decreasing value can be finished in amortized constant-time.
  * It is really helpful in many graph algorithms who need to decrease the weight of the edges frequently.
  */
 public class FibonacciHeap implements Heap {
@@ -22,9 +22,9 @@ public class FibonacciHeap implements Heap {
 	 */
 	public static void main(String[] args) {
 		int[] arr = ArrayGenerator.fixedArray();
-		FibonacciHeap heap = new FibonacciHeap(arr);
 		System.out.println("Array used to build fibonacci heap:");
 		ArrayPrinter.print(arr);
+		FibonacciHeap heap = new FibonacciHeap(arr);
 
 		System.out.println("The top value of the fibonacci heap is:");
 		System.out.println(heap.top());
@@ -127,6 +127,8 @@ public class FibonacciHeap implements Heap {
 	 */
 	@Override
 	public void delete(Node node) {
+		// We firstly decrease its value to the minimum integer value.
+		// Then pop method will remove it because it's minimum now.
 		decreaseValue(node, Integer.MIN_VALUE);
 		pop();
 	}
@@ -152,12 +154,44 @@ public class FibonacciHeap implements Heap {
 	}
 
 	/**
+	 * Decrease the value of the specified node.
+	 *
+	 * @param node The node whose value will be decreased.
+	 * @param newValue The new value for the node. It should be smaller than original value of the node.
+	 */
+	public void decreaseValue(Node node, int newValue) {
+		if (newValue > node.value) {
+			throw new IllegalArgumentException("New value should be smaller than current value.");
+		}
+		node.value = newValue;
+		Node parent = node.parent;
+		if (parent != null && node.value < parent.value) {
+			// The new value violate the minimum heap order.
+			// Simply cut the node and move it into the root list.
+			cut(node, parent);
+
+			// But, there is one more important thing to obtain the constant-time complexity.
+			// That is, once a node loses its second child, it should also be moved into the root list.
+			// This is used to keep each heap compact, which is necessary for maintaining an exponential relationship
+			// between the largest degree and heap size.
+			// And this check should be recursively upwards to root, because cutting current node will have effect on
+			// whether to cut its parent.
+			cascadingCut(parent);
+		}
+		if (node.value < minimum.value) {
+			minimum = node;
+		}
+	}
+
+	/**
 	 * Consolidate the root list of the fibonacci heap to make sure each root have different degrees.
 	 *
 	 * This can be achieved by recursively merging roots with the same degree.
 	 */
 	private void consolidate() {
 		// Use a HashMap to track the node of each degree.
+		// The initial capacity is set to the log of heap size, because the largest degree is expected to be smaller
+		// than log(n).
 		HashMap<Integer, Node> degreeMap = new HashMap<>((int)Math.log(size));
 
 		// Since the iterator of LinkedList is fail-fast, we cannot modify it during traversing.
@@ -205,30 +239,6 @@ public class FibonacciHeap implements Heap {
 	}
 
 	/**
-	 * Decrease the value of the specified node.
-	 *
-	 * @param node The node whose value will be decreased.
-	 * @param newValue The new value for the node. It should be smaller than original value of the node.
-	 */
-	private void decreaseValue(Node node, int newValue) {
-		if (newValue > node.value) {
-			throw new IllegalArgumentException("New value should be smaller than current value.");
-		}
-		node.value = newValue;
-		Node parent = node.parent;
-		if (parent != null && node.value < parent.value) {
-			// The new value violate the minimum heap order.
-			// Simply cut the node and move it root list.
-			// But still need to check if its parent also needs to be cut.
-			cut(node, parent);
-			cascadingCut(parent);
-		}
-		if (node.value < minimum.value) {
-			minimum = node;
-		}
-	}
-
-	/**
 	 * Cut the child from the parent node and move it to root list.
 	 *
 	 * @param child The node to be cut from its parent node.
@@ -243,7 +253,9 @@ public class FibonacciHeap implements Heap {
 	}
 
 	/**
-	 * Cascading cut the node up to the root.
+	 * Cascading cut the nodes.
+	 *
+	 * This method recursively cuts the node upwards to the root, until reach to an un-marked node.
 	 *
 	 * @param node The node where the cascading cut started.
 	 */
@@ -256,7 +268,7 @@ public class FibonacciHeap implements Heap {
 				node.marked = true;
 			}
 			else {
-				// If the node is already marked, it means it lost a second child now.
+				// If the node is already marked, it means it's losing the second child now.
 				// Cut it and continue check if its parent should be cut.
 				cut(node, parent);
 				cascadingCut(parent);
