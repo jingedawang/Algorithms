@@ -84,4 +84,17 @@ public class HeapTest {
 		Assertions.assertTrue(fibonacciHeap.empty());
 	}
 
+	@Test
+	void decreaseValue() {
+		int[] arr = ArrayGenerator.randomArray(50, 50);
+		FibonacciHeap fibonacciHeap = new FibonacciHeap(arr);
+
+		int minimum = Arrays.stream(arr).min().getAsInt();
+		Node node = new Node(25);
+		fibonacciHeap.insert(node);
+		fibonacciHeap.decreaseValue(node, minimum - 1);
+
+		Assertions.assertEquals(minimum - 1, fibonacciHeap.top());
+	}
+
 }
